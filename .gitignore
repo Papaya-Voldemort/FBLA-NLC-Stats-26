@@ -1,0 +1,11 @@
+node_modules/
+dist/
+venv/
+.DS_Store
+.env
+.env.local
+.svelte-kit/
+*.log
+data.pdf
+extracted_text.txt
+

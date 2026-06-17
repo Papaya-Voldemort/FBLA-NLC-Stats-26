@@ -1,0 +1,22 @@
+{
+  "name": "nlc-26-breakdown",
+  "version": "1.0.0",
+  "description": "FBLA 2026 NLC Registration and Schedule Breakdown Dashboard",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "sirv dist --host 0.0.0.0 --port $PORT --single"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.0",
+    "sirv-cli": "^3.0.0"
+  },
+  "devDependencies": {
+    "@iconify/svelte": "^5.2.2",
+    "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "svelte": "^5.0.0",
+    "vite": "^5.0.0"
+  }
+}
