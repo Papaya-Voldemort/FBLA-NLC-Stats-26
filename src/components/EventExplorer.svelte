@@ -14,41 +14,89 @@
     }
   });
 
-  // Sorted and filtered event keys
-  const sortedEvents = $derived(
-    Object.keys(eventCounts)
-      .sort()
-      .filter(name => name.toLowerCase().includes(sidebarQuery.toLowerCase()))
-  );
+  // Sort criteria state
+  let sortBy = $state('name'); // 'name' | 'rate' | 'people' | 'teams'
 
-  const activeEvent = $derived(activeEventId ? eventDetails[activeEventId] : null);
-
-  // Compute commit rates for all events (used in sidebar)
-  const commitRates = $derived.by(() => {
-    const rates = {};
+  // Compute stats for all events (used in sorting, ranking, and sidebar)
+  const eventStats = $derived.by(() => {
+    const stats = {};
     Object.keys(eventDetails).forEach(eventName => {
       const ev = eventDetails[eventName];
-      if (!ev || !ev.entries) return;
+      if (!ev) return;
+      const count = eventCounts[eventName] || 0;
+      const teams = ev.entries ? ev.entries.length : 0;
       
       const stateTeams = {};
-      ev.entries.forEach(entry => {
-        stateTeams[entry.state] = (stateTeams[entry.state] || 0) + 1;
-      });
+      if (ev.entries) {
+        ev.entries.forEach(entry => {
+          stateTeams[entry.state] = (stateTeams[entry.state] || 0) + 1;
+        });
+      }
       
       const states = Object.keys(stateTeams);
       const numStates = states.length;
-      if (numStates === 0) return;
-      
+      let rate = 0;
       let actual = 0;
-      states.forEach(state => {
-        actual += Math.min(stateTeams[state], 4);
-      });
+      if (numStates > 0) {
+        states.forEach(state => {
+          actual += Math.min(stateTeams[state], 4);
+        });
+        const max = numStates * 4;
+        rate = (actual / max) * 100;
+      }
       
-      const max = numStates * 4;
-      rates[eventName] = ((actual / max) * 100).toFixed(0);
+      stats[eventName] = {
+        name: eventName,
+        competitors: count,
+        teams: teams,
+        rate: rate,
+        isMS: ev.division === 'MS'
+      };
     });
-    return rates;
+    return stats;
   });
+
+  // Sorted and filtered event keys
+  const sortedEvents = $derived.by(() => {
+    const list = Object.keys(eventCounts).filter(name => 
+      name.toLowerCase().includes(sidebarQuery.toLowerCase())
+    );
+    
+    list.sort((a, b) => {
+      const statsA = eventStats[a];
+      const statsB = eventStats[b];
+      
+      if (!statsA || !statsB) return 0;
+      
+      if (sortBy === 'rate') {
+        if (statsB.rate !== statsA.rate) {
+          return statsB.rate - statsA.rate;
+        }
+        return statsA.name.localeCompare(statsB.name);
+      }
+      
+      if (sortBy === 'people') {
+        if (statsB.competitors !== statsA.competitors) {
+          return statsB.competitors - statsA.competitors;
+        }
+        return statsA.name.localeCompare(statsB.name);
+      }
+      
+      if (sortBy === 'teams') {
+        if (statsB.teams !== statsA.teams) {
+          return statsB.teams - statsA.teams;
+        }
+        return statsA.name.localeCompare(statsB.name);
+      }
+      
+      // Default: 'name' alphabetical
+      return statsA.name.localeCompare(statsB.name);
+    });
+    
+    return list;
+  });
+
+  const activeEvent = $derived(activeEventId ? eventDetails[activeEventId] : null);
 
   // Compute detailed commit rate data for active event
   const commitRateData = $derived.by(() => {
@@ -118,7 +166,7 @@
   <!-- Left Sidebar: Event List -->
   <div class="event-sidebar {showSidebarMobile ? '' : 'hide-mobile'}">
     <div class="sidebar-search">
-      <div class="search-input-wrapper">
+      <div class="search-input-wrapper" style="margin-bottom: 10px;">
         <Icon icon="lucide:search" />
         <input 
           type="text" 
@@ -128,9 +176,18 @@
           style="padding-top:8px; padding-bottom:8px;"
         />
       </div>
+      <div class="select-wrapper">
+        <Icon icon="lucide:arrow-up-down" class="select-icon" />
+        <select bind:value={sortBy} class="sort-select" aria-label="Sort events by">
+          <option value="name">Sort: Name (A-Z)</option>
+          <option value="rate">Sort: Commit Rate (High-Low)</option>
+          <option value="people">Sort: Total Competitors (High-Low)</option>
+          <option value="teams">Sort: Total Teams (High-Low)</option>
+        </select>
+      </div>
     </div>
     <div class="sidebar-list">
-      {#each sortedEvents as name}
+      {#each sortedEvents as name, index}
         {@const count = eventCounts[name]}
         {@const isMS = eventDetails[name]?.division === 'MS'}
         {@const divLabel = isMS ? 'MS' : 'HS'}
@@ -140,13 +197,24 @@
           class="event-list-item {activeEventId === name ? 'active' : ''}" 
           onclick={() => selectEvent(name)}
         >
-          <div class="event-item-name" title={name}>{name}</div>
+          <div style="display:flex; align-items:center; gap:8px; min-width:0; flex:1;">
+            {#if sortBy !== 'name'}
+              <span class="event-rank-badge {index === 0 ? 'gold-rank' : index === 1 ? 'silver-rank' : index === 2 ? 'bronze-rank' : ''}">
+                #{index + 1}
+              </span>
+            {/if}
+            <div class="event-item-name" title={name}>{name}</div>
+          </div>
           <div style="display:flex; align-items:center; gap:6px;">
-            {#if commitRates[name] !== undefined}
-              <span class="event-item-rate" title="Overall Commit Rate">{commitRates[name]}%</span>
+            {#if sortBy === 'teams' && eventStats[name]}
+              <span class="event-item-rate" style="color: #a78bfa; background: rgba(139, 92, 246, 0.12);" title="Total Teams">
+                {eventStats[name].teams}T
+              </span>
+            {:else if eventStats[name]}
+              <span class="event-item-rate" title="Overall Commit Rate">{eventStats[name].rate.toFixed(0)}%</span>
             {/if}
             <span class="badge {isMS ? 'badge-ms' : 'badge-hs'}" style="font-size:8px; padding:1px 3px;">{divLabel}</span>
-            <span class="event-item-count">{count}</span>
+            <span class="event-item-count" title="Total Competitors">{count}</span>
           </div>
         </div>
       {/each}
