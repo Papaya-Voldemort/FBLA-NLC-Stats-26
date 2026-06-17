@@ -82,3 +82,12 @@ When a deployment is triggered on Railway:
 3. The platform starts the application using the start script: `sirv dist --host 0.0.0.0 --port $PORT --single`.
 4. The `--single` flag ensures that sirv acts as a single page application router by redirecting fallback requests to index.html.
 5. The server listens on the interface 0.0.0.0 using the port assigned by Railway via the `$PORT` variable.
+
+## License
+
+This project is open-source software licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](file:///Users/elinelson/Documents/Development/NLC_26_Breakdown/LICENSE).
+
+Under the terms of this license:
+* You are free to copy, modify, distribute, and run this application.
+* If you host or run this application on a network server (for example, as a web service or SaaS product), you must make the corresponding source code of the application available to your users under the same license terms.
+* All modifications and derivatives must be open-sourced under the AGPL-3.0.
