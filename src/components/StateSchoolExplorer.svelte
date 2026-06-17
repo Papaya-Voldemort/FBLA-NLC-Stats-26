@@ -257,7 +257,6 @@
     <!-- Column 1: Select State & Events Breakdown -->
     <div class="explorer-col active">
       <div class="explorer-col-title">
-        <span class="step-number-badge">1</span>
         <Icon icon="lucide:map-pin" width="14" height="14" />
         Select State
       </div>
@@ -297,7 +296,6 @@
     <!-- Column 2: Schools in Selected State -->
     <div class="explorer-col {explorerSelectedState ? 'active' : 'inactive'}">
       <div class="explorer-col-title">
-        <span class="step-number-badge">2</span>
         <Icon icon="lucide:school" width="14" height="14" />
         Chapters (Schools)
       </div>
@@ -341,7 +339,6 @@
     <!-- Column 3: Roster Details -->
     <div class="explorer-col {explorerSelectedSchool || explorerSelectedEvent ? 'active' : 'inactive'}" style="flex: 1.5;">
       <div class="explorer-col-title">
-        <span class="step-number-badge">3</span>
         <Icon icon="lucide:users" width="14" height="14" />
         Student Roster & Schedule
       </div>
