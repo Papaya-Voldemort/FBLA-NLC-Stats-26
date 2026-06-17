@@ -147,10 +147,10 @@ def parse_schedules():
             
     print(f"Total parsed entries: {len(parsed_entries)}")
     
-    # Write to data.json
-    with open("data.json", "w", encoding="utf-8") as f:
+    # Write to public/data.json
+    with open("public/data.json", "w", encoding="utf-8") as f:
         json.dump(parsed_entries, f, indent=2)
-    print("Saved to data.json")
+    print("Saved to public/data.json")
 
 if __name__ == "__main__":
     parse_schedules()
