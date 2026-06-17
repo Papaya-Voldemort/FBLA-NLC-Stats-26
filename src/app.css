@@ -700,6 +700,18 @@ tr:hover td {
   border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
+.badge-rate {
+  background: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+[data-theme="light"] .badge-rate {
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
 /* Competitor List inside table */
 .competitors-cell {
   display: flex;
@@ -842,6 +854,22 @@ tr:hover td {
   background: var(--panel-border);
   padding: 2px 6px;
   border-radius: 10px;
+}
+
+.event-item-rate {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(14, 165, 233, 0.15);
+  padding: 1px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.2px;
+}
+
+.event-list-item.active .event-item-rate {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .event-detail-content {

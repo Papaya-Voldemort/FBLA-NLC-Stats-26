@@ -23,6 +23,66 @@
 
   const activeEvent = $derived(activeEventId ? eventDetails[activeEventId] : null);
 
+  // Compute commit rates for all events (used in sidebar)
+  const commitRates = $derived.by(() => {
+    const rates = {};
+    Object.keys(eventDetails).forEach(eventName => {
+      const ev = eventDetails[eventName];
+      if (!ev || !ev.entries) return;
+      
+      const stateTeams = {};
+      ev.entries.forEach(entry => {
+        stateTeams[entry.state] = (stateTeams[entry.state] || 0) + 1;
+      });
+      
+      const states = Object.keys(stateTeams);
+      const numStates = states.length;
+      if (numStates === 0) return;
+      
+      let actual = 0;
+      states.forEach(state => {
+        actual += Math.min(stateTeams[state], 4);
+      });
+      
+      const max = numStates * 4;
+      rates[eventName] = ((actual / max) * 100).toFixed(0);
+    });
+    return rates;
+  });
+
+  // Compute detailed commit rate data for active event
+  const commitRateData = $derived.by(() => {
+    if (!activeEvent || !activeEvent.entries) return null;
+    
+    const stateTeams = {};
+    activeEvent.entries.forEach(entry => {
+      stateTeams[entry.state] = (stateTeams[entry.state] || 0) + 1;
+    });
+    
+    const participatingStates = Object.keys(stateTeams);
+    const numStates = participatingStates.length;
+    if (numStates === 0) return null;
+    
+    let actualTeamsCapped = 0;
+    let actualTeamsRaw = 0;
+    participatingStates.forEach(state => {
+      const count = stateTeams[state];
+      actualTeamsRaw += count;
+      actualTeamsCapped += Math.min(count, 4);
+    });
+    
+    const maxTeams = numStates * 4;
+    const rate = (actualTeamsCapped / maxTeams) * 100;
+    
+    return {
+      rate: rate.toFixed(1),
+      actualTeamsCapped,
+      actualTeamsRaw,
+      maxTeams,
+      numStates
+    };
+  });
+
   // Filtered detail entries
   const filteredEntries = $derived(
     activeEvent
@@ -82,6 +142,9 @@
         >
           <div class="event-item-name" title={name}>{name}</div>
           <div style="display:flex; align-items:center; gap:6px;">
+            {#if commitRates[name] !== undefined}
+              <span class="event-item-rate" title="Overall Commit Rate">{commitRates[name]}%</span>
+            {/if}
             <span class="badge {isMS ? 'badge-ms' : 'badge-hs'}" style="font-size:8px; padding:1px 3px;">{divLabel}</span>
             <span class="event-item-count">{count}</span>
           </div>
@@ -126,6 +189,12 @@
               <Icon icon="lucide:users" width="12" height="12" style="margin-right:4px;" />
               {eventCounts[activeEventId]} Competitors
             </span>
+            {#if commitRateData}
+              <span class="badge badge-rate" style="display:inline-flex; align-items:center;" title="Commit Rate (capped at 4 slots per participating state)">
+                <Icon icon="lucide:percent" width="12" height="12" style="margin-right:4px;" />
+                Commit Rate: {commitRateData.rate}% ({commitRateData.actualTeamsCapped}/{commitRateData.maxTeams} Slots)
+              </span>
+            {/if}
           </div>
         </div>
         
