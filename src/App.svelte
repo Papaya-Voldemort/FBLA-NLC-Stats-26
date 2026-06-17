@@ -20,6 +20,31 @@
   let eventCounts = $state({});
   let eventDetails = $state({});
 
+  function deduplicateEntries(data) {
+    const map = new Map();
+    
+    data.forEach(entry => {
+      // Create a unique key for each team/competitor within an event
+      const sortedComp = [...entry.competitors].sort().map(n => n.trim().toLowerCase()).join('|');
+      const key = `${entry.event_name}::${entry.state}::${entry.school_name}::${sortedComp}`;
+      
+      if (!map.has(key)) {
+        map.set(key, { ...entry });
+      } else {
+        const existing = map.get(key);
+        // Merge presentation schedule detail if it has specific arrival time
+        if (!existing.arrival_time && entry.arrival_time) {
+          existing.arrival_time = entry.arrival_time;
+          existing.page = entry.page;
+          existing.event_when = entry.event_when;
+          existing.event_location = entry.event_location;
+        }
+      }
+    });
+    
+    return Array.from(map.values());
+  }
+
   onMount(async () => {
     // Init theme from localStorage
     const savedTheme = localStorage.getItem('fbla-analytics-theme') || 'dark';
@@ -29,9 +54,9 @@
     try {
       const res = await fetch('/data.json');
       const data = await res.json();
-      allData = data;
+      allData = deduplicateEntries(data);
       
-      processAnalytics(data);
+      processAnalytics(allData);
       loading = false;
     } catch (err) {
       console.error('Error fetching NLC data:', err);
