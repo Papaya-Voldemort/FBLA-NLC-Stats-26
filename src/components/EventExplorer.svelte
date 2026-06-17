@@ -245,10 +245,6 @@
               <Icon icon={activeEvent.division === 'MS' ? 'lucide:school' : 'lucide:graduation-cap'} width="12" height="12" style="margin-right:4px;" />
               {activeEvent.division === 'MS' ? 'Middle School Division' : 'High School Division'}
             </span>
-            <span class="badge badge-location" style="display:inline-flex; align-items:center;">
-              <Icon icon="lucide:map-pin" width="12" height="12" style="margin-right:4px;" />
-              Location(s): {Array.from(activeEvent.locations).join(', ')}
-            </span>
             <span class="badge badge-time" style="display:inline-flex; align-items:center;">
               <Icon icon="lucide:calendar" width="12" height="12" style="margin-right:4px;" />
               Schedule(s): {Array.from(activeEvent.whens).join(' | ')}

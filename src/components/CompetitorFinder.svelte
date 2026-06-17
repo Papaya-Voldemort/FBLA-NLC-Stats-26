@@ -116,13 +116,12 @@
     <table>
       <thead>
         <tr>
-          <th style="width: 25%;">Competitor(s)</th>
-          <th style="width: 22%;">Event</th>
-          <th style="width: 20%;">School</th>
+          <th style="width: 28%;">Competitor(s)</th>
+          <th style="width: 24%;">Event</th>
+          <th style="width: 22%;">School</th>
           <th style="width: 8%;">State</th>
           <th style="width: 8%;">Div</th>
           <th style="width: 10%;">Time</th>
-          <th style="width: 7%;">Room</th>
         </tr>
       </thead>
       <tbody>
@@ -148,15 +147,10 @@
             <td><span style="font-family:'Outfit'; font-weight:700;">{entry.state}</span></td>
             <td><span class="badge {divBadge}">{entry.division}</span></td>
             <td><span class="badge badge-time">{entry.arrival_time || 'Check Event'}</span></td>
-            <td>
-              <span class="badge badge-location" style="max-width:90px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">
-                {entry.event_location || 'Stars at Night'}
-              </span>
-            </td>
           </tr>
         {:else}
           <tr>
-            <td colspan="7" style="text-align:center; padding: 40px; color: var(--text-secondary);">
+            <td colspan="6" style="text-align:center; padding: 40px; color: var(--text-secondary);">
               <Icon icon="lucide:search" width="32" height="32" style="margin-bottom:12px; opacity:0.5;" />
               <br/>No competitor schedules match your search filters. Try refining your keywords.
             </td>

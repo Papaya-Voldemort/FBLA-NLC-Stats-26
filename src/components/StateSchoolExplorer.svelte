@@ -384,7 +384,7 @@
                     </td>
                     <td><span class="badge badge-hs" style="font-size:9px; padding:2px 4px;">{entry.section_name || 'Main'}</span></td>
                     <td>
-                      <span class="badge badge-time" style="font-size:9px; padding:2px 4px;" title="Location: {entry.event_location || 'Stars at Night'}">
+                      <span class="badge badge-time" style="font-size:9px; padding:2px 4px;">
                         {entry.arrival_time || 'Scheduled'}
                       </span>
                     </td>
@@ -432,7 +432,7 @@
                     <td style="font-size:12px; font-weight:500; color:var(--text-primary);">{entry.competitors.join(', ')}</td>
                     <td><span class="badge badge-hs" style="font-size:9px; padding:2px 4px;">{entry.section_name || 'Main'}</span></td>
                     <td>
-                      <span class="badge badge-time" style="font-size:9px; padding:2px 4px;" title="Location: {entry.event_location || 'Stars at Night'}">
+                      <span class="badge badge-time" style="font-size:9px; padding:2px 4px;">
                         {entry.arrival_time || 'Scheduled'}
                       </span>
                     </td>
