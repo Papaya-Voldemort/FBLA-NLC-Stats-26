@@ -289,10 +289,10 @@
               <tbody>
                 {#each filteredEntries as entry}
                   <tr>
-                    <td style="font-weight:600;">{entry.school_name}</td>
-                    <td><span style="font-family:'Outfit'; font-weight:700;">{entry.state}</span></td>
-                    <td><span class="badge badge-hs" style="font-size:11px;">{entry.section_name || 'Main'}</span></td>
-                    <td>
+                    <td data-label="School" style="font-weight:600;">{entry.school_name}</td>
+                    <td data-label="State"><span style="font-family:'Outfit'; font-weight:700;">{entry.state}</span></td>
+                    <td data-label="Section"><span class="badge badge-hs" style="font-size:11px;">{entry.section_name || 'Main'}</span></td>
+                    <td data-label="Competitor(s)">
                       <div class="competitors-cell">
                         {#each entry.competitors as name}
                           <span class="competitor-tag">{name}</span>
@@ -301,12 +301,12 @@
                         {/each}
                       </div>
                     </td>
-                    <td>
+                    <td data-label="Time">
                       <span class="badge {entry.arrival_time ? 'badge-time' : 'badge-location'}">
                         {entry.arrival_time || entry.event_when.split(' ').slice(-5).join(' ') || 'Scheduled'}
                       </span>
                     </td>
-                    <td style="font-family:'Outfit'; font-weight:600; text-align:center; color:var(--fbla-gold);">{entry.page}</td>
+                    <td data-label="Page" style="font-family:'Outfit'; font-weight:600; text-align:center; color:var(--fbla-gold);">{entry.page}</td>
                   </tr>
                 {:else}
                   <tr>

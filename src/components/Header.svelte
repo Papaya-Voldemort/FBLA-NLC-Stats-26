@@ -27,21 +27,24 @@
           onclick={() => onTabChange('events')}
         >
           <Icon icon="lucide:book-open" width="16" height="16" />
-          Event Explorer
+          <span class="hide-mobile">Event Explorer</span>
+          <span class="show-mobile">Events</span>
         </button>
         <button 
           class="tab-btn {activeTab === 'states-schools' ? 'active' : ''}" 
           onclick={() => onTabChange('states-schools')}
         >
           <Icon icon="lucide:globe" width="16" height="16" />
-          States & Schools
+          <span class="hide-mobile">States & Schools</span>
+          <span class="show-mobile">States</span>
         </button>
         <button 
           class="tab-btn {activeTab === 'search' ? 'active' : ''}" 
           onclick={() => onTabChange('search')}
         >
           <Icon icon="lucide:search" width="16" height="16" />
-          Competitor Finder
+          <span class="hide-mobile">Competitor Finder</span>
+          <span class="show-mobile">Search</span>
         </button>
       </div>
 

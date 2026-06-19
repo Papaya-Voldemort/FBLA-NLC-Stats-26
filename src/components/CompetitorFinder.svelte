@@ -128,7 +128,7 @@
         {#each pageData as entry}
           {@const divBadge = entry.division === 'MS' ? 'badge-ms' : 'badge-hs'}
           <tr>
-            <td>
+            <td data-label="Competitor(s)">
               <div class="competitors-cell">
                 {#each entry.competitors as name}
                   <span class="competitor-tag">{name}</span>
@@ -138,15 +138,16 @@
             <!-- svelte-ignore a11y_click_events_have_key_events -->
             <!-- svelte-ignore a11y_no_static_element_interactions -->
             <td 
+              data-label="Event"
               style="font-weight:600; cursor:pointer;" 
               onclick={() => onSelectEvent(entry.event_name)}
             >
               {entry.event_name}
             </td>
-            <td style="color:var(--text-secondary); font-size:13px;">{entry.school_name}</td>
-            <td><span style="font-family:'Outfit'; font-weight:700;">{entry.state}</span></td>
-            <td><span class="badge {divBadge}">{entry.division}</span></td>
-            <td><span class="badge badge-time">{entry.arrival_time || 'Check Event'}</span></td>
+            <td data-label="School" style="color:var(--text-secondary); font-size:13px;">{entry.school_name}</td>
+            <td data-label="State"><span style="font-family:'Outfit'; font-weight:700;">{entry.state}</span></td>
+            <td data-label="Division"><span class="badge {divBadge}">{entry.division}</span></td>
+            <td data-label="Time"><span class="badge badge-time">{entry.arrival_time || 'Check Event'}</span></td>
           </tr>
         {:else}
           <tr>

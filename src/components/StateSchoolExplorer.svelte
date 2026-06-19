@@ -11,6 +11,7 @@
   let explorerSelectedSchool = $state('');
   let explorerSelectedEvent = $state('');
   let schoolSearchQuery = $state('');
+  let activeExplorerTab = $state('state'); // 'state' | 'schools' | 'roster'
 
   // Refs for scrolling Column 2 school elements
   let schoolScrollAreaEl;
@@ -84,18 +85,34 @@
     explorerSelectedSchool = '';
     explorerSelectedEvent = '';
     schoolSearchQuery = '';
+    if (explorerSelectedState) {
+      activeExplorerTab = 'schools';
+    } else {
+      activeExplorerTab = 'state';
+    }
+  }
+
+  // Select state from rank leaderboard click
+  function selectExplorerState(state) {
+    explorerSelectedState = state;
+    explorerSelectedSchool = '';
+    explorerSelectedEvent = '';
+    schoolSearchQuery = '';
+    activeExplorerTab = 'schools';
   }
 
   // Select state event in Column 1
   function selectStateEvent(eventName) {
     explorerSelectedEvent = eventName;
     explorerSelectedSchool = ''; // clear school
+    activeExplorerTab = 'roster';
   }
 
   // Select school in Column 2
   function selectSchool(schoolName) {
     explorerSelectedSchool = schoolName;
     explorerSelectedEvent = ''; // clear event
+    activeExplorerTab = 'roster';
   }
 
   // Jump from state-event roster to select school in Column 2
@@ -103,6 +120,7 @@
     schoolSearchQuery = ''; // Clear search so school is guaranteed to be in the DOM
     explorerSelectedSchool = schoolName;
     explorerSelectedEvent = '';
+    activeExplorerTab = 'roster';
 
     // Scroll selected school item into view
     setTimeout(() => {
@@ -177,7 +195,7 @@
             class="rank-value" 
             style="cursor:pointer;" 
             title="Explore this State" 
-            onclick={() => { explorerSelectedState = state; onExplorerStateChangeSelect(); }}
+            onclick={() => selectExplorerState(state)}
           >
             {count} Students
           </div>
@@ -252,10 +270,35 @@
       Interactive State & School Explorer
     </h2>
   </div>
+
+  <!-- Mobile Steps Navigation -->
+  <div class="explorer-steps-nav">
+    <button 
+      class="step-nav-btn {activeExplorerTab === 'state' ? 'active' : ''}" 
+      onclick={() => activeExplorerTab = 'state'}
+    >
+      <span class="step-num">1</span> State
+    </button>
+    <button 
+      class="step-nav-btn {activeExplorerTab === 'schools' ? 'active' : ''}" 
+      disabled={!explorerSelectedState}
+      onclick={() => activeExplorerTab = 'schools'}
+    >
+      <span class="step-num">2</span> Chapters
+    </button>
+    <button 
+      class="step-nav-btn {activeExplorerTab === 'roster' ? 'active' : ''}" 
+      disabled={!explorerSelectedSchool && !explorerSelectedEvent}
+      onclick={() => activeExplorerTab = 'roster'}
+    >
+      <span class="step-num">3</span> Roster
+    </button>
+  </div>
+
   <div class="explorer-grid">
     
     <!-- Column 1: Select State & Events Breakdown -->
-    <div class="explorer-col active">
+    <div class="explorer-col active {activeExplorerTab === 'state' ? 'mobile-visible' : 'mobile-hidden'}">
       <div class="explorer-col-title">
         <Icon icon="lucide:map-pin" width="14" height="14" />
         Select State
@@ -294,7 +337,7 @@
     </div>
 
     <!-- Column 2: Schools in Selected State -->
-    <div class="explorer-col {explorerSelectedState ? 'active' : 'inactive'}">
+    <div class="explorer-col {explorerSelectedState ? 'active' : 'inactive'} {activeExplorerTab === 'schools' ? 'mobile-visible' : 'mobile-hidden'}">
       <div class="explorer-col-title">
         <Icon icon="lucide:school" width="14" height="14" />
         Chapters (Schools)
@@ -337,7 +380,7 @@
     </div>
 
     <!-- Column 3: Roster Details -->
-    <div class="explorer-col {explorerSelectedSchool || explorerSelectedEvent ? 'active' : 'inactive'}" style="flex: 1.5;">
+    <div class="explorer-col {explorerSelectedSchool || explorerSelectedEvent ? 'active' : 'inactive'} {activeExplorerTab === 'roster' ? 'mobile-visible' : 'mobile-hidden'}" style="flex: 1.5;">
       <div class="explorer-col-title">
         <Icon icon="lucide:users" width="14" height="14" />
         Student Roster & Schedule
@@ -369,18 +412,19 @@
               <tbody>
                 {#each schoolRosterEntries as entry}
                   <tr>
-                    <td style="font-weight:600; font-size:12px;">{entry.competitors.join(', ')}</td>
+                    <td data-label="Competitor" style="font-weight:600; font-size:12px;">{entry.competitors.join(', ')}</td>
                     <!-- svelte-ignore a11y_click_events_have_key_events -->
                     <!-- svelte-ignore a11y_no_static_element_interactions -->
                     <td 
+                      data-label="Event"
                       style="font-size:12px; font-weight:500; color:var(--text-primary); cursor:pointer;" 
                       class="explorer-roster-event-click" 
                       onclick={() => onSelectEvent(entry.event_name)}
                     >
                       {entry.event_name}
                     </td>
-                    <td><span class="badge badge-hs" style="font-size:9px; padding:2px 4px;">{entry.section_name || 'Main'}</span></td>
-                    <td>
+                    <td data-label="Section"><span class="badge badge-hs" style="font-size:9px; padding:2px 4px;">{entry.section_name || 'Main'}</span></td>
+                    <td data-label="Time">
                       <span class="badge badge-time" style="font-size:9px; padding:2px 4px;">
                         {entry.arrival_time || 'Scheduled'}
                       </span>
@@ -419,6 +463,7 @@
                     <!-- svelte-ignore a11y_click_events_have_key_events -->
                     <!-- svelte-ignore a11y_no_static_element_interactions -->
                     <td 
+                      data-label="School"
                       style="font-weight:600; font-size:12px; cursor:pointer;" 
                       class="explorer-roster-school-click" 
                       title="Explore this School chapter"
@@ -426,9 +471,9 @@
                     >
                       {entry.school_name}
                     </td>
-                    <td style="font-size:12px; font-weight:500; color:var(--text-primary);">{entry.competitors.join(', ')}</td>
-                    <td><span class="badge badge-hs" style="font-size:9px; padding:2px 4px;">{entry.section_name || 'Main'}</span></td>
-                    <td>
+                    <td data-label="Competitor(s)" style="font-size:12px; font-weight:500; color:var(--text-primary);">{entry.competitors.join(', ')}</td>
+                    <td data-label="Section"><span class="badge badge-hs" style="font-size:9px; padding:2px 4px;">{entry.section_name || 'Main'}</span></td>
+                    <td data-label="Time">
                       <span class="badge badge-time" style="font-size:9px; padding:2px 4px;">
                         {entry.arrival_time || 'Scheduled'}
                       </span>

@@ -203,6 +203,11 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          layout: {
+            padding: {
+              bottom: 10
+            }
+          },
           plugins: {
             legend: { display: false },
             tooltip: { callbacks: { label: (ctx) => ` ${ctx.raw} Students Active` } }

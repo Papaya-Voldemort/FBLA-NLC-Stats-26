@@ -213,9 +213,9 @@ header {
 }
 
 /* Main Content Wrapper */
-main {
+main.container {
   flex: 1;
-  padding: 32px 0 80px 0;
+  padding: 32px 24px 80px 24px;
 }
 
 .tab-content {
@@ -1346,13 +1346,165 @@ footer p {
     gap: 6px;
   }
   
-  .explorer-grid {
+  /* Prevent horizontal scrolling inside table responsive wrappers by converting to cards */
+  .table-responsive {
+    border: none !important;
+    background: transparent !important;
+    max-height: none !important;
+  }
+
+  .table-responsive table,
+  .table-responsive thead,
+  .table-responsive tbody,
+  .table-responsive tr,
+  .table-responsive td,
+  .table-responsive th {
+    display: block !important;
+  }
+
+  .table-responsive thead {
+    display: none !important; /* Hide table headers */
+  }
+
+  .table-responsive tr {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border) !important;
+    border-radius: 12px;
+    padding: 16px !important;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+  }
+
+  .table-responsive td {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 8px 0 !important;
+    border-bottom: 1px solid rgba(255, 199, 44, 0.08) !important;
+    font-size: 13px !important;
+    text-align: right !important;
+    background: transparent !important;
+  }
+
+  .table-responsive td:last-child {
+    border-bottom: none !important;
+  }
+
+  /* Use data-label to insert CSS content headers */
+  .table-responsive td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    text-align: left;
+    margin-right: 12px;
+  }
+
+  /* Limit content widths inside card rows so they align right */
+  .table-responsive td > * {
+    max-width: 65%;
+    text-align: right;
+  }
+
+  .table-responsive .competitors-cell {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .chart-double-col {
     grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    height: 380px !important;
   }
   
-  .explorer-col {
-    height: 400px !important;
+  .chart-wrapper {
+    height: 185px !important;
+  }
+}
+
+/* Explorer Steps Navigation on Desktop (hidden by default) */
+.explorer-steps-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .explorer-steps-nav {
+    display: flex;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 20px;
+    gap: 4px;
+  }
+
+  [data-theme="light"] .explorer-steps-nav {
+    background: rgba(0, 47, 108, 0.05);
+  }
+
+  .step-nav-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 10px 6px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .step-nav-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .step-nav-btn.active {
+    background: var(--primary-blue);
+    color: #ffffff;
+    box-shadow: 0 2px 8px var(--primary-blue-glow);
+  }
+
+  .step-nav-btn .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: inherit;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  .step-nav-btn.active .step-num {
+    background: var(--fbla-gold);
+    color: #000000;
+  }
+
+  /* Stepped columns visibility inside explorer-grid */
+  .explorer-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+
+  .explorer-col.mobile-hidden {
+    display: none !important;
+  }
+
+  .explorer-col.mobile-visible {
+    display: flex !important;
+    width: 100% !important;
+    height: 480px !important;
+    opacity: 1 !important;
   }
 }
 
@@ -1371,37 +1523,51 @@ footer p {
   .kpi-label {
     font-size: 11px !important;
   }
-  .chart-double-col {
-    grid-template-columns: 1fr !important;
-    height: 360px !important;
+}
+
+/* Global Mobile Helper Defaults */
+.show-mobile {
+  display: none !important;
+}
+
+/* Additional mobile optimizations for layout clipping, overlapping, and text wrapping */
+@media (max-width: 768px) {
+  .show-mobile {
+    display: inline !important;
   }
-  .chart-wrapper {
-    height: 180px !important;
+
+  /* Stack KPI card header vertically to prevent sibling label overflow from colliding with the icon */
+  .kpi-card-header {
+    flex-direction: column-reverse !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
   }
-}
 
-/* Explorer Roster Table overrides to prevent squishing and header overlapping */
-.explorer-col table {
-  table-layout: auto !important;
-  width: 100%;
-}
+  .kpi-icon-wrapper {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 8px !important;
+  }
 
-.explorer-col th {
-  padding: 10px 4px !important;
-  font-size: 11px !important;
-  letter-spacing: 0.5px !important;
-}
+  .kpi-icon-wrapper svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
 
-.explorer-col td {
-  padding: 8px 4px !important;
-  font-size: 11.5px !important;
-}
+  .kpi-label {
+    font-size: 11px !important;
+  }
 
-/* Ensure badges inside explorer tables are styled compactly */
-.explorer-col td .badge {
-  font-size: 9px !important;
-  padding: 2px 4px !important;
-  white-space: nowrap;
+  .kpi-value {
+    font-size: 26px !important;
+  }
+
+  /* Let list boxes expand naturally on mobile to avoid double-scrolling and cutoffs */
+  .list-wrapper {
+    max-height: none !important;
+    overflow-y: visible !important;
+    padding-right: 0 !important;
+  }
 }
 
 
