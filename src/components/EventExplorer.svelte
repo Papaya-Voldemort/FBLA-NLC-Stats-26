@@ -1,5 +1,6 @@
 <script>
   import Icon from '@iconify/svelte';
+  import posthog from '../posthog.js';
   let { eventCounts, eventDetails, activeEventId = $bindable() } = $props();
 
   // Component state
@@ -159,6 +160,16 @@
     activeEventId = name;
     detailQuery = '';
     showSidebarMobile = false;
+    posthog.capture('event detail viewed', {
+      event_name: name,
+      division: eventDetails[name]?.division,
+      total_competitors: eventCounts[name],
+    });
+  }
+
+  function handleSortChange(e) {
+    sortBy = e.target.value;
+    posthog.capture('event list sorted', { sort_by: e.target.value });
   }
 </script>
 
@@ -178,7 +189,7 @@
       </div>
       <div class="select-wrapper">
         <Icon icon="lucide:arrow-up-down" class="select-icon" />
-        <select bind:value={sortBy} class="sort-select" aria-label="Sort events by">
+        <select value={sortBy} onchange={handleSortChange} class="sort-select" aria-label="Sort events by">
           <option value="name">Sort: Name (A-Z)</option>
           <option value="rate">Sort: Commit Rate (High-Low)</option>
           <option value="people">Sort: Total Competitors (High-Low)</option>

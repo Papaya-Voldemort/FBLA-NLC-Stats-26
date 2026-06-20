@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "chart.js": "^4.4.0",
+    "posthog-js": "^1.391.2",
     "sirv-cli": "^3.0.0"
   },
   "devDependencies": {

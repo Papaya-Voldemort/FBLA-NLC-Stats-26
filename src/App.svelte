@@ -6,6 +6,7 @@
   import EventExplorer from './components/EventExplorer.svelte';
   import StateSchoolExplorer from './components/StateSchoolExplorer.svelte';
   import CompetitorFinder from './components/CompetitorFinder.svelte';
+  import posthog from './posthog.js';
 
   // Reactivity state via Runes
   let allData = $state([]);
@@ -58,6 +59,7 @@
       
       processAnalytics(allData);
       loading = false;
+      posthog.capture('data loaded', { total_entries: allData.length });
     } catch (err) {
       console.error('Error fetching NLC data:', err);
     }
@@ -105,11 +107,14 @@
   }
 
   function toggleTheme() {
-    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    currentTheme = newTheme;
+    posthog.capture('theme toggled', { new_theme: newTheme });
   }
 
   function switchTab(tabId) {
     activeTab = tabId;
+    posthog.capture('tab switched', { tab: tabId });
     if (tabId === 'events' && !activeEventId && Object.keys(eventCounts).length > 0) {
       // Select first event in list as default
       activeEventId = Object.keys(eventCounts).sort()[0];

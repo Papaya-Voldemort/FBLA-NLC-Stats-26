@@ -1,5 +1,6 @@
 <script>
   import Icon from '@iconify/svelte';
+  import posthog from '../posthog.js';
   let { allData, stateCounts, schoolCounts, onSelectEvent } = $props();
 
   // Search queries for leaderboards
@@ -87,6 +88,7 @@
     schoolSearchQuery = '';
     if (explorerSelectedState) {
       activeExplorerTab = 'schools';
+      posthog.capture('state selected', { state: explorerSelectedState, total_competitors: stateCounts[explorerSelectedState] });
     } else {
       activeExplorerTab = 'state';
     }
@@ -99,6 +101,7 @@
     explorerSelectedEvent = '';
     schoolSearchQuery = '';
     activeExplorerTab = 'schools';
+    posthog.capture('state selected', { state, total_competitors: stateCounts[state] });
   }
 
   // Select state event in Column 1
@@ -106,6 +109,7 @@
     explorerSelectedEvent = eventName;
     explorerSelectedSchool = ''; // clear school
     activeExplorerTab = 'roster';
+    posthog.capture('state event roster viewed', { state: explorerSelectedState, event_name: eventName });
   }
 
   // Select school in Column 2
@@ -113,6 +117,7 @@
     explorerSelectedSchool = schoolName;
     explorerSelectedEvent = ''; // clear event
     activeExplorerTab = 'roster';
+    posthog.capture('school roster viewed', { school: schoolName, state: explorerSelectedState });
   }
 
   // Jump from state-event roster to select school in Column 2

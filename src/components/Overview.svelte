@@ -2,6 +2,7 @@
   import { onDestroy } from 'svelte';
   import Chart from 'chart.js/auto';
   import Icon from '@iconify/svelte';
+  import posthog from '../posthog.js';
 
   let { allData, stateCounts, schoolCounts, eventCounts, eventDetails, theme, onSelectEvent } = $props();
 
@@ -370,7 +371,7 @@
         {@const divText = eventDetails[eventName]?.division === 'MS' ? 'MS' : 'HS'}
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <!-- svelte-ignore a11y_no_static_element_interactions -->
-        <div class="rank-item" style="cursor: pointer;" onclick={() => onSelectEvent(eventName)}>
+        <div class="rank-item" style="cursor: pointer;" onclick={() => { posthog.capture('overview event clicked', { event_name: eventName, rank: index + 1, competitors_count: count, division: eventDetails[eventName]?.division }); onSelectEvent(eventName); }}>
           <div class="rank-name-area">
             <div class="rank-badge">{index + 1}</div>
             <div>

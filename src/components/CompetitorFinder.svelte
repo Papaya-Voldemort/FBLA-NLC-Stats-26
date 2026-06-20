@@ -1,5 +1,6 @@
 <script>
   import Icon from '@iconify/svelte';
+  import posthog from '../posthog.js';
   let { allData, stateCounts, onSelectEvent } = $props();
 
   // Search filters state
@@ -59,6 +60,18 @@
     currentPage = 1;
   });
 
+  // Debounced search tracking
+  let searchTimeout;
+  $effect(() => {
+    const q = query;
+    clearTimeout(searchTimeout);
+    if (q.trim().length >= 2) {
+      searchTimeout = setTimeout(() => {
+        posthog.capture('competitor searched', { query: q.trim(), results_count: filteredData.length });
+      }, 600);
+    }
+  });
+
   const sortedStates = $derived(Object.keys(stateCounts).sort());
 
   function prevPage() {
@@ -67,6 +80,21 @@
 
   function nextPage() {
     if (currentPage < totalPages) currentPage++;
+  }
+
+  function handleDivFilterChange(e) {
+    divFilter = e.target.value;
+    posthog.capture('competitor filter changed', { filter_type: 'division', value: e.target.value });
+  }
+
+  function handleStateFilterChange(e) {
+    stateFilter = e.target.value;
+    posthog.capture('competitor filter changed', { filter_type: 'state', value: e.target.value });
+  }
+
+  function handleTeamFilterChange(e) {
+    teamFilter = e.target.value;
+    posthog.capture('competitor filter changed', { filter_type: 'team_size', value: e.target.value });
   }
 </script>
 
@@ -90,20 +118,20 @@
       />
     </div>
 
-    <select bind:value={divFilter} class="select-filter">
+    <select value={divFilter} onchange={handleDivFilterChange} class="select-filter">
       <option value="all">All Divisions</option>
       <option value="HS">High School (HS)</option>
       <option value="MS">Middle School (MS)</option>
     </select>
 
-    <select bind:value={stateFilter} class="select-filter">
+    <select value={stateFilter} onchange={handleStateFilterChange} class="select-filter">
       <option value="all">All States</option>
       {#each sortedStates as state}
         <option value={state}>{state} ({stateCounts[state]})</option>
       {/each}
     </select>
 
-    <select bind:value={teamFilter} class="select-filter">
+    <select value={teamFilter} onchange={handleTeamFilterChange} class="select-filter">
       <option value="all">All Team Sizes</option>
       <option value="1">Individual (1)</option>
       <option value="2">2-Person Team</option>
