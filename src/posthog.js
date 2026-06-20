@@ -9,7 +9,7 @@ if (isInitialized) {
   posthog.init(token, {
     api_host: host || 'https://us.i.posthog.com',
     person_profiles: 'identified_only',
-    cross_subdomain_cookie: false,
+    cookie_domain: typeof window !== 'undefined' && window.location.hostname === 'localhost' ? undefined : 'fbla.elinelson.dev',
   })
 } else {
   console.warn('PostHog analytics token not found. Analytics is disabled.')
