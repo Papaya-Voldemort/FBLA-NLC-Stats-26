@@ -6,10 +6,13 @@ const host = import.meta.env.VITE_PUBLIC_POSTHOG_HOST
 const isInitialized = !!token
 
 if (isInitialized) {
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : ''
+  const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname === ''
+
   posthog.init(token, {
     api_host: host || 'https://us.i.posthog.com',
     person_profiles: 'identified_only',
-    cookie_domain: typeof window !== 'undefined' && window.location.hostname === 'localhost' ? undefined : 'fbla.elinelson.dev',
+    cookie_domain: isLocalhost ? undefined : hostname,
   })
 } else {
   console.warn('PostHog analytics token not found. Analytics is disabled.')
