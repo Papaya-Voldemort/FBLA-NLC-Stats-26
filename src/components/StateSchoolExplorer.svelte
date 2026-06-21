@@ -47,9 +47,18 @@
 
   // Column 2 state schools list
   const stateSchools = $derived(() => {
-    const counts = {};
+    const schoolUnique = {};
     stateEntries.forEach(entry => {
-      counts[entry.school_name] = (counts[entry.school_name] || 0) + entry.team_size;
+      if (!schoolUnique[entry.school_name]) {
+        schoolUnique[entry.school_name] = new Set();
+      }
+      entry.competitors.forEach(comp => {
+        schoolUnique[entry.school_name].add(comp.trim().toLowerCase());
+      });
+    });
+    const counts = {};
+    Object.keys(schoolUnique).forEach(school => {
+      counts[school] = schoolUnique[school].size;
     });
     return Object.entries(counts).sort((a, b) => b[1] - a[1]);
   });
