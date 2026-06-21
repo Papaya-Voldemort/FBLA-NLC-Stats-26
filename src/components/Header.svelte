@@ -27,10 +27,11 @@
           <Icon icon="lucide:arrow-left" width="14" height="14" />
           Change Division
         </button>
-        <div class="tabs-container">
+        <nav class="tabs-container" aria-label="Dashboard views">
           <button 
             class="tab-btn {activeTab === 'overview' ? 'active' : ''}" 
             onclick={() => onTabChange('overview')}
+            aria-current={activeTab === 'overview' ? 'page' : undefined}
           >
             <Icon icon="lucide:layout-dashboard" width="16" height="16" />
             Overview
@@ -38,6 +39,7 @@
           <button 
             class="tab-btn {activeTab === 'events' ? 'active' : ''}" 
             onclick={() => onTabChange('events')}
+            aria-current={activeTab === 'events' ? 'page' : undefined}
           >
             <Icon icon="lucide:book-open" width="16" height="16" />
             <span class="hide-mobile">Event Explorer</span>
@@ -46,6 +48,7 @@
           <button 
             class="tab-btn {activeTab === 'states-schools' ? 'active' : ''}" 
             onclick={() => onTabChange('states-schools')}
+            aria-current={activeTab === 'states-schools' ? 'page' : undefined}
           >
             <Icon icon="lucide:globe" width="16" height="16" />
             <span class="hide-mobile">States & Schools</span>
@@ -54,12 +57,13 @@
           <button 
             class="tab-btn {activeTab === 'search' ? 'active' : ''}" 
             onclick={() => onTabChange('search')}
+            aria-current={activeTab === 'search' ? 'page' : undefined}
           >
             <Icon icon="lucide:search" width="16" height="16" />
             <span class="hide-mobile">Competitor Finder</span>
             <span class="show-mobile">Search</span>
           </button>
-        </div>
+        </nav>
       {/if}
 
       <button id="theme-toggle-btn" class="theme-toggle" onclick={onThemeToggle} aria-label="Toggle Theme">

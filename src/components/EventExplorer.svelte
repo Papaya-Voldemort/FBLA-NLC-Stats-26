@@ -191,7 +191,7 @@
 
 <div class="event-split-view">
   <!-- Left Sidebar: Event List -->
-  <div class="event-sidebar {showSidebarMobile ? '' : 'hide-mobile'}">
+  <aside class="event-sidebar {showSidebarMobile ? '' : 'hide-mobile'}" aria-label="Competitive events list">
     <div class="sidebar-search">
       <div class="search-input-wrapper" style="margin-bottom: 10px;">
         <Icon icon="lucide:search" />
@@ -246,10 +246,10 @@
         </div>
       {/each}
     </div>
-  </div>
+  </aside>
 
   <!-- Right Content: Selected Event Details -->
-  <div class="event-detail-content {showSidebarMobile ? 'hide-mobile' : ''}">
+  <section class="event-detail-content {showSidebarMobile ? 'hide-mobile' : ''}" aria-label="Event details and schedules">
     {#if !activeEvent}
       <div id="event-detail-empty" class="empty-state">
         <Icon icon="lucide:file-text" width="48" height="48" style="opacity: 0.5; margin-bottom: 12px;" />
@@ -405,5 +405,5 @@
         {/if}
       </div>
     {/if}
-  </div>
+  </section>
 </div>

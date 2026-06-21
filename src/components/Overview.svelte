@@ -275,7 +275,7 @@
 </script>
 
 <!-- KPI Row -->
-<div class="kpi-grid">
+<section class="kpi-grid" aria-label="Key performance indicators">
   <div class="kpi-card kpi-card-competitors">
     <div class="kpi-card-header">
       <div>
@@ -348,13 +348,13 @@
     </div>
     <div class="kpi-subtext">Schools Represented</div>
   </div>
-</div>
+</section>
 
 <!-- Charts Row 1 -->
 <div class="dashboard-row">
-  <div class="glass-panel col-6">
+  <section class="glass-panel col-6" aria-labelledby="demographics-heading">
     <div class="glass-panel-header">
-      <h2>Demographics & Teams</h2>
+      <h2 id="demographics-heading">Demographics & Teams</h2>
     </div>
     <div class="division-split" style="margin-bottom: 24px; display: flex; gap: 16px; width: 100%;">
       {#each divisionSummary as [div, count]}
@@ -378,23 +378,23 @@
         <canvas bind:this={chartTeamsCanvas} style="max-height: 180px;"></canvas>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="glass-panel col-6">
+  <section class="glass-panel col-6" aria-labelledby="states-heading">
     <div class="glass-panel-header">
-      <h2>State Power Rankings</h2>
+      <h2 id="states-heading">State Power Rankings</h2>
     </div>
     <div class="chart-container">
       <canvas bind:this={chartStatesCanvas}></canvas>
     </div>
-  </div>
+  </section>
 </div>
 
 <!-- Charts Row 2 -->
 <div class="dashboard-row">
-  <div class="glass-panel col-6">
+  <section class="glass-panel col-6" aria-labelledby="popular-events-heading">
     <div class="glass-panel-header">
-      <h2>Top 10 Most Popular Events</h2>
+      <h2 id="popular-events-heading">Top 10 Most Popular Events</h2>
     </div>
     <div class="list-wrapper">
       {#each top10Events as [eventName, count], index}
@@ -417,14 +417,14 @@
         </div>
       {/each}
     </div>
-  </div>
+  </section>
 
-  <div class="glass-panel col-6">
+  <section class="glass-panel col-6" aria-labelledby="schedule-load-heading">
     <div class="glass-panel-header">
-      <h2>Event Schedule Load ({scheduleDayData.activeDay})</h2>
+      <h2 id="schedule-load-heading">Event Schedule Load ({scheduleDayData.activeDay})</h2>
     </div>
     <div class="chart-container">
       <canvas bind:this={chartScheduleCanvas}></canvas>
     </div>
-  </div>
+  </section>
 </div>
