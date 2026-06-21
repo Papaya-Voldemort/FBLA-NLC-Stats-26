@@ -156,17 +156,17 @@
     <table>
       <thead>
         <tr>
-          <th style="width: 28%;">Competitor(s)</th>
-          <th style="width: 24%;">Event</th>
-          <th style="width: 22%;">School</th>
-          <th style="width: 8%;">State</th>
-          <th style="width: 8%;">Div</th>
+          <th style="width: 25%;">Competitor(s)</th>
+          <th style="width: 23%;">Event</th>
+          <th style="width: 20%;">School</th>
+          <th style="width: 10%;">State</th>
+          <th style="width: 12%;">Div</th>
           <th style="width: 10%;">Time</th>
         </tr>
       </thead>
       <tbody>
         {#each pageData as entry}
-          {@const divBadge = entry.division === 'MS' ? 'badge-ms' : 'badge-hs'}
+          {@const divBadge = entry.division === 'MS' ? 'badge-ms' : entry.division === 'Collegiate' ? 'badge-collegiate' : 'badge-hs'}
           <tr>
             <td data-label="Competitor(s)">
               <div class="competitors-cell">

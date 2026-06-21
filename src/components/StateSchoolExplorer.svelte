@@ -233,7 +233,8 @@
     </div>
     <div class="list-wrapper" style="max-height: 350px;">
       {#each sortedSchoolRanks as [school, count], index}
-        {@const divisionText = school.toLowerCase().includes('middle') ? 'Middle School' : 'High School'}
+        {@const schoolMatch = allData.find(e => e.school_name === school)}
+        {@const divisionText = schoolMatch?.division === 'Collegiate' ? 'Collegiate' : (schoolMatch?.division === 'MS' || school.toLowerCase().includes('middle') ? 'Middle School' : 'High School')}
         <div class="rank-item">
           <div class="rank-name-area">
             <div class="rank-badge">{index + 1}</div>
@@ -393,8 +394,8 @@
       
       <div class="explorer-scroll-area">
         {#if explorerSelectedSchool}
-          {@const divisionText = schoolRosterEntries[0]?.division === 'MS' ? 'Middle School' : 'High School'}
-          {@const totalStudents = schoolRosterEntries.reduce((acc, curr) => acc + curr.team_size, 0)}
+          {@const divisionText = schoolRosterEntries[0]?.division === 'Collegiate' ? 'Collegiate' : (schoolRosterEntries[0]?.division === 'MS' ? 'Middle School' : 'High School')}
+          {@const totalStudents = new Set(schoolRosterEntries.flatMap(e => e.competitors.map(c => c.trim().toLowerCase()))).size}
           
           <div class="roster-header-card">
             <h4 style="display:inline-flex; align-items:center; gap:8px;">

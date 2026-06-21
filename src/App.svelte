@@ -109,14 +109,26 @@
   });
 
   function processAnalytics(data) {
-    const sC = {};
-    const schC = {};
+    const stateUniqueCompetitors = {};
+    const schoolUniqueCompetitors = {};
     const eC = {};
     const eD = {};
 
     data.forEach(entry => {
-      sC[entry.state] = (sC[entry.state] || 0) + entry.team_size;
-      schC[entry.school_name] = (schC[entry.school_name] || 0) + entry.team_size;
+      if (!stateUniqueCompetitors[entry.state]) {
+        stateUniqueCompetitors[entry.state] = new Set();
+      }
+      if (!schoolUniqueCompetitors[entry.school_name]) {
+        schoolUniqueCompetitors[entry.school_name] = new Set();
+      }
+
+      entry.competitors.forEach(comp => {
+        const cleanedComp = comp.trim().toLowerCase();
+        const uniqueKey = `${cleanedComp}||${entry.school_name.toLowerCase()}||${entry.state.toLowerCase()}`;
+        stateUniqueCompetitors[entry.state].add(uniqueKey);
+        schoolUniqueCompetitors[entry.school_name].add(uniqueKey);
+      });
+
       eC[entry.event_name] = (eC[entry.event_name] || 0) + entry.team_size;
 
       if (!eD[entry.event_name]) {
@@ -135,6 +147,16 @@
       } else {
         eD[entry.event_name].locations.add("Stars at Night");
       }
+    });
+
+    const sC = {};
+    Object.keys(stateUniqueCompetitors).forEach(state => {
+      sC[state] = stateUniqueCompetitors[state].size;
+    });
+
+    const schC = {};
+    Object.keys(schoolUniqueCompetitors).forEach(school => {
+      schC[school] = schoolUniqueCompetitors[school].size;
     });
 
     stateCounts = sC;

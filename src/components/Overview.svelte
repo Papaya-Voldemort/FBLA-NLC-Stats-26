@@ -25,7 +25,17 @@
   }
 
   // Compute stats reactively
-  const totalCompetitors = $derived(allData.reduce((acc, curr) => acc + curr.team_size, 0));
+  const totalCompetitors = $derived.by(() => {
+    const unique = new Set();
+    allData.forEach(entry => {
+      entry.competitors.forEach(comp => {
+        const cleanedComp = comp.trim().toLowerCase();
+        const uniqueKey = `${cleanedComp}||${entry.school_name.toLowerCase()}||${entry.state.toLowerCase()}`;
+        unique.add(uniqueKey);
+      });
+    });
+    return unique.size;
+  });
   const totalEntries = $derived(allData.length);
   const uniqueStates = $derived(Object.keys(stateCounts).length);
   const uniqueSchools = $derived(Object.keys(schoolCounts).length);
@@ -38,10 +48,19 @@
   // Group divisions and counts dynamically
   const divisionSummary = $derived.by(() => {
     const summary = {};
-    allData.forEach(e => {
-      summary[e.division] = (summary[e.division] || 0) + e.team_size;
+    allData.forEach(entry => {
+      if (!summary[entry.division]) {
+        summary[entry.division] = new Set();
+      }
+      entry.competitors.forEach(comp => {
+        const cleanedComp = comp.trim().toLowerCase();
+        const uniqueKey = `${cleanedComp}||${entry.school_name.toLowerCase()}||${entry.state.toLowerCase()}`;
+        summary[entry.division].add(uniqueKey);
+      });
     });
-    return Object.entries(summary).sort((a, b) => b[1] - a[1]);
+    return Object.entries(summary)
+      .map(([div, set]) => [div, set.size])
+      .sort((a, b) => b[1] - a[1]);
   });
 
   // Reactive Day and Hourly calculations
