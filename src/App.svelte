@@ -8,9 +8,14 @@
   import CompetitorFinder from './components/CompetitorFinder.svelte';
   import posthog from './posthog.js';
 
+  // Level & Year Selection States
+  let selectedLevel = $state(null);
+  let selectedYear = $state(null);
+
   // Reactivity state via Runes
   let allData = $state([]);
-  let loading = $state(true);
+  let winnersData = $state(null);
+  let loading = $state(false);
   let activeTab = $state('overview');
   let activeEventId = $state(null);
   let currentTheme = $state('dark');
@@ -46,23 +51,55 @@
     return Array.from(map.values());
   }
 
+  // Fetch Schedules & Winners for the selected Level/Year
+  async function loadNlcData(level, year) {
+    loading = true;
+    allData = [];
+    winnersData = null;
+    activeEventId = null;
+    activeTab = 'overview';
+    selectedLevel = level;
+    selectedYear = year;
+
+    try {
+      // 1. Fetch schedules data
+      const schedulesRes = await fetch(`/data/${level}/${year}/schedules.json`);
+      if (!schedulesRes.ok) throw new Error("Schedules not found for this level/year");
+      const schedules = await schedulesRes.json();
+      allData = deduplicateEntries(schedules);
+      
+      // 2. Fetch winners data (fail-safe)
+      try {
+        const winnersRes = await fetch(`/data/${level}/${year}/winners.json`);
+        if (winnersRes.ok) {
+          winnersData = await winnersRes.json();
+        }
+      } catch (err) {
+        console.warn("Winners data not available for this NLC:", err);
+      }
+      
+      processAnalytics(allData);
+      posthog.capture('nlc level year loaded', { level, year, total_entries: allData.length });
+    } catch (err) {
+      console.error('Error fetching NLC data:', err);
+    } finally {
+      loading = false;
+    }
+  }
+
+  function handleBackToStart() {
+    selectedLevel = null;
+    selectedYear = null;
+    allData = [];
+    winnersData = null;
+    posthog.capture('returned to start screen');
+  }
+
   onMount(async () => {
     // Init theme from localStorage
     const savedTheme = localStorage.getItem('fbla-analytics-theme') || 'dark';
     currentTheme = savedTheme;
     document.documentElement.setAttribute('data-theme', savedTheme);
-
-    try {
-      const res = await fetch('/data.json');
-      const data = await res.json();
-      allData = deduplicateEntries(data);
-      
-      processAnalytics(allData);
-      loading = false;
-      posthog.capture('data loaded', { total_entries: allData.length });
-    } catch (err) {
-      console.error('Error fetching NLC data:', err);
-    }
   });
 
   // Effect to update theme on the DOM
@@ -130,8 +167,11 @@
 <Header 
   {activeTab} 
   theme={currentTheme}
+  {selectedLevel}
+  {selectedYear}
   onTabChange={switchTab} 
   onThemeToggle={toggleTheme} 
+  onBackToStart={handleBackToStart}
 />
 
 <main class="container">
@@ -139,9 +179,90 @@
     <div id="loading-overlay" class="glass-panel" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:60px 20px; margin-bottom: 24px;">
       <Icon icon="lucide:loader-2" width="40" height="40" class="spinner" style="animation: spin 1s linear infinite; color: var(--fbla-gold);" />
       <div style="font-family:'Outfit'; font-weight:700; font-size:18px;">Parsing & Loading Registration Data...</div>
-      <p style="color:var(--text-secondary); font-size:14px; max-width:400px; text-align:center;">Analyzing 8,646 entries from the NLC database. This will take just a second.</p>
+      <p style="color:var(--text-secondary); font-size:14px; max-width:400px; text-align:center;">Analyzing entries from the NLC database. This will take just a second.</p>
+    </div>
+  {:else if !selectedLevel}
+    <!-- START SCREEN (Level Selection) -->
+    <div class="start-screen-container">
+      <div class="start-title-area">
+        <h1>NLC Stats Analyzer</h1>
+        <p>Choose an educational level to begin exploring competitive event schedule breakdowns and final standings.</p>
+      </div>
+
+      <div class="level-grid">
+        <!-- High School Card -->
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div class="level-card hs-card" onclick={() => { selectedLevel = 'high-school'; posthog.capture('level selected', { level: 'high-school' }); }}>
+          <div class="level-icon-wrapper">
+            <Icon icon="lucide:graduation-cap" width="36" height="36" />
+          </div>
+          <h2>High School & MS</h2>
+          <p>Explore preliminary presentation schedules and objective test times for FBLA High School and Middle School competitors.</p>
+          <button class="btn">Select HS & MS</button>
+        </div>
+
+        <!-- Collegiate Card -->
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div class="level-card col-card" onclick={() => { selectedLevel = 'collegiate'; posthog.capture('level selected', { level: 'collegiate' }); }}>
+          <div class="level-icon-wrapper">
+            <Icon icon="lucide:award" width="36" height="36" />
+          </div>
+          <h2>Collegiate</h2>
+          <p>Analyze preliminary schedule assignments and view complete final national winners standings for College competitors.</p>
+          <button class="btn">Select Collegiate</button>
+        </div>
+      </div>
+    </div>
+  {:else if !selectedYear}
+    <!-- YEAR SELECTION SCREEN -->
+    <div class="year-select-container">
+      <button class="back-to-levels-btn" onclick={() => selectedLevel = null}>
+        <Icon icon="lucide:arrow-left" width="16" height="16" />
+        Back to Divisions
+      </button>
+
+      <div class="start-title-area" style="margin-bottom: 20px;">
+        <h1>Select Year</h1>
+        <p>Select the year of the NLC you want to explore. Badges indicate which data modules are available.</p>
+      </div>
+
+      <div class="year-grid">
+        <!-- 2026 Year Card (Active) -->
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div class="year-card" onclick={() => loadNlcData(selectedLevel, 2026)}>
+          <div class="year-text">2026</div>
+          <div class="year-card-info">
+            <span class="badge badge-time" style="font-size: 10px;">Schedules Loaded</span>
+            {#if selectedLevel === 'collegiate'}
+              <span class="badge badge-collegiate" style="font-size: 10px; background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.3);">
+                Winners stand available
+              </span>
+            {/if}
+          </div>
+        </div>
+
+        <!-- 2025 Year Card (Disabled Demo) -->
+        <div class="year-card" style="opacity: 0.45; cursor: not-allowed;">
+          <div class="year-text">2025</div>
+          <div class="year-card-info">
+            <span class="badge badge-hs" style="font-size: 10px; background: rgba(239, 68, 68, 0.1); color: #f87171; border-color: rgba(239, 68, 68, 0.2);">No Local Data</span>
+          </div>
+        </div>
+
+        <!-- 2024 Year Card (Disabled Demo) -->
+        <div class="year-card" style="opacity: 0.45; cursor: not-allowed;">
+          <div class="year-text">2024</div>
+          <div class="year-card-info">
+            <span class="badge badge-hs" style="font-size: 10px; background: rgba(239, 68, 68, 0.1); color: #f87171; border-color: rgba(239, 68, 68, 0.2);">No Local Data</span>
+          </div>
+        </div>
+      </div>
     </div>
   {:else}
+    <!-- ACTIVE DASHBOARD VIEW -->
     {#if activeTab === 'overview'}
       <Overview 
         {allData} 
@@ -158,6 +279,7 @@
         <EventExplorer 
           {eventCounts} 
           {eventDetails} 
+          {winnersData}
           bind:activeEventId
         />
       </div>
@@ -185,7 +307,7 @@
 <footer>
   <div class="container">
     <p>&copy; 2026 Future Business Leaders of America (FBLA) NLC Registration Analyzer.</p>
-    <p style="margin-top: 8px; font-size: 11px; opacity: 0.6;">Built using Svelte 5. Parsed from the preliminary schedule release (updated 6/12/2026).</p>
+    <p style="margin-top: 8px; font-size: 11px; opacity: 0.6;">Built using Svelte 5. Parsed from official FBLA schedule releases.</p>
     <p style="margin-top: 12px; font-size: 10px; opacity: 0.5; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.4;">
       Disclaimer: This is an unofficial, independent analytics platform created solely for educational purposes. It is not affiliated with, authorized, maintained, sponsored, or endorsed by Future Business Leaders of America, Inc. (FBLA). All product and company names are the registered trademarks of their original owners.
     </p>

@@ -1,17 +1,28 @@
 <script>
   import Icon from '@iconify/svelte';
   import posthog from '../posthog.js';
-  let { eventCounts, eventDetails, activeEventId = $bindable() } = $props();
+  
+  let { eventCounts, eventDetails, winnersData, activeEventId = $bindable() } = $props();
 
   // Component state
   let sidebarQuery = $state('');
   let detailQuery = $state('');
   let showSidebarMobile = $state(true);
+  let activeDetailTab = $state('schedule'); // 'schedule' | 'winners'
 
-  // Auto-hide sidebar when active event is selected by parent
+  // Helper to format divisions
+  function getDivisionDetails(div) {
+    if (div === 'MS') return { label: 'MS', class: 'badge-ms', full: 'Middle School Division' };
+    if (div === 'HS') return { label: 'HS', class: 'badge-hs', full: 'High School Division' };
+    if (div === 'Collegiate') return { label: 'Collegiate', class: 'badge-collegiate', full: 'Collegiate Division' };
+    return { label: div, class: 'badge-hs', full: `${div} Division` };
+  }
+
+  // Auto-hide sidebar when active event is selected by parent, and reset active tab
   $effect(() => {
     if (activeEventId) {
       showSidebarMobile = false;
+      activeDetailTab = 'schedule';
     }
   });
 
@@ -51,7 +62,7 @@
         competitors: count,
         teams: teams,
         rate: rate,
-        isMS: ev.division === 'MS'
+        division: ev.division
       };
     });
     return stats;
@@ -98,6 +109,11 @@
   });
 
   const activeEvent = $derived(activeEventId ? eventDetails[activeEventId] : null);
+
+  // Get active event winners from the data
+  const activeEventWinners = $derived(
+    winnersData && activeEvent ? winnersData[activeEvent.name] : null
+  );
 
   // Compute detailed commit rate data for active event
   const commitRateData = $derived.by(() => {
@@ -200,8 +216,8 @@
     <div class="sidebar-list">
       {#each sortedEvents as name, index}
         {@const count = eventCounts[name]}
-        {@const isMS = eventDetails[name]?.division === 'MS'}
-        {@const divLabel = isMS ? 'MS' : 'HS'}
+        {@const div = eventDetails[name]?.division}
+        {@const divDetails = getDivisionDetails(div)}
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <!-- svelte-ignore a11y_no_static_element_interactions -->
         <div 
@@ -224,7 +240,7 @@
             {:else if eventStats[name]}
               <span class="event-item-rate" title="Overall Commit Rate">{eventStats[name].rate.toFixed(0)}%</span>
             {/if}
-            <span class="badge {isMS ? 'badge-ms' : 'badge-hs'}" style="font-size:8px; padding:1px 3px;">{divLabel}</span>
+            <span class="badge {divDetails.class}" style="font-size:8px; padding:1px 3px;">{divDetails.label}</span>
             <span class="event-item-count" title="Total Competitors">{count}</span>
           </div>
         </div>
@@ -232,7 +248,7 @@
     </div>
   </div>
 
-  <!-- Right Content: Selected Event Schedule -->
+  <!-- Right Content: Selected Event Details -->
   <div class="event-detail-content {showSidebarMobile ? 'hide-mobile' : ''}">
     {#if !activeEvent}
       <div id="event-detail-empty" class="empty-state">
@@ -241,6 +257,7 @@
         <p>Choose an event from the list on the left to view its participants, division breakdown, scheduled times, and presentation rooms.</p>
       </div>
     {:else}
+      {@const activeDivDetails = getDivisionDetails(activeEvent.division)}
       <div id="event-detail-active" style="display: flex; flex-direction: column; height: 100%; overflow: hidden;">
         <button class="mobile-back-btn" onclick={() => showSidebarMobile = true}>
           <Icon icon="lucide:arrow-left" width="14" height="14" />
@@ -252,9 +269,9 @@
             {activeEvent.name}
           </h2>
           <div class="event-detail-meta">
-            <span class="badge {activeEvent.division === 'MS' ? 'badge-ms' : 'badge-hs'}" style="display:inline-flex; align-items:center;">
+            <span class="badge {activeDivDetails.class}" style="display:inline-flex; align-items:center;">
               <Icon icon={activeEvent.division === 'MS' ? 'lucide:school' : 'lucide:graduation-cap'} width="12" height="12" style="margin-right:4px;" />
-              {activeEvent.division === 'MS' ? 'Middle School Division' : 'High School Division'}
+              {activeDivDetails.full}
             </span>
             <span class="badge badge-time" style="display:inline-flex; align-items:center;">
               <Icon icon="lucide:calendar" width="12" height="12" style="margin-right:4px;" />
@@ -272,64 +289,120 @@
             {/if}
           </div>
         </div>
-        
-        <div style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
-          <div style="font-size: 14px; font-weight:600; color:var(--text-secondary);">Scheduled Sessions</div>
-          <input 
-            type="text" 
-            bind:value={detailQuery} 
-            class="search-input" 
-            placeholder="Filter school, state, or name..." 
-            style="max-width:240px; padding: 6px 12px; font-size:12px; height: 32px;"
-          />
-        </div>
 
-        <div class="event-detail-body">
-          <div class="table-responsive" style="margin-bottom:0; max-height:100%;">
-            <table>
-              <thead>
-                <tr>
-                  <th style="width: 22%;">School</th>
-                  <th style="width: 10%;">State</th>
-                  <th style="width: 15%;">Section</th>
-                  <th style="width: 33%;">Competitor(s)</th>
-                  <th style="width: 13%;">Scheduled Time</th>
-                  <th style="width: 7%;">Page</th>
-                </tr>
-              </thead>
-              <tbody>
-                {#each filteredEntries as entry}
-                  <tr>
-                    <td data-label="School" style="font-weight:600;">{entry.school_name}</td>
-                    <td data-label="State"><span style="font-family:'Outfit'; font-weight:700;">{entry.state}</span></td>
-                    <td data-label="Section"><span class="badge badge-hs" style="font-size:11px;">{entry.section_name || 'Main'}</span></td>
-                    <td data-label="Competitor(s)">
-                      <div class="competitors-cell">
-                        {#each entry.competitors as name}
-                          <span class="competitor-tag">{name}</span>
-                        {:else}
-                          <span style="color:red; font-size:11px;">[Not parsed]</span>
-                        {/each}
-                      </div>
-                    </td>
-                    <td data-label="Time">
-                      <span class="badge {entry.arrival_time ? 'badge-time' : 'badge-location'}">
-                        {entry.arrival_time || entry.event_when.split(' ').slice(-5).join(' ') || 'Scheduled'}
-                      </span>
-                    </td>
-                    <td data-label="Page" style="font-family:'Outfit'; font-weight:600; text-align:center; color:var(--fbla-gold);">{entry.page}</td>
-                  </tr>
-                {:else}
-                  <tr>
-                    <td colspan="6" style="text-align:center; padding: 30px; color:var(--text-secondary);">
-                      No competitor schedules found matching "{detailQuery}"
-                    </td>
-                  </tr>
-                {/each}
-              </tbody>
-            </table>
+        <!-- Tab Selector (Schedule vs. Final Standings if available) -->
+        {#if activeEventWinners && activeEventWinners.length > 0}
+          <div class="event-detail-tabs">
+            <button 
+              class="detail-tab-btn {activeDetailTab === 'schedule' ? 'active' : ''}" 
+              onclick={() => activeDetailTab = 'schedule'}
+            >
+              <Icon icon="lucide:calendar" width="14" height="14" />
+              Competitor Schedule
+            </button>
+            <button 
+              class="detail-tab-btn {activeDetailTab === 'winners' ? 'active' : ''}" 
+              onclick={() => { activeDetailTab = 'winners'; posthog.capture('event winners viewed', { event_name: activeEvent.name }); }}
+            >
+              <Icon icon="lucide:trophy" width="14" height="14" style="color: var(--fbla-gold);" />
+              Final Results (Winners)
+            </button>
           </div>
-        </div>
+        {/if}
+        
+        {#if activeDetailTab === 'winners' && activeEventWinners}
+          <!-- WINNERS RESULTS STANDINGS -->
+          <div class="event-detail-body" style="padding-top: 8px;">
+            <div class="winners-podium">
+              {#each activeEventWinners as winner}
+                {@const rankClass = winner.rank === 1 ? 'winner-rank-1' : winner.rank === 2 ? 'winner-rank-2' : winner.rank === 3 ? 'winner-rank-3' : 'winner-rank-other'}
+                <div class="winner-rank-row">
+                  <div class="winner-rank-num {rankClass}">
+                    {#if winner.rank === 1}
+                      <Icon icon="lucide:crown" width="14" height="14" />
+                    {:else}
+                      {winner.rank}
+                    {/if}
+                  </div>
+                  <div class="winner-info">
+                    <div>
+                      <div style="font-family:'Outfit'; font-weight:700; font-size:15px; color:var(--text-primary);">
+                        {winner.school_name}
+                      </div>
+                      <div style="font-size:11px; color:var(--text-secondary); margin-top:2px;">
+                        {winner.state}
+                      </div>
+                    </div>
+                    <div class="winner-names">
+                      {#each winner.competitors as comp}
+                        <span class="competitor-tag" style="border-color: rgba(255, 199, 44, 0.35); background: rgba(255, 199, 44, 0.05); font-weight:600;">{comp}</span>
+                      {/each}
+                    </div>
+                  </div>
+                </div>
+              {/each}
+            </div>
+          </div>
+        {:else}
+          <!-- COMPETITOR SCHEDULE LIST -->
+          <div style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
+            <div style="font-size: 14px; font-weight:600; color:var(--text-secondary);">Scheduled Sessions</div>
+            <input 
+              type="text" 
+              bind:value={detailQuery} 
+              class="search-input" 
+              placeholder="Filter school, state, or name..." 
+              style="max-width:240px; padding: 6px 12px; font-size:12px; height: 32px;"
+            />
+          </div>
+
+          <div class="event-detail-body">
+            <div class="table-responsive" style="margin-bottom:0; max-height:100%;">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width: 22%;">School</th>
+                    <th style="width: 10%;">State</th>
+                    <th style="width: 15%;">Section</th>
+                    <th style="width: 33%;">Competitor(s)</th>
+                    <th style="width: 13%;">Scheduled Time</th>
+                    <th style="width: 7%;">Page</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {#each filteredEntries as entry}
+                    <tr>
+                      <td data-label="School" style="font-weight:600;">{entry.school_name}</td>
+                      <td data-label="State"><span style="font-family:'Outfit'; font-weight:700;">{entry.state}</span></td>
+                      <td data-label="Section"><span class="badge badge-hs" style="font-size:11px;">{entry.section_name || 'Main'}</span></td>
+                      <td data-label="Competitor(s)">
+                        <div class="competitors-cell">
+                          {#each entry.competitors as name}
+                            <span class="competitor-tag">{name}</span>
+                          {:else}
+                            <span style="color:red; font-size:11px;">[Not parsed]</span>
+                          {/each}
+                        </div>
+                      </td>
+                      <td data-label="Time">
+                        <span class="badge {entry.arrival_time ? 'badge-time' : 'badge-location'}">
+                          {entry.arrival_time || entry.event_when.split(' ').slice(-5).join(' ') || 'Scheduled'}
+                        </span>
+                      </td>
+                      <td data-label="Page" style="font-family:'Outfit'; font-weight:600; text-align:center; color:var(--fbla-gold);">{entry.page}</td>
+                    </tr>
+                  {:else}
+                    <tr>
+                      <td colspan="6" style="text-align:center; padding: 30px; color:var(--text-secondary);">
+                        No competitor schedules found matching "{detailQuery}"
+                      </td>
+                    </tr>
+                  {/each}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {/if}
       </div>
     {/if}
   </div>

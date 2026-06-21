@@ -1,6 +1,6 @@
 <script>
   import Icon from '@iconify/svelte';
-  let { activeTab, theme, onTabChange, onThemeToggle } = $props();
+  let { activeTab, theme, onTabChange, onThemeToggle, selectedLevel, selectedYear, onBackToStart } = $props();
 </script>
 
 <header>
@@ -9,44 +9,58 @@
       <Icon icon="lucide:award" class="logo-icon" />
       <div class="logo-text">
         <h1>NLC Stats</h1>
-        <p>National Leadership Conference 2026</p>
+        <p>
+          {#if selectedLevel === 'collegiate'}
+            Collegiate NLC {selectedYear}
+          {:else if selectedLevel === 'high-school'}
+            High School & MS NLC {selectedYear}
+          {:else}
+            National Leadership Conference 2026
+          {/if}
+        </p>
       </div>
     </div>
 
     <div class="nav-controls">
-      <div class="tabs-container">
-        <button 
-          class="tab-btn {activeTab === 'overview' ? 'active' : ''}" 
-          onclick={() => onTabChange('overview')}
-        >
-          <Icon icon="lucide:layout-dashboard" width="16" height="16" />
-          Overview
+      {#if selectedLevel && selectedYear}
+        <button class="change-level-btn" onclick={onBackToStart}>
+          <Icon icon="lucide:arrow-left" width="14" height="14" />
+          Change Division
         </button>
-        <button 
-          class="tab-btn {activeTab === 'events' ? 'active' : ''}" 
-          onclick={() => onTabChange('events')}
-        >
-          <Icon icon="lucide:book-open" width="16" height="16" />
-          <span class="hide-mobile">Event Explorer</span>
-          <span class="show-mobile">Events</span>
-        </button>
-        <button 
-          class="tab-btn {activeTab === 'states-schools' ? 'active' : ''}" 
-          onclick={() => onTabChange('states-schools')}
-        >
-          <Icon icon="lucide:globe" width="16" height="16" />
-          <span class="hide-mobile">States & Schools</span>
-          <span class="show-mobile">States</span>
-        </button>
-        <button 
-          class="tab-btn {activeTab === 'search' ? 'active' : ''}" 
-          onclick={() => onTabChange('search')}
-        >
-          <Icon icon="lucide:search" width="16" height="16" />
-          <span class="hide-mobile">Competitor Finder</span>
-          <span class="show-mobile">Search</span>
-        </button>
-      </div>
+        <div class="tabs-container">
+          <button 
+            class="tab-btn {activeTab === 'overview' ? 'active' : ''}" 
+            onclick={() => onTabChange('overview')}
+          >
+            <Icon icon="lucide:layout-dashboard" width="16" height="16" />
+            Overview
+          </button>
+          <button 
+            class="tab-btn {activeTab === 'events' ? 'active' : ''}" 
+            onclick={() => onTabChange('events')}
+          >
+            <Icon icon="lucide:book-open" width="16" height="16" />
+            <span class="hide-mobile">Event Explorer</span>
+            <span class="show-mobile">Events</span>
+          </button>
+          <button 
+            class="tab-btn {activeTab === 'states-schools' ? 'active' : ''}" 
+            onclick={() => onTabChange('states-schools')}
+          >
+            <Icon icon="lucide:globe" width="16" height="16" />
+            <span class="hide-mobile">States & Schools</span>
+            <span class="show-mobile">States</span>
+          </button>
+          <button 
+            class="tab-btn {activeTab === 'search' ? 'active' : ''}" 
+            onclick={() => onTabChange('search')}
+          >
+            <Icon icon="lucide:search" width="16" height="16" />
+            <span class="hide-mobile">Competitor Finder</span>
+            <span class="show-mobile">Search</span>
+          </button>
+        </div>
+      {/if}
 
       <button id="theme-toggle-btn" class="theme-toggle" onclick={onThemeToggle} aria-label="Toggle Theme">
         {#if theme === 'dark'}

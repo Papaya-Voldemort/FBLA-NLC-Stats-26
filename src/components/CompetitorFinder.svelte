@@ -73,6 +73,7 @@
   });
 
   const sortedStates = $derived(Object.keys(stateCounts).sort());
+  const availableDivisions = $derived([...new Set(allData.map(e => e.division))].sort());
 
   function prevPage() {
     if (currentPage > 1) currentPage--;
@@ -120,8 +121,19 @@
 
     <select value={divFilter} onchange={handleDivFilterChange} class="select-filter">
       <option value="all">All Divisions</option>
-      <option value="HS">High School (HS)</option>
-      <option value="MS">Middle School (MS)</option>
+      {#each availableDivisions as div}
+        <option value={div}>
+          {#if div === 'HS'}
+            High School (HS)
+          {:else if div === 'MS'}
+            Middle School (MS)
+          {:else if div === 'Collegiate'}
+            Collegiate
+          {:else}
+            {div}
+          {/if}
+        </option>
+      {/each}
     </select>
 
     <select value={stateFilter} onchange={handleStateFilterChange} class="select-filter">

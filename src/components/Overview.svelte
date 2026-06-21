@@ -16,13 +16,17 @@
   let chartStatesInstance;
   let chartScheduleInstance;
 
+  // Helper to get descriptive text and styling class for divisions
+  function getDivisionDetails(div) {
+    if (div === 'MS') return { label: 'MS', class: 'badge-ms', full: 'Middle School Division' };
+    if (div === 'HS') return { label: 'HS', class: 'badge-hs', full: 'High School Division' };
+    if (div === 'Collegiate') return { label: 'Collegiate', class: 'badge-collegiate', full: 'Collegiate Division' };
+    return { label: div, class: 'badge-hs', full: `${div} Division` };
+  }
+
   // Compute stats reactively
   const totalCompetitors = $derived(allData.reduce((acc, curr) => acc + curr.team_size, 0));
   const totalEntries = $derived(allData.length);
-  const hsEntries = $derived(allData.filter(e => e.division === 'HS'));
-  const msEntries = $derived(allData.filter(e => e.division === 'MS'));
-  const hsCompetitors = $derived(hsEntries.reduce((acc, curr) => acc + curr.team_size, 0));
-  const msCompetitors = $derived(msEntries.reduce((acc, curr) => acc + curr.team_size, 0));
   const uniqueStates = $derived(Object.keys(stateCounts).length);
   const uniqueSchools = $derived(Object.keys(schoolCounts).length);
   const top10Events = $derived(
@@ -30,6 +34,56 @@
       .sort((a, b) => b[1] - a[1])
       .slice(0, 10)
   );
+
+  // Group divisions and counts dynamically
+  const divisionSummary = $derived.by(() => {
+    const summary = {};
+    allData.forEach(e => {
+      summary[e.division] = (summary[e.division] || 0) + e.team_size;
+    });
+    return Object.entries(summary).sort((a, b) => b[1] - a[1]);
+  });
+
+  // Reactive Day and Hourly calculations
+  const scheduleDayData = $derived.by(() => {
+    // Find the most common day in schedules
+    const dayCounts = {};
+    allData.forEach(entry => {
+      if (entry.event_when) {
+        const day = entry.event_when.split(' - ')[0];
+        if (day && day !== 'Unknown') {
+          dayCounts[day] = (dayCounts[day] || 0) + 1;
+        }
+      }
+    });
+
+    const activeDay = Object.entries(dayCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || 'Schedule';
+
+    const hourlyCounts = {
+      '8:00 AM': 0, '9:00 AM': 0, '10:00 AM': 0, '11:00 AM': 0, '12:00 PM': 0,
+      '1:00 PM': 0, '2:00 PM': 0, '3:00 PM': 0, '4:00 PM': 0
+    };
+
+    allData.forEach(entry => {
+      const entryDay = entry.event_when ? entry.event_when.split(' - ')[0] : null;
+      if (entryDay === activeDay) {
+        if (entry.arrival_time) {
+          const t = entry.arrival_time;
+          const hourMatch = t.match(/^(\d{1,2}):\d{2}\s*(AM|PM)/i);
+          if (hourMatch) {
+            const h = parseInt(hourMatch[1]);
+            const ampm = hourMatch[2].toUpperCase();
+            const formattedHour = `${h}:00 ${ampm}`;
+            if (hourlyCounts.hasOwnProperty(formattedHour)) {
+              hourlyCounts[formattedHour] += entry.team_size;
+            }
+          }
+        }
+      }
+    });
+
+    return { activeDay, hourlyCounts };
+  });
 
   // Svelte 5 Runes Effect for Chart initialization & theme sync
   $effect(() => {
@@ -45,14 +99,23 @@
     if (chartScheduleInstance) chartScheduleInstance.destroy();
 
     // 1. Division Doughnut
-    if (chartDivisionsCanvas) {
+    if (chartDivisionsCanvas && divisionSummary.length > 0) {
+      const labels = divisionSummary.map(([div]) => getDivisionDetails(div).full);
+      const data = divisionSummary.map(([_, count]) => count);
+      const colors = divisionSummary.map(([div]) => {
+        if (div === 'HS') return '#3b82f6';
+        if (div === 'MS') return '#10b981';
+        if (div === 'Collegiate') return '#8b5cf6';
+        return '#6366f1';
+      });
+
       chartDivisionsInstance = new Chart(chartDivisionsCanvas, {
         type: 'doughnut',
         data: {
-          labels: ['High School', 'Middle School'],
+          labels: labels,
           datasets: [{
-            data: [hsCompetitors, msCompetitors],
-            backgroundColor: ['#3b82f6', '#10b981'],
+            data: data,
+            backgroundColor: colors,
             borderWidth: isDark ? 2 : 1,
             borderColor: panelBorder
           }]
@@ -156,41 +219,16 @@
       });
     }
 
-    // 4. Schedule Active Density Matrix
-    const tuesdayHours = {
-      '8:00 AM': 0, '9:00 AM': 0, '10:00 AM': 0, '11:00 AM': 0, '12:00 PM': 0,
-      '1:00 PM': 0, '2:00 PM': 0, '3:00 PM': 0, '4:00 PM': 0
-    };
-
-    allData.forEach(entry => {
-      if (entry.arrival_time) {
-        const t = entry.arrival_time;
-        const hourMatch = t.match(/^(\d{1,2}):\d{2}\s*(AM|PM)/i);
-        if (hourMatch) {
-          const h = parseInt(hourMatch[1]);
-          const ampm = hourMatch[2].toUpperCase();
-          const formattedHour = `${h}:00 ${ampm}`;
-          if (tuesdayHours.hasOwnProperty(formattedHour)) {
-            tuesdayHours[formattedHour] += entry.team_size;
-          }
-        }
-      } else if (entry.event_when && entry.event_when.includes('Tuesday')) {
-        if (entry.event_when.includes('8:30 AM') || entry.event_when.includes('10:00 AM')) {
-          tuesdayHours['9:00 AM'] += entry.team_size;
-        } else {
-          tuesdayHours['2:00 PM'] += entry.team_size;
-        }
-      }
-    });
-
+    // 4. Schedule Active Density Chart
+    const { activeDay, hourlyCounts } = scheduleDayData;
     if (chartScheduleCanvas) {
       chartScheduleInstance = new Chart(chartScheduleCanvas, {
         type: 'line',
         data: {
-          labels: Object.keys(tuesdayHours),
+          labels: Object.keys(hourlyCounts),
           datasets: [{
             label: 'Competitors Active',
-            data: Object.values(tuesdayHours),
+            data: Object.values(hourlyCounts),
             fill: true,
             backgroundColor: 'rgba(0, 47, 108, 0.25)',
             borderColor: '#3b82f6',
@@ -264,35 +302,26 @@
     <div class="kpi-subtext">Competitive Events Scheduled</div>
   </div>
 
-  <div class="kpi-card kpi-card-hs">
-    <div class="kpi-card-header">
-      <div>
-        <div class="kpi-label">High School (HS)</div>
-        <div class="kpi-value">{hsCompetitors.toLocaleString()}</div>
+  <!-- Dynamic Division KPI Cards -->
+  {#each divisionSummary as [division, count]}
+    {@const details = getDivisionDetails(division)}
+    <div class="kpi-card" style="border-left: 4px solid {division === 'HS' ? '#3b82f6' : division === 'MS' ? '#10b981' : '#8b5cf6'};">
+      <div class="kpi-card-header">
+        <div>
+          <div class="kpi-label">{details.full}</div>
+          <div class="kpi-value">{count.toLocaleString()}</div>
+        </div>
+        <div class="kpi-icon-wrapper" style="color: {division === 'HS' ? '#3b82f6' : division === 'MS' ? '#10b981' : '#8b5cf6'};">
+          <Icon icon={division === 'MS' ? 'lucide:school' : 'lucide:graduation-cap'} width="22" height="22" />
+        </div>
       </div>
-      <div class="kpi-icon-wrapper">
-        <Icon icon="lucide:graduation-cap" width="22" height="22" />
-      </div>
-    </div>
-    <div class="kpi-subtext">
-      <span class="kpi-trend">{Math.round((hsCompetitors / totalCompetitors) * 100)}%</span> of total registrations
-    </div>
-  </div>
-
-  <div class="kpi-card kpi-card-ms">
-    <div class="kpi-card-header">
-      <div>
-        <div class="kpi-label">Middle School (MS)</div>
-        <div class="kpi-value">{msCompetitors.toLocaleString()}</div>
-      </div>
-      <div class="kpi-icon-wrapper">
-        <Icon icon="lucide:school" width="22" height="22" />
+      <div class="kpi-subtext">
+        <span class="kpi-trend" style="color: {division === 'HS' ? '#3b82f6' : division === 'MS' ? '#10b981' : '#8b5cf6'};">
+          {Math.round((count / totalCompetitors) * 100)}%
+        </span> of total registrations
       </div>
     </div>
-    <div class="kpi-subtext">
-      <span class="kpi-trend">{Math.round((msCompetitors / totalCompetitors) * 100)}%</span> of total registrations
-    </div>
-  </div>
+  {/each}
 
   <div class="kpi-card kpi-card-states">
     <div class="kpi-card-header">
@@ -327,17 +356,19 @@
     <div class="glass-panel-header">
       <h2>Demographics & Teams</h2>
     </div>
-    <div class="division-split" style="margin-bottom: 24px;">
-      <div class="division-box hs-theme">
-        <div class="division-title" style="color:#60a5fa;">High School Division</div>
-        <div class="division-count">{hsCompetitors.toLocaleString()}</div>
-        <div style="font-size:12px; color:var(--text-secondary);">Registrations</div>
-      </div>
-      <div class="division-box ms-theme">
-        <div class="division-title" style="color:#34d399;">Middle School Division</div>
-        <div class="division-count">{msCompetitors.toLocaleString()}</div>
-        <div style="font-size:12px; color:var(--text-secondary);">Registrations</div>
-      </div>
+    <div class="division-split" style="margin-bottom: 24px; display: flex; gap: 16px; width: 100%;">
+      {#each divisionSummary as [div, count]}
+        {@const details = getDivisionDetails(div)}
+        <div class="division-box" style="flex: 1; border: 1px solid var(--panel-border); border-radius: 8px; padding: 16px; text-align: center; background: rgba(255,255,255,0.015);">
+          <div class="division-title" style="color: {div === 'HS' ? '#60a5fa' : div === 'MS' ? '#34d399' : '#c084fc'}; font-weight: 700;">
+            {details.full}
+          </div>
+          <div class="division-count" style="font-size: 24px; font-weight: 800; font-family: 'Outfit'; margin: 8px 0;">
+            {count.toLocaleString()}
+          </div>
+          <div style="font-size:12px; color:var(--text-secondary);">Registrations</div>
+        </div>
+      {/each}
     </div>
     <div class="chart-double-col">
       <div class="chart-wrapper">
@@ -367,17 +398,17 @@
     </div>
     <div class="list-wrapper">
       {#each top10Events as [eventName, count], index}
-        {@const divBadge = eventDetails[eventName]?.division === 'MS' ? 'badge-ms' : 'badge-hs'}
-        {@const divText = eventDetails[eventName]?.division === 'MS' ? 'MS' : 'HS'}
+        {@const div = eventDetails[eventName]?.division}
+        {@const divDetails = getDivisionDetails(div)}
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <!-- svelte-ignore a11y_no_static_element_interactions -->
-        <div class="rank-item" style="cursor: pointer;" onclick={() => { posthog.capture('overview event clicked', { event_name: eventName, rank: index + 1, competitors_count: count, division: eventDetails[eventName]?.division }); onSelectEvent(eventName); }}>
+        <div class="rank-item" style="cursor: pointer;" onclick={() => { posthog.capture('overview event clicked', { event_name: eventName, rank: index + 1, competitors_count: count, division: div }); onSelectEvent(eventName); }}>
           <div class="rank-name-area">
             <div class="rank-badge">{index + 1}</div>
             <div>
               <div class="rank-label">{eventName}</div>
               <div class="rank-sub">
-                <span class="badge {divBadge}" style="padding: 1px 4px; font-size:9px;">{divText}</span>
+                <span class="badge {divDetails.class}" style="padding: 1px 4px; font-size:9px;">{divDetails.label}</span>
                 &nbsp;•&nbsp; {Array.from(eventDetails[eventName]?.locations || ['Stars at Night'])[0]}
               </div>
             </div>
@@ -390,7 +421,7 @@
 
   <div class="glass-panel col-6">
     <div class="glass-panel-header">
-      <h2>Event Schedule Load</h2>
+      <h2>Event Schedule Load ({scheduleDayData.activeDay})</h2>
     </div>
     <div class="chart-container">
       <canvas bind:this={chartScheduleCanvas}></canvas>

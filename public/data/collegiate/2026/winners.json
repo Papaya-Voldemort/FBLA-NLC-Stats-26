@@ -1,0 +1,4024 @@
+{
+  "Accounting Case Competition": [
+    {
+      "rank": 1,
+      "school_name": "Virginia State University",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Geovany Disla",
+        "Gabrielle Gunn"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Nikunj More",
+        "Shakil Musthafa"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Southern Arkansas University",
+      "state": "Arkansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Gracie Brown",
+        "Elizabeth Grace"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "California State University - Sacramento",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Muluken Heikaus-weaver",
+        "Jenna Nool",
+        "Ivan Serrano",
+        "David Suarez"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Miami Dade College - Wolfson",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Estefania Cuervo",
+        "Maroun Issa"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Lebanon Valley College",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Leigha Aten",
+        "Lauren Atkins",
+        "Jeffrey Laruffa",
+        "Sarah Shade"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Phillip Chang",
+        "Thin Thida Soe"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "University of Nebraska at Kearney",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Ella Beaudette",
+        "Connor Reeson"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Miami Dade College - West",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Noah Keller",
+        "Leo Kogon",
+        "Fernando Vargas"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Broward College",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Antonella Contreras",
+        "Ayaan Hemani",
+        "Daksh Jain",
+        "Lucas Zhai"
+      ]
+    }
+  ],
+  "Business Communication": [
+    {
+      "rank": 1,
+      "school_name": "Penn State University - Schuylkill Campus",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Carter Strouse"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "State College of Florida - Bradenton",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Anna Carlton"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Grand View University",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Danielle Bayless"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "State College of Florida - Bradenton",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Kiri Kamiya"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Bismarck State College",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Cammie Veldkamp"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "University of Nebraska at Kearney",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Haily Miller"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Chadron State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Alana Wheatley"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Coahoma Community College_5087",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Karmese Leflore"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "South Hills School of Business & Technology",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Matthew Harkins"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Northeast Community College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Schuyler Heesacker"
+      ]
+    }
+  ],
+  "Business Ethics": [
+    {
+      "rank": 1,
+      "school_name": "Loras College",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Cana Duckworth"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Nivedha Maniv",
+        "Naga Amulya Vangari"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Adams State University",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Kyser Marrtinez"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Kevin Gonzalez",
+        "Sam Pham",
+        "Domenic Sciortino"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Penn State Harrisburg",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Zainab Choudhary",
+        "Imsha Mahreen",
+        "Mahek Shah"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Barton Community College",
+      "state": "Kansas",
+      "division": "Collegiate",
+      "competitors": [
+        "David Dominguez",
+        "Rose Timmermeyer"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Webber International University",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Luis Jarrin",
+        "Jun Saito"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Wake Technical Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Malexis Barinotto",
+        "Sehyun Park"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Pikes Peak State College",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Noah Giles",
+        "Youngjin Kim",
+        "Gavin Knotts"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "North Dakota Collegiate Direct",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Kaydee Boyce",
+        "Anna Nasset"
+      ]
+    }
+  ],
+  "Business Law": [
+    {
+      "rank": 1,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Zidan Mallick"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Susquehanna University",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Jacob Craig"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Wayne State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Jack Lancaster"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Dakota State University",
+      "state": "South Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Casey Olson"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Mohawk Valley Community College",
+      "state": "New York",
+      "division": "Collegiate",
+      "competitors": [
+        "Vincent Klein"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Missouri Western State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Wyatt Fisher"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Hari Tunga"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Missouri State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Tucker Wisecup"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Pittsburg State University",
+      "state": "Kansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Katelyn Burke"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Columbus Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Kalzayvian Ray"
+      ]
+    }
+  ],
+  "Business Presentation": [
+    {
+      "rank": 1,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Vanessa Huynh"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Darien Reimold"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Michelle Lam"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Virginia State University",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Xavier Drewrey",
+        "Elise Thomas"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Webber International University",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Adriana Campero",
+        "Daniel Diaz"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Dickinson State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Taylynd Stuhr",
+        "Taytum Stuhr"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Minot State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Kyle Sandy",
+        "Zack Volson"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Copiah - Lincoln Community College",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Thomas Baker",
+        "Olivia Vaughn"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Loras College",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Connor Day",
+        "Griffin Dement-graham",
+        "Rory Heer"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "University of West Georgia",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Karim Devries",
+        "Christian Scott"
+      ]
+    }
+  ],
+  "Community Service Project": [
+    {
+      "rank": 1,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Arin Kumar",
+        "Derick Nguyen",
+        "Wenyu Qian"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Ezequiel Adames",
+        "Tony Woods"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "University of Denver",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Sarah Geffen",
+        "Sana Khayat Kholghy",
+        "Mahnaz Zahedi"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Webber International University",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Alina Bruhlmeier",
+        "Adriana Campero",
+        "Daniel Diaz"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Northeast Community College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Lydia Jahnke",
+        "Kelli Tunender"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Illinois Central College",
+      "state": "Illinois",
+      "division": "Collegiate",
+      "competitors": [
+        "Nora Laughlin",
+        "Adam West"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Mineral Area College",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Vivi Chen",
+        "Aaliyah Elledge",
+        "Ian Sales"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Bluefield State University",
+      "state": "West Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Kylie Salazar"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "University of West Georgia",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Aryanna Buchanan",
+        "Jada Zimbabwe"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Peru State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Amelia Hakl",
+        "Alexis Mullins"
+      ]
+    }
+  ],
+  "Computer Applications": [
+    {
+      "rank": 1,
+      "school_name": "Minot State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Luke Curren"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pittsburg State University",
+      "state": "Kansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Katelyn Burke"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "St. John's University",
+      "state": "New York",
+      "division": "Collegiate",
+      "competitors": [
+        "Tomas Santos Yciano"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Grand View University",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Danielle Bayless"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "University of Central Arkansas",
+      "state": "Arkansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Kaitlin Bailey"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Wake Technical Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Justin Smith"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Wake Technical Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Maria Lans"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Missouri State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Ellen Kowalski"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "The University of Scranton",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Lillian Stein"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Midland University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Emma Hodnet"
+      ]
+    }
+  ],
+  "Customer Service": [
+    {
+      "rank": 1,
+      "school_name": "Cerritos College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "AlmaRosa Alvarado"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Yavapai College",
+      "state": "Arizona",
+      "division": "Collegiate",
+      "competitors": [
+        "Campbell Augustinovich"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Georgia Northwestern Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Jared Weaver"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Bluefield State University",
+      "state": "West Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Nina Blankenship"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Owen Rainey"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "College of the Canyons",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Jaeda Rajpibul"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Cerritos College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Zaira Mora"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Columbia College",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Breanna Crocket"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Lincoln Trail College",
+      "state": "Illinois",
+      "division": "Collegiate",
+      "competitors": [
+        "Brandy Cochran"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Rutgers University - New Brunswick",
+      "state": "New Jersey",
+      "division": "Collegiate",
+      "competitors": [
+        "Mariana Locati"
+      ]
+    }
+  ],
+  "Cybersecurity": [
+    {
+      "rank": 1,
+      "school_name": "Embry - Riddle Aeronautical University",
+      "state": "Arizona",
+      "division": "Collegiate",
+      "competitors": [
+        "Francisco Cordova"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pikes Peak State College",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Elias Roa"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "St. John's University",
+      "state": "New York",
+      "division": "Collegiate",
+      "competitors": [
+        "Brian Perez Alvarado"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Florida Collegiate Direct",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Ardian Peach"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "St. John's University",
+      "state": "New York",
+      "division": "Collegiate",
+      "competitors": [
+        "Ethan Rahim"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Jones County Junior College",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Tanner Guthrie"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Ogeechee Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Andrew Mitchell"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Embry - Riddle Aeronautical University",
+      "state": "Arizona",
+      "division": "Collegiate",
+      "competitors": [
+        "James Burke"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Atlanta Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Blaze Heru"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Anna Sederstrom"
+      ]
+    }
+  ],
+  "Digital Design & Communications Case Competition": [
+    {
+      "rank": 1,
+      "school_name": "Southern Union State Community College",
+      "state": "Alabama",
+      "division": "Collegiate",
+      "competitors": [
+        "Noah Torbert"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pasco Hernando State College - West / New Port Richey Campus",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Kaylee Smith"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Yeah Education",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Zirui Dong",
+        "Jiale Ma",
+        "Lucas Wu",
+        "tianzhu xie"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Broward College",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Sabrina Grillet",
+        "Oona Hiroven",
+        "Kenia Lora",
+        "Nicholas Yonamine"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Northeast Mississippi Community College",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Nellie Johnson"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Lackawanna College",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Marissa Jones"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "University of Nebraska at Kearney",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Addison Ackles",
+        "Ella Beaudette",
+        "Connor Reeson"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "University of Nebraska at Omaha",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Jacie Ambrose"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Missouri State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Kattie Chilton",
+        "Lexus Diaz",
+        "Dianna Escarate",
+        "Sarah Jeon"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Peru State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Amelia Hakl",
+        "Mia Rikli"
+      ]
+    }
+  ],
+  "Emerging Business Issues": [
+    {
+      "rank": 1,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Kelsey Dettinger"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Broward College",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Johndale Carty",
+        "Juliana Lotero",
+        "Alexis Piedra"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Des Moines Area Community College",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Ariana Balderas",
+        "Josephine Bond",
+        "Laci Cockrum"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "University of Denver",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Yanjun Chen",
+        "Sarah Geffen"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Minot State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Mason Lemer",
+        "Kyle Sandy"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Florida International University",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Antoni Salanski"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Anirudh Ahluwalia",
+        "Parker Elsey",
+        "Angelo Maniraho"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Stanly Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Judit Vasquez"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Drake Univeristy",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Joyanna Huang"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Yeah Education",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Weijie Luo",
+        "Jiayi Shao",
+        "Haoze Tao"
+      ]
+    }
+  ],
+  "Entrepreneurship Pitch Competition": [
+    {
+      "rank": 1,
+      "school_name": "Fayetteville State University",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Justin Pruitt"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "William Devanney",
+        "Shakil Musthafa",
+        "Timothy Nguyen",
+        "Bryant Vo"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Fayetteville State University",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Jade Jordan"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Northeastern Oklahoma A&M College",
+      "state": "Oklahoma",
+      "division": "Collegiate",
+      "competitors": [
+        "Bristol Berryman",
+        "Cashton Wheeler"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Penn State Harrisburg",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Aiden Beiler"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Lee College",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Laura Portillo",
+        "Grecia Villarreal"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Nebraska Collegiate Direct",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Savannah Boedigheimer"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Bruce Archambault",
+        "Madalyn Schoffstall"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Cerritos College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Nathan Pheng",
+        "Hilda Rubianes",
+        "Isabella Santacruz"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Salt Lake Community College",
+      "state": "Utah",
+      "division": "Collegiate",
+      "competitors": [
+        "Patrick Roberts"
+      ]
+    }
+  ],
+  "Finance Case Competition": [
+    {
+      "rank": 1,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Elena Burgos",
+        "Evan Hoeffner"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Gardner-Webb University",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Will Brooks",
+        "demarqus little",
+        "kadeyn marshall",
+        "Will Stevenson"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Webber International University",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Alina Bruhlmeier",
+        "Thea Roque"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Diablo Valley College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Kaleem Carminer",
+        "Michael Kosenko",
+        "Christopher Lane"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Gabriel Parra-Montesdeoca"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Miami Dade College - Wolfson",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Andrew Esposito",
+        "Noah Safir"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Kirkwood Community College",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Aiyana Moeller",
+        "Cyrus Zangerle"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Conor Willeke"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Anjali Bhatia",
+        "Hari Tunga"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Susquehanna University",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Paul Matra",
+        "Nicholas McPhillips",
+        "Jacob Vance"
+      ]
+    }
+  ],
+  "Foundations of Accounting": [
+    {
+      "rank": 1,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Paris Theiur"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Zidan Mallick"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Lewis and Clark Community College",
+      "state": "Illinois",
+      "division": "Collegiate",
+      "competitors": [
+        "Alexandra Braundmeier"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Phillip Chang"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Murray State College",
+      "state": "Oklahoma",
+      "division": "Collegiate",
+      "competitors": [
+        "William Day"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Minot State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Connor Radtke"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Thin Thida Soe"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Metropolitan Community College-Longview",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Jedidiah Howell"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Braylon Ernst"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Harith Ali"
+      ]
+    }
+  ],
+  "Foundations of Communication": [
+    {
+      "rank": 1,
+      "school_name": "Wayne State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Carlye Kresl"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Vanessa Huynh"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "The University of Scranton",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Mallory Woodland"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Kyleigh Woods"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Minot State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Tessa Galvin"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Illinois Central College",
+      "state": "Illinois",
+      "division": "Collegiate",
+      "competitors": [
+        "Sarah Linnemann"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Mira Comstock"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Bismarck State College",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Cammie Veldkamp"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Ethan Warren"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Rowan - Cabarrus CC",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Randi Godwin-Goodman"
+      ]
+    }
+  ],
+  "Foundations of Computer Science": [
+    {
+      "rank": 1,
+      "school_name": "Florida International University",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Roberto Luna-Garcia"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Chandragupta Jejurkar"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Yashraj Phadtare"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Miami Dade College - Padron Campus",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Alejandro Zamora"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "San Jacinto College Central",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Laela Salazar"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "San Jacinto College Central",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Parth Patel"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Utah Collegiate Direct",
+      "state": "Utah",
+      "division": "Collegiate",
+      "competitors": [
+        "Frank Cappello"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Stanly Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Dony Santos"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Pasco Hernando State College - Dade City Campus",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Amanda Campos"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Virginia State University",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Gregory Gibson"
+      ]
+    }
+  ],
+  "Foundations of Digital Design": [
+    {
+      "rank": 1,
+      "school_name": "Minot State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Elizabeth Chapman"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Michelle Lam"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Feitian College",
+      "state": "New York",
+      "division": "Collegiate",
+      "competitors": [
+        "Evelyn Tran"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Jake Rhodes"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Missouri State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Dianna Escarate"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "North Georgia Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Kya Smith"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Missouri State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Ellen Kowalski"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Pikes Peak State College",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Youngjin Kim"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Minot State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Luke Curren"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Broward College",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Lauryn Jadotte"
+      ]
+    }
+  ],
+  "Foundations of Economics": [
+    {
+      "rank": 1,
+      "school_name": "Crowder College",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Seth Russell"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Rutgers University - New Brunswick",
+      "state": "New Jersey",
+      "division": "Collegiate",
+      "competitors": [
+        "Kaustubh Baskaran"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Southern Illinois University",
+      "state": "Illinois",
+      "division": "Collegiate",
+      "competitors": [
+        "Presley Coale"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Murray State College",
+      "state": "Oklahoma",
+      "division": "Collegiate",
+      "competitors": [
+        "William Day"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Wayne State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Jack Lancaster"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Copiah - Lincoln Community College",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Thomas Baker"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Stephen F. Austin State University",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Ty Powers"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Southern Crescent Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Victoria Johnson"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Loras College",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Prashant Bhattarai"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Matthew Zhu"
+      ]
+    }
+  ],
+  "Foundations of Entrepreneurship": [
+    {
+      "rank": 1,
+      "school_name": "Pikes Peak State College",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Bryce Kindall"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Illinois State University",
+      "state": "Illinois",
+      "division": "Collegiate",
+      "competitors": [
+        "Colin Wasserman"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Dickinson State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "James Seekins"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "York University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Landen Baum"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Peru State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Evan Miller"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Misericordia University",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Deven Hazlak"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Loras College",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Rory Heer"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Bluefield State University",
+      "state": "West Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Myles Rice"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Georgia Northwestern Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Ashley Weaver"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Virginia State University",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Michael Richmond"
+      ]
+    }
+  ],
+  "Foundations of Finance": [
+    {
+      "rank": 1,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Conor Willeke"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Harith Ali"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "The University of Scranton",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Gary Mrozinski"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Ethan Warren"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "University of Missouri - Columbia",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Jake Fuller"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Embry - Riddle Aeronautical University",
+      "state": "Arizona",
+      "division": "Collegiate",
+      "competitors": [
+        "Justin Berry"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Braylon Ernst"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Mineral Area College",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Ian Sales"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Zachary McComis"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "University of Nebraska at Kearney",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Andrew Rentschler"
+      ]
+    }
+  ],
+  "Foundations of Hospitality Management": [
+    {
+      "rank": 1,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Tavian Willsea"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "South Hills School of Business & Technology",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Emily Boyd"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Broward College",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Abbygail Chang"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "West Georgia Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Gabrien Eng"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Georgetown College",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Brilee McIntosh"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Western Carolina University",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Piper Travis"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Wayne State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Carlye Kresl"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Rowan - Cabarrus CC",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Keydra Oglesby"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Misericordia University",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Dylan Ramirez"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Iowa State University",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Andrea Perez"
+      ]
+    }
+  ],
+  "Foundations of Management": [
+    {
+      "rank": 1,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Michael Fulcher"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Southcentral Kentucky Community & Technical College",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Brenton Lundgrin"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Kara Bullock"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Paige Comstock"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Fayetteville State University",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Donald Watts"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "University of Virginia - Charlottesville",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Cyrus Sharafi"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "South Hills School of Business & Technology",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Nora May"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "University of West Georgia",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Chelsea Williams"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "The University of Scranton",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Kaeli Romanowski"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Crowder College",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Arden Roller"
+      ]
+    }
+  ],
+  "Foundations of Marketing": [
+    {
+      "rank": 1,
+      "school_name": "Georgetown College",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Brilee McIntosh"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Sherwin Villagracia"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "University of Cincinnati",
+      "state": "Ohio",
+      "division": "Collegiate",
+      "competitors": [
+        "Nikki Zhang"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Fayetteville State University",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Alexis Jones"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Feitian College",
+      "state": "New York",
+      "division": "Collegiate",
+      "competitors": [
+        "Daniel Babay"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "University of West Georgia",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Aryanna Buchanan"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Emporia State University",
+      "state": "Kansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Angelique Zumbrunnen"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Chattahoochee Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Simone Avery"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "East Central Community College",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Morgan Hisaw"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Evangel University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "James Risner"
+      ]
+    }
+  ],
+  "Foundations of Selling": [
+    {
+      "rank": 1,
+      "school_name": "University of Virginia - Charlottesville",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Tanya Raja"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Illinois Central College",
+      "state": "Illinois",
+      "division": "Collegiate",
+      "competitors": [
+        "Meghan Miller"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Soroush Ali Ghourchi"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Jake Rhodes"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Salt Lake Community College",
+      "state": "Utah",
+      "division": "Collegiate",
+      "competitors": [
+        "Louis Reynolds Owen"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Wayne State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Colton Schaefer"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Broward College",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Juliana Lotero"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "East Carolina University",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Sam Dewar"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Southern Arkansas University",
+      "state": "Arkansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Alexis Tatum"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "University of Cincinnati",
+      "state": "Ohio",
+      "division": "Collegiate",
+      "competitors": [
+        "Nikki Zhang"
+      ]
+    }
+  ],
+  "Foundations of Technology": [
+    {
+      "rank": 1,
+      "school_name": "Pikes Peak State College",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Elias Roa"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Jones County Junior College",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Tanner Guthrie"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Anna Sederstrom"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Southern Regional Technical College - Moultrie",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Joshua Spear"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Chandragupta Jejurkar"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Dustin Stevens"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Embry - Riddle Aeronautical University",
+      "state": "Arizona",
+      "division": "Collegiate",
+      "competitors": [
+        "James Burke"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Pikes Peak State College",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Jayden Rood"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Pikes Peak State College",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Tatum Rood"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Miami Dade College - Padron Campus",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Alejandro Zamora"
+      ]
+    }
+  ],
+  "Future Business Executive": [
+    {
+      "rank": 1,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Quentin Williams"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Barton College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Rachel Koschatzky"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Minot State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Mason Lemer"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Bloomsburg University",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Natalie Miller"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Stanly Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Dony Santos"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Ethan Cusick"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Pittsburg State University",
+      "state": "Kansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Canyon Hendrickson"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Georgia Collegiate Direct",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Jennifer Perez Bacilio"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Pasco Hernando State College - Brooksville Campus",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Krista Knowles"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Missouri State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Ava Lin"
+      ]
+    }
+  ],
+  "Future Business Facilitator": [
+    {
+      "rank": 1,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Tony Woods"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Quentin Williams"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Wake Technical Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Mannal Amjad"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Nebraska Collegiate Direct",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Savannah Boedigheimer"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Peru State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Sheila Miller"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Lewis and Clark Community College",
+      "state": "Illinois",
+      "division": "Collegiate",
+      "competitors": [
+        "Julia Janus"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Chattahoochee Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Kassandra Wurts"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "University of Nebraska - Lincoln",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Connor Nichols"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Central Georgia Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Jordan Tolbert"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "College of the Canyons",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Thanakrit Disakorn"
+      ]
+    }
+  ],
+  "Hospitality Management Case Competition": [
+    {
+      "rank": 1,
+      "school_name": "Evangel University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Mallory Hills",
+        "Sydney Marcelo",
+        "Sarah Walker"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Crowder College",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Chloe Graber",
+        "Natalie Sarratt",
+        "Gauge Spier"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Anna Huynh",
+        "Jayden Phan",
+        "Francisco Rodriguez",
+        "Haley Truong"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Southern Regional Technical College - Thomasville",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Megan Patel"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Diablo Valley College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Suvd Budragchaa",
+        "Kaitlyn Maskey"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Broward College",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Lucas Blackburn",
+        "Lauryn Jadotte",
+        "Destiny Muwwakkil"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Copiah - Lincoln Community College",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Lonnie Boyd",
+        "Anna McKenzie",
+        "Jarvis Walker"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Ella Yang"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Florida Collegiate Direct",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Taylor Richardson"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Northeast Community College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Josalynn Amrine"
+      ]
+    }
+  ],
+  "Impromptu Speaking": [
+    {
+      "rank": 1,
+      "school_name": "Crowder College",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Seth Russell"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Chadron State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Mekenna Fisher"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "University of West Georgia",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Christian Scott"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "University of Denver",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Brooke Watley"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Lebanon Valley College",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Shelly Bliss"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Pikes Peak State College",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Bryce Kindall"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Copiah - Lincoln Community College",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Ethan Coleman"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Nikunj More"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Salt Lake Community College",
+      "state": "Utah",
+      "division": "Collegiate",
+      "competitors": [
+        "Joshua Lawrence"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Anusha Shringi"
+      ]
+    }
+  ],
+  "International Business": [
+    {
+      "rank": 1,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Indhresh Achi"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Southern Arkansas University",
+      "state": "Arkansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Laura Elnaggar"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Carson White"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Embry - Riddle Aeronautical University",
+      "state": "Arizona",
+      "division": "Collegiate",
+      "competitors": [
+        "Wyatt Wilson"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "University of Denver",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Sana Khayat Kholghy"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Manasvi Chintalapati"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Dakota State University",
+      "state": "South Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Shelby Mennis"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Iowa State University",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Katelyn Muehlenkamp"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Lewis and Clark Community College",
+      "state": "Illinois",
+      "division": "Collegiate",
+      "competitors": [
+        "Matthew Maag"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Colorado Mesa University",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Gwen Thomas"
+      ]
+    }
+  ],
+  "Job Interview": [
+    {
+      "rank": 1,
+      "school_name": "Wayne State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Azania Kumalo"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Bruce Archambault"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Dickinson State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Taylynd Stuhr"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Cerritos College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Amanda Monroy"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Cerritos College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "AlmaRosa Alvarado"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Cerritos College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Zaira Mora"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Derrin Carr"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "West Georgia Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Gabrien Eng"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Illinois Central College",
+      "state": "Illinois",
+      "division": "Collegiate",
+      "competitors": [
+        "Nora Laughlin"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Central Georgia Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Jordan Tolbert"
+      ]
+    }
+  ],
+  "Management Case Competition": [
+    {
+      "rank": 1,
+      "school_name": "Diablo Valley College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Zachary Gartner",
+        "Shinjoo Kim"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Madalyn Schoffstall"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Paramveer Grewal",
+        "Gabriel Parra-Montesdeoca"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Miami Dade College - Wolfson",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Luca Bravo",
+        "Nicolas Filet"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Mohawk Valley Community College",
+      "state": "New York",
+      "division": "Collegiate",
+      "competitors": [
+        "Vincent Klein",
+        "Andrew Stanley"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Columbia College",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Savannah Gilbert",
+        "Stephanie Lamoreaux",
+        "Katherin Lee",
+        "Paul Morpurgo"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Crowder College",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Bridget Andon",
+        "Natalie Sarratt",
+        "Gauge Spier"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Miami Dade College - Padron Campus",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Zelma Campos",
+        "Alexandra Rodriguez",
+        "Ian Rodriguez"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Arkansas State University",
+      "state": "Arkansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Alissa Delong"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Broward College",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Santiago Caudillo",
+        "Abbygail Chang",
+        "Mariyah Flynn",
+        "Sophia Van"
+      ]
+    }
+  ],
+  "Marketing & Sales Case Competition": [
+    {
+      "rank": 1,
+      "school_name": "Las Positas College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Yousef Salehi",
+        "Joshua Sandy"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Virginia State University",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Elijah Adams",
+        "Camron Cooper",
+        "Simone Jones",
+        "Taylor Williams"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Florida International University",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Melanie Garcia",
+        "Daniella Padron",
+        "Helen Pena"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Addy Hu",
+        "Olivia Ma",
+        "Anusha Shringi",
+        "Edward Wong"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Midland University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Brodie Arnold",
+        "Josh Kacperski",
+        "Trent Koger"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Diablo Valley College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Ravipat Rodphotong"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Midland University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Kiya Johnson",
+        "Skylar Scholting"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Northeast Community College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Kennedie Gartner",
+        "Schuyler Heesacker",
+        "Manaseh Liphuka"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "State College of Florida - Venice",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Kymani Fogah",
+        "Tamara Samokhvalova",
+        "Matteo Stallone"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Fayetteville State University",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Jade Jordan",
+        "Donald Watts"
+      ]
+    }
+  ],
+  "Organizational Behavior & Leadership": [
+    {
+      "rank": 1,
+      "school_name": "Missouri Collegiate Direct",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Alexander Dzurick"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "University of Missouri - Columbia",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Jake Fuller"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Crowder College",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Cheyanne Baker Oxford"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Southern Arkansas University",
+      "state": "Arkansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Laura Elnaggar"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Michael Fulcher"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Nivedha Maniv"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Dakota State University",
+      "state": "South Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Casey Olson"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "University of Denver",
+      "state": "Colorado",
+      "division": "Collegiate",
+      "competitors": [
+        "Brooke Watley"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Zoey Mollette"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Missouri State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Alyson Harter"
+      ]
+    }
+  ],
+  "Parliamentary Procedure": [
+    {
+      "rank": 1,
+      "school_name": "Snow College",
+      "state": "Utah",
+      "division": "Collegiate",
+      "competitors": [
+        "Fernando Munoz"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Virginia State University",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Amiyah Ponton"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Iowa State University",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Avery Stevens"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Penn State University - Schuylkill Campus",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Alex Kull"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Savannah Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Christie Buchanan"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Caovinh Nguyen"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Chattahoochee Technical College",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Thaddaeus Mercer"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Kahlan Smith"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Stanly Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Alexis Cason"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Nebraska Wesleyan University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Corbin Horner"
+      ]
+    }
+  ],
+  "Project Management": [
+    {
+      "rank": 1,
+      "school_name": "Lebanon Valley College",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Leigha Aten"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Susquehanna University",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Jacob Craig"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Christian Harry"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Broward College",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Merin Babu"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Southern Arkansas University",
+      "state": "Arkansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Skye Morales"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Midland University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Vyvian Alstrom"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Copiah - Lincoln Community College",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Olivia Vaughn"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Miami Dade College - North",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Sebastian Rodriguez"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Arkansas State University",
+      "state": "Arkansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Alissa Delong"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Chadron State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Alana Wheatley"
+      ]
+    }
+  ],
+  "Public Speaking": [
+    {
+      "rank": 1,
+      "school_name": "University of West Georgia",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Karim Devries"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Lizzelyn Agravante"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Derick Nguyen"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Virginia State University",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Amiyah Ponton"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "University of Nebraska at Omaha",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Jacie Ambrose"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Stanly Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Zoyla Rojas"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Diablo Valley College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Kaleem Carminer"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Florida Collegiate Direct",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Ardian Peach"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "University of North Carolina at Charlotte",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Joshua Reid"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Christian Harry"
+      ]
+    }
+  ],
+  "Retail Management": [
+    {
+      "rank": 1,
+      "school_name": "Peru State College",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Amelia Hakl"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Dustin Stevens"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Miami Dade College - North",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Sebastian Rodriguez"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "University of South Carolina - Columbia",
+      "state": "South Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Jonathan Wu"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "St. John's University",
+      "state": "New York",
+      "division": "Collegiate",
+      "competitors": [
+        "Nicole Greenough"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Ocean County College",
+      "state": "New Jersey",
+      "division": "Collegiate",
+      "competitors": [
+        "Keeley Ploumitsakos"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Minot State University",
+      "state": "North Dakota",
+      "division": "Collegiate",
+      "competitors": [
+        "Allyson Webster"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Bloomsburg University",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Logan Schoen"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Missouri State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Lyndsey Conley"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Divya Gutti"
+      ]
+    }
+  ],
+  "Sports Management & Marketing": [
+    {
+      "rank": 1,
+      "school_name": "Missouri Collegiate Direct",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Alexander Dzurick"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Missouri Western State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Aden Monzon"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Andrew Batto"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Stevens Institute of Technology",
+      "state": "New Jersey",
+      "division": "Collegiate",
+      "competitors": [
+        "John Kovalchuk"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "University of Nebraska at Kearney",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Andrew Rentschler"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Bluefield State University",
+      "state": "West Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Kylie Salazar"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Southern Arkansas University",
+      "state": "Arkansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Jacob Lewis"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Embry - Riddle Aeronautical University",
+      "state": "Arizona",
+      "division": "Collegiate",
+      "competitors": [
+        "Wyatt Wilson"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Broward College",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Lindsay Luce"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Loras College",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Cana Duckworth"
+      ]
+    }
+  ],
+  "State of Chapter Presentation": [
+    {
+      "rank": 1,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Kelsey Dettinger",
+        "Domenic Sciortino"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Iowa State University",
+      "state": "Iowa",
+      "division": "Collegiate",
+      "competitors": [
+        "Zoey Lohse",
+        "Madison Maass",
+        "Jonathan Nevenhoven"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Missouri State University",
+      "state": "Missouri",
+      "division": "Collegiate",
+      "competitors": [
+        "Alyson Harter"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "University of West Georgia",
+      "state": "Georgia",
+      "division": "Collegiate",
+      "competitors": [
+        "Kaia Dolor",
+        "Mayah Ross",
+        "Christian Scott"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Northeastern Oklahoma A&M College",
+      "state": "Oklahoma",
+      "division": "Collegiate",
+      "competitors": [
+        "Camille Neff"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Pasco Hernando State College - Brooksville Campus",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Emmalise Feliciano",
+        "Krista Knowles"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "De Anza College",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Carine Chan",
+        "Nisa Pradhan",
+        "Arya Somu"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Virginia State University",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Elijah Adams",
+        "Abigail Rancy",
+        "Makayla Robinson"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Stanly Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Helene Best",
+        "Dony Santos"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Jones County Junior College",
+      "state": "Mississippi",
+      "division": "Collegiate",
+      "competitors": [
+        "Aidan Chisolm",
+        "Elisa Cook"
+      ]
+    }
+  ],
+  "Supply Chain Management": [
+    {
+      "rank": 1,
+      "school_name": "University of Virginia - Charlottesville",
+      "state": "Virginia",
+      "division": "Collegiate",
+      "competitors": [
+        "Meera Patel"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "University of Nebraska at Kearney",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Logan Spence"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "Eastern Kentucky University",
+      "state": "Kentucky",
+      "division": "Collegiate",
+      "competitors": [
+        "Carson White"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "Stevens Institute of Technology",
+      "state": "New Jersey",
+      "division": "Collegiate",
+      "competitors": [
+        "Jonathan Martin"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "Southern Arkansas University",
+      "state": "Arkansas",
+      "division": "Collegiate",
+      "competitors": [
+        "Skye Morales"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "Susquehanna University",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Kagan Watkins"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Midland University",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Vyvian Alstrom"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "East Carolina University",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "George Beyrer"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "East Carolina University",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Daniel Hackett-Fishback"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "University of Texas at Dallas",
+      "state": "Texas",
+      "division": "Collegiate",
+      "competitors": [
+        "Akshara Venuturupalli"
+      ]
+    }
+  ],
+  "Technology and Computer Science Case Competition": [
+    {
+      "rank": 1,
+      "school_name": "Central Piedmont Community College",
+      "state": "North Carolina",
+      "division": "Collegiate",
+      "competitors": [
+        "Jayasmita Datta"
+      ]
+    },
+    {
+      "rank": 2,
+      "school_name": "Embry - Riddle Aeronautical University",
+      "state": "Arizona",
+      "division": "Collegiate",
+      "competitors": [
+        "Connor Calme",
+        "Francisco Cordova",
+        "Jacob Heusuk"
+      ]
+    },
+    {
+      "rank": 3,
+      "school_name": "St. John's University",
+      "state": "New York",
+      "division": "Collegiate",
+      "competitors": [
+        "Gali Desir",
+        "Brian Martinez Flores",
+        "Joshua Peguero",
+        "Tomas Santos Yciano"
+      ]
+    },
+    {
+      "rank": 4,
+      "school_name": "State College of Florida - Bradenton",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Justin Martinez"
+      ]
+    },
+    {
+      "rank": 5,
+      "school_name": "St. John's University",
+      "state": "New York",
+      "division": "Collegiate",
+      "competitors": [
+        "Umair Mahmood",
+        "Gulnaz Mukanbetova",
+        "Fahmid Zaman"
+      ]
+    },
+    {
+      "rank": 6,
+      "school_name": "University of Nebraska - Lincoln",
+      "state": "Nebraska",
+      "division": "Collegiate",
+      "competitors": [
+        "Connor Nichols"
+      ]
+    },
+    {
+      "rank": 7,
+      "school_name": "Pennsylvania State University \u2013 York",
+      "state": "Pennsylvania",
+      "division": "Collegiate",
+      "competitors": [
+        "Katherine Heimbach"
+      ]
+    },
+    {
+      "rank": 8,
+      "school_name": "Miami Dade College - Wolfson",
+      "state": "Florida",
+      "division": "Collegiate",
+      "competitors": [
+        "Carmen Hagiiani"
+      ]
+    },
+    {
+      "rank": 9,
+      "school_name": "Yeah Education",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Yifan Chen",
+        "Shengjia Shang",
+        "ziheng yu",
+        "Zhiyuan Zhang"
+      ]
+    },
+    {
+      "rank": 10,
+      "school_name": "Yeah Education",
+      "state": "California",
+      "division": "Collegiate",
+      "competitors": [
+        "Jiayi Shao",
+        "Lucas Wu",
+        "tianzhu xie"
+      ]
+    }
+  ]
+}
