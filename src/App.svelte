@@ -199,7 +199,7 @@
           </div>
           <h2>High School & MS</h2>
           <p>Explore preliminary presentation schedules and objective test times for FBLA High School and Middle School competitors.</p>
-          <button class="btn">Select HS & MS</button>
+          <button class="btn">Select</button>
         </div>
 
         <!-- Collegiate Card -->
@@ -211,7 +211,7 @@
           </div>
           <h2>Collegiate</h2>
           <p>Analyze preliminary schedule assignments and view complete final national winners standings for College competitors.</p>
-          <button class="btn">Select Collegiate</button>
+          <button class="btn">Select</button>
         </div>
       </div>
     </div>
@@ -228,36 +228,60 @@
         <p>Select the year of the NLC you want to explore. Badges indicate which data modules are available.</p>
       </div>
 
-      <div class="year-grid">
+      <div class="year-grid-layout">
         <!-- 2026 Year Card (Active) -->
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <!-- svelte-ignore a11y_no_static_element_interactions -->
-        <div class="year-card" onclick={() => loadNlcData(selectedLevel, 2026)}>
-          <div class="year-text">2026</div>
-          <div class="year-card-info">
-            <span class="badge badge-time" style="font-size: 10px;">Schedules Loaded</span>
-            {#if selectedLevel === 'collegiate'}
-              <span class="badge badge-collegiate" style="font-size: 10px; background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.3);">
-                Winners stand available
-              </span>
-            {/if}
+        <div class="level-card active-year-card {selectedLevel === 'high-school' ? 'hs-year' : 'col-year'}" onclick={() => loadNlcData(selectedLevel, 2026)}>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="level-icon-wrapper year-icon-wrapper">
+              <Icon icon="lucide:calendar" width="24" height="24" />
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;">
+              <h2 style="margin: 0; font-size: 20px; line-height: 1;">2026</h2>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <span class="badge badge-time">Schedules Loaded</span>
+                {#if selectedLevel === 'collegiate'}
+                  <span class="badge badge-collegiate" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.3);">
+                    Winners Available
+                  </span>
+                {/if}
+              </div>
+            </div>
           </div>
+          <button class="btn">Select</button>
         </div>
 
-        <!-- 2025 Year Card (Disabled Demo) -->
-        <div class="year-card" style="opacity: 0.45; cursor: not-allowed;">
-          <div class="year-text">2025</div>
-          <div class="year-card-info">
-            <span class="badge badge-hs" style="font-size: 10px; background: rgba(239, 68, 68, 0.1); color: #f87171; border-color: rgba(239, 68, 68, 0.2);">No Local Data</span>
+        <!-- 2025 Year Card (Disabled) -->
+        <div class="level-card disabled-year-card">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="level-icon-wrapper year-icon-wrapper">
+              <Icon icon="lucide:calendar" width="24" height="24" />
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;">
+              <h2 style="margin: 0; font-size: 20px; line-height: 1;">2025</h2>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <span class="badge badge-hs" style="background: rgba(239, 68, 68, 0.1); color: #f87171; border-color: rgba(239, 68, 68, 0.2);">No Data</span>
+              </div>
+            </div>
           </div>
+          <button class="btn" disabled>Locked</button>
         </div>
 
-        <!-- 2024 Year Card (Disabled Demo) -->
-        <div class="year-card" style="opacity: 0.45; cursor: not-allowed;">
-          <div class="year-text">2024</div>
-          <div class="year-card-info">
-            <span class="badge badge-hs" style="font-size: 10px; background: rgba(239, 68, 68, 0.1); color: #f87171; border-color: rgba(239, 68, 68, 0.2);">No Local Data</span>
+        <!-- 2024 Year Card (Disabled) -->
+        <div class="level-card disabled-year-card">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="level-icon-wrapper year-icon-wrapper">
+              <Icon icon="lucide:calendar" width="24" height="24" />
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;">
+              <h2 style="margin: 0; font-size: 20px; line-height: 1;">2024</h2>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <span class="badge badge-hs" style="background: rgba(239, 68, 68, 0.1); color: #f87171; border-color: rgba(239, 68, 68, 0.2);">No Data</span>
+              </div>
+            </div>
           </div>
+          <button class="btn" disabled>Locked</button>
         </div>
       </div>
     </div>

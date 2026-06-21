@@ -1625,7 +1625,9 @@ footer p {
 
 @media (max-width: 768px) {
   .level-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 12px;
   }
 }
 
@@ -1657,18 +1659,42 @@ footer p {
   transition: background 0.3s ease;
 }
 
-.level-card.hs-card::before {
+.level-card.hs-card::before,
+.level-card.hs-year::before {
   background: var(--accent-blue);
 }
 
-.level-card.col-card::before {
+.level-card.col-card::before,
+.level-card.col-year::before {
   background: var(--fbla-gold);
 }
 
-.level-card:hover {
+/* Division Specific Styling & Glows */
+.level-card.hs-card,
+.level-card.hs-year {
+  border-color: rgba(59, 130, 246, 0.15);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.05);
+}
+
+.level-card.hs-card:hover,
+.level-card.hs-year:hover {
   transform: translateY(-5px);
-  border-color: var(--card-hover-border);
-  box-shadow: 0 12px 40px rgba(255, 199, 44, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
+  background: var(--card-hover-bg);
+}
+
+.level-card.col-card,
+.level-card.col-year {
+  border-color: rgba(255, 199, 44, 0.15);
+  box-shadow: 0 8px 32px rgba(255, 199, 44, 0.05);
+}
+
+.level-card.col-card:hover,
+.level-card.col-year:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 199, 44, 0.4);
+  box-shadow: 0 12px 40px rgba(255, 199, 44, 0.2);
   background: var(--card-hover-bg);
 }
 
@@ -1682,13 +1708,15 @@ footer p {
   transition: transform 0.3s ease;
 }
 
-.hs-card .level-icon-wrapper {
+.hs-card .level-icon-wrapper,
+.hs-year .level-icon-wrapper {
   background: rgba(59, 130, 246, 0.1);
   color: var(--accent-blue);
   border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-.col-card .level-icon-wrapper {
+.col-card .level-icon-wrapper,
+.col-year .level-icon-wrapper {
   background: rgba(255, 199, 44, 0.1);
   color: var(--fbla-gold);
   border: 1px solid rgba(255, 199, 44, 0.2);
@@ -1709,10 +1737,11 @@ footer p {
   color: var(--text-secondary);
   line-height: 1.5;
   text-align: center;
+  flex-grow: 1;
 }
 
 .level-card .btn {
-  margin-top: 10px;
+  margin-top: auto; /* Push button to the bottom for vertical cards */
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--panel-border);
   color: var(--text-primary);
@@ -1723,16 +1752,80 @@ footer p {
   transition: all 0.2s ease;
 }
 
-.hs-card:hover .btn {
+/* Button colors matching their themes by default */
+.hs-card .btn,
+.hs-year .btn {
   background: var(--accent-blue);
   border-color: var(--accent-blue);
   color: #fff;
 }
 
-.col-card:hover .btn {
+.hs-card:hover .btn,
+.hs-year:hover .btn {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.col-card .btn,
+.col-year .btn {
   background: var(--fbla-gold);
   border-color: var(--fbla-gold);
   color: #080c14;
+}
+
+.col-card:hover .btn,
+.col-year:hover .btn {
+  background: #e5b324;
+  border-color: #e5b324;
+  color: #080c14;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .start-screen-container {
+    margin: 20px auto;
+    gap: 16px;
+    padding: 0 16px;
+  }
+  .start-title-area h1 {
+    font-size: 32px;
+    margin-bottom: 6px;
+  }
+  .start-title-area p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .level-card {
+    padding: 20px 12px;
+    gap: 12px;
+    border-radius: 12px;
+  }
+  .level-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  .level-icon-wrapper svg,
+  .level-icon-wrapper :global(svg) {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .level-card h2 {
+    font-size: 15px;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .level-card p {
+    display: none;
+  }
+  .level-card .btn {
+    margin-top: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+  }
 }
 
 /* Year Select Screen */
@@ -1766,45 +1859,117 @@ footer p {
   color: var(--text-primary);
 }
 
-.year-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  width: 100%;
-}
-
-.year-card {
-  background: var(--panel-bg);
-  border: 1px solid var(--panel-border);
-  backdrop-filter: blur(var(--glass-blur));
-  border-radius: 12px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.year-card:hover {
-  transform: scale(1.02);
-  border-color: var(--card-hover-border);
-  background: var(--card-hover-bg);
-}
-
-.year-text {
-  font-family: 'Outfit', sans-serif;
-  font-size: 36px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--text-primary);
-}
-
-.year-card-info {
+.year-grid-layout {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 6px;
+  gap: 16px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.level-card.active-year-card,
+.level-card.disabled-year-card {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  position: relative;
+}
+
+.level-card.active-year-card::before,
+.level-card.disabled-year-card::before {
+  display: none;
+}
+
+.level-card.active-year-card.hs-year {
+  border-left: 4px solid var(--accent-blue);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.level-card.active-year-card.col-year {
+  border-left: 4px solid var(--fbla-gold);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.level-card.disabled-year-card {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  border-style: dashed;
+  border-left: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.level-card.disabled-year-card:hover {
+  transform: none;
+  box-shadow: none;
+  background: var(--panel-bg);
+  border-color: var(--panel-border);
+}
+
+.level-card.disabled-year-card:hover .level-icon-wrapper {
+  transform: none;
+}
+
+.level-card.disabled-year-card .btn {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Reset margin-top: auto for horizontal year cards */
+.active-year-card .btn,
+.disabled-year-card .btn {
+  margin-top: 0;
+}
+
+/* .year-card-badges removed in favor of inline flow layout */
+
+.year-icon-wrapper {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+}
+
+.year-icon-wrapper svg,
+.year-icon-wrapper :global(svg) {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+@media (max-width: 768px) {
+  .year-select-container {
+    margin: 20px auto;
+    gap: 16px;
+    padding: 0 16px;
+  }
+  .year-grid-layout {
+    gap: 12px;
+  }
+  .level-card.active-year-card,
+  .level-card.disabled-year-card {
+    padding: 16px 16px;
+  }
+  .level-card.active-year-card h2,
+  .level-card.disabled-year-card h2 {
+    font-size: 18px;
+  }
+  .active-year-card .badge,
+  .disabled-year-card .badge {
+    font-size: 8px !important;
+    padding: 2px 4px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 1.1;
+  }
 }
 
 /* Event Detail Tabs */
