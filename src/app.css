@@ -504,7 +504,7 @@ main.container {
   margin-right: 12px;
 }
 
-.rank-name-area > div {
+.rank-name-area > div:not(.rank-badge) {
   min-width: 0;
   flex: 1;
 }

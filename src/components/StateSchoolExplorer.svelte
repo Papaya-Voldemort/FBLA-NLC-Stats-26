@@ -1,16 +1,19 @@
 <script>
   import Icon from '@iconify/svelte';
   import posthog from '../posthog.js';
-  let { allData, stateCounts, schoolCounts, onSelectEvent } = $props();
+  let { 
+    allData, 
+    stateCounts, 
+    schoolCounts, 
+    onSelectEvent,
+    explorerSelectedState = $bindable(''),
+    explorerSelectedSchool = $bindable(''),
+    explorerSelectedEvent = $bindable('')
+  } = $props();
 
   // Search queries for leaderboards
   let stateRankQuery = $state('');
   let schoolRankQuery = $state('');
-
-  // Interactive Explorer state
-  let explorerSelectedState = $state('');
-  let explorerSelectedSchool = $state('');
-  let explorerSelectedEvent = $state('');
   let schoolSearchQuery = $state('');
   let activeExplorerTab = $state('state'); // 'state' | 'schools' | 'roster'
 

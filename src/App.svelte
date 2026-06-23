@@ -22,6 +22,9 @@
   let activeTab = $state('overview');
   let activeEventId = $state(null);
   let currentTheme = $state('dark');
+  let activeState = $state('');
+  let activeSchool = $state('');
+  let activeStateEvent = $state('');
 
   // Aggregated data
   let stateCounts = $state({});
@@ -110,17 +113,281 @@
     posthog.capture('returned to start screen');
   }
 
+  function slugify(text) {
+    if (!text) return '';
+    return text
+      .toString()
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-');
+  }
+
+  const levelLabel = $derived(selectedLevel === 'collegiate' ? 'Collegiate' : 'High School & Middle School');
+
+  const pageTitle = $derived.by(() => {
+    if (!selectedLevel || !selectedYear) {
+      return "FBLA NLC Stats 2026 - Registration & Schedule Tracker";
+    }
+    if (activeTab === 'overview') {
+      return `FBLA ${levelLabel} NLC ${selectedYear} Stats, Registration & Schedule Analyzer`;
+    }
+    if (activeTab === 'events') {
+      if (activeEventId) {
+        return `${activeEventId} - FBLA ${levelLabel} NLC ${selectedYear} Schedule & Standings`;
+      }
+      return `FBLA ${levelLabel} NLC ${selectedYear} Competitive Events Schedules & Results`;
+    }
+    if (activeTab === 'states-schools') {
+      if (activeState) {
+        return `${activeState} FBLA - NLC ${selectedYear} Competitor List & Schedules`;
+      }
+      return `FBLA ${levelLabel} NLC ${selectedYear} State Standings & Chapter Rankings`;
+    }
+    if (activeTab === 'search') {
+      return `FBLA ${levelLabel} NLC ${selectedYear} Competitor Schedule Search`;
+    }
+    if (activeTab === 'workshops') {
+      return `FBLA NLC ${selectedYear} Professional Development Workshops Schedule`;
+    }
+    return "FBLA NLC Stats 2026 - Registration & Schedule Tracker";
+  });
+
+  const pageDescription = $derived.by(() => {
+    if (!selectedLevel || !selectedYear) {
+      return "Explore FBLA NLC stats, registration details, competitive events schedules, and national standings/results for the 2026 Future Business Leaders of America National Leadership Conference.";
+    }
+    if (activeTab === 'overview') {
+      return `Explore registration statistics, school chapters leaderboard, state association rankings, and competitive event schedules for FBLA ${levelLabel} at the ${selectedYear} National Leadership Conference.`;
+    }
+    if (activeTab === 'events') {
+      if (activeEventId) {
+        return `Scheduled competitors, presentation test times, and locations for the FBLA ${levelLabel} ${activeEventId} event at the NLC ${selectedYear}.`;
+      }
+      return `Browse schedules, test times, presentation arrival configurations, and national results for all FBLA ${levelLabel} competitive events.`;
+    }
+    if (activeTab === 'states-schools') {
+      if (activeState) {
+        return `Complete team roster, scheduled events, and presentation times for all FBLA competitors representing ${activeState} at the ${selectedYear} National Leadership Conference.`;
+      }
+      return `State association rankings and local chapter competitor counts for FBLA ${levelLabel} Division at the ${selectedYear} NLC.`;
+    }
+    if (activeTab === 'search') {
+      return `Search tool to look up FBLA competitor testing hours, presentation locations, and schedules for the ${selectedYear} National Leadership Conference.`;
+    }
+    if (activeTab === 'workshops') {
+      return `Complete schedule of training sessions, leadership seminars, and professional workshops available at the FBLA NLC ${selectedYear}.`;
+    }
+    return "Explore FBLA NLC stats, registration details, competitive events schedules, and national standings/results.";
+  });
+
+  function parseLocation() {
+    if (typeof window === 'undefined') return null;
+    const path = window.location.pathname;
+    const match = path.match(/^\/(high-school|collegiate)\/(\d{4})(?:\/([a-z\-]+))?(?:\/([a-z0-9\-]+))?$/);
+    if (match) {
+      const level = match[1];
+      const year = parseInt(match[2], 10);
+      let tab = match[3] || 'overview';
+      let eventSlug = match[4] || null;
+      
+      // Map 'states' tab to 'states-schools' client-side tab
+      if (tab === 'states') {
+        tab = 'states-schools';
+      }
+      return { level, year, tab, eventSlug };
+    }
+    return null;
+  }
+
+  function updateURL() {
+    if (typeof window === 'undefined') return;
+    if (!selectedLevel || !selectedYear) {
+      if (window.location.pathname !== '/') {
+        window.history.pushState(null, '', '/');
+      }
+      return;
+    }
+    
+    let path = `/${selectedLevel}/${selectedYear}`;
+    if (activeTab && activeTab !== 'overview') {
+      if (activeTab === 'states-schools') {
+        if (activeState) {
+          path += `/states/${slugify(activeState)}`;
+        } else {
+          path += '/states-schools';
+        }
+      } else {
+        path += `/${activeTab}`;
+        if (activeTab === 'events' && activeEventId) {
+          path += `/${slugify(activeEventId)}`;
+        }
+      }
+    }
+    
+    if (window.location.pathname !== path) {
+      window.history.pushState(null, '', path);
+    }
+  }
+
+  async function handlePopState() {
+    const route = parseLocation();
+    if (route) {
+      const levelChanged = selectedLevel !== route.level || selectedYear !== route.year;
+      if (levelChanged) {
+        await loadNlcData(route.level, route.year);
+      }
+      activeTab = route.tab;
+      
+      // If navigating to states, check if a specific state was in the URL
+      if (route.tab === 'states-schools') {
+        const findAndSetState = () => {
+          const rawPath = window.location.pathname;
+          const stateMatch = rawPath.match(/\/states\/([a-z0-9\-]+)$/);
+          if (stateMatch && stateMatch[1]) {
+            const foundState = Object.keys(stateCounts).find(name => slugify(name) === stateMatch[1]);
+            if (foundState) {
+              activeState = foundState;
+              activeSchool = '';
+              activeStateEvent = '';
+              return;
+            }
+          }
+          activeState = '';
+          activeSchool = '';
+          activeStateEvent = '';
+        };
+        if (levelChanged) {
+          setTimeout(findAndSetState, 50);
+        } else {
+          findAndSetState();
+        }
+      } else if (route.tab === 'events' && route.eventSlug) {
+        const findAndSetEvent = () => {
+          const foundEvent = Object.keys(eventCounts).find(name => slugify(name) === route.eventSlug);
+          if (foundEvent) {
+            activeEventId = foundEvent;
+          }
+        };
+        if (levelChanged) {
+          setTimeout(findAndSetEvent, 50);
+        } else {
+          findAndSetEvent();
+        }
+      }
+    } else {
+      selectedLevel = null;
+      selectedYear = null;
+      allData = [];
+      winnersData = null;
+      workshopsData = [];
+      activeState = '';
+      activeSchool = '';
+      activeStateEvent = '';
+    }
+  }
+
   onMount(async () => {
     // Init theme from localStorage
     const savedTheme = localStorage.getItem('fbla-analytics-theme') || 'dark';
     currentTheme = savedTheme;
     document.documentElement.setAttribute('data-theme', savedTheme);
+
+    // Initial routing
+    const route = parseLocation();
+    if (route) {
+      await loadNlcData(route.level, route.year);
+      activeTab = route.tab;
+      if (route.tab === 'states-schools') {
+        const rawPath = window.location.pathname;
+        const stateMatch = rawPath.match(/\/states\/([a-z0-9\-]+)$/);
+        if (stateMatch && stateMatch[1]) {
+          const foundState = Object.keys(stateCounts).find(name => slugify(name) === stateMatch[1]);
+          if (foundState) {
+            activeState = foundState;
+          }
+        }
+      } else if (route.tab === 'events' && route.eventSlug) {
+        const foundEvent = Object.keys(eventCounts).find(name => slugify(name) === route.eventSlug);
+        if (foundEvent) {
+          activeEventId = foundEvent;
+        }
+      }
+    }
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
   });
 
   // Effect to update theme on the DOM
   $effect(() => {
     document.documentElement.setAttribute('data-theme', currentTheme);
     localStorage.setItem('fbla-analytics-theme', currentTheme);
+  });
+
+  // Sync state parameters to URL
+  $effect(() => {
+    selectedLevel;
+    selectedYear;
+    activeTab;
+    activeEventId;
+    activeState;
+    updateURL();
+  });
+
+  // Dynamically update document title, description, and canonical URL on client-side routing
+  $effect(() => {
+    if (typeof document !== 'undefined') {
+      document.title = pageTitle;
+      
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', pageDescription);
+      }
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute('content', pageTitle);
+      }
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) {
+        ogDesc.setAttribute('content', pageDescription);
+      }
+      const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+      if (twitterTitle) {
+        twitterTitle.setAttribute('content', pageTitle);
+      }
+      const twitterDesc = document.querySelector('meta[property="twitter:description"]');
+      if (twitterDesc) {
+        twitterDesc.setAttribute('content', pageDescription);
+      }
+      
+      // Update canonical url dynamically
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) {
+        let currentUrl = `https://fbla.elinelson.dev`;
+        if (selectedLevel && selectedYear) {
+          currentUrl += `/${selectedLevel}/${selectedYear}`;
+          if (activeTab && activeTab !== 'overview') {
+            if (activeTab === 'states-schools') {
+              if (activeState) {
+                currentUrl += `/states/${slugify(activeState)}`;
+              } else {
+                currentUrl += '/states-schools';
+              }
+            } else {
+              currentUrl += `/${activeTab}`;
+              if (activeTab === 'events' && activeEventId) {
+                currentUrl += `/${slugify(activeEventId)}`;
+              }
+            }
+          }
+        }
+        canonical.setAttribute('href', currentUrl);
+      }
+    }
   });
 
   function processAnalytics(data) {
@@ -353,6 +620,9 @@
           {stateCounts} 
           {schoolCounts} 
           onSelectEvent={handleEventSelect}
+          bind:explorerSelectedState={activeState}
+          bind:explorerSelectedSchool={activeSchool}
+          bind:explorerSelectedEvent={activeStateEvent}
         />
       </div>
 
