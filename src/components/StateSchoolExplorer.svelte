@@ -37,7 +37,7 @@
   );
 
   // Column 1 state events list
-  const stateEvents = $derived(() => {
+  const stateEvents = $derived.by(() => {
     const counts = {};
     stateEntries.forEach(entry => {
       counts[entry.event_name] = (counts[entry.event_name] || 0) + entry.team_size;
@@ -46,7 +46,7 @@
   });
 
   // Column 2 state schools list
-  const stateSchools = $derived(() => {
+  const stateSchools = $derived.by(() => {
     const schoolUnique = {};
     stateEntries.forEach(entry => {
       if (!schoolUnique[entry.school_name]) {
@@ -65,7 +65,7 @@
 
   // Filtered state schools list in Column 2
   const filteredStateSchools = $derived(
-    stateSchools().filter(([schoolName]) =>
+    stateSchools.filter(([schoolName]) =>
       schoolName.toLowerCase().includes(schoolSearchQuery.toLowerCase())
     )
   );
@@ -247,8 +247,8 @@
         <div class="rank-item">
           <div class="rank-name-area">
             <div class="rank-badge">{index + 1}</div>
-            <div style="max-width: 250px;">
-              <div class="rank-label" style="text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">{school}</div>
+            <div>
+              <div class="rank-label">{school}</div>
               <div class="rank-sub">{divisionText}</div>
             </div>
           </div>
@@ -336,7 +336,7 @@
             <p style="font-size:12px;">Select a state to view its competitive event registration breakdown.</p>
           </div>
         {:else}
-          {#each stateEvents() as [evName, evCount]}
+          {#each stateEvents as [evName, evCount]}
             <!-- svelte-ignore a11y_click_events_have_key_events -->
             <!-- svelte-ignore a11y_no_static_element_interactions -->
             <div 

@@ -6,6 +6,7 @@
   import EventExplorer from './components/EventExplorer.svelte';
   import StateSchoolExplorer from './components/StateSchoolExplorer.svelte';
   import CompetitorFinder from './components/CompetitorFinder.svelte';
+  import Workshops from './components/Workshops.svelte';
   import posthog from './posthog.js';
 
   // Level & Year Selection States
@@ -15,6 +16,8 @@
   // Reactivity state via Runes
   let allData = $state([]);
   let winnersData = $state(null);
+  let workshopsData = $state([]);
+  let hasWorkshops = $derived(workshopsData.length > 0);
   let loading = $state(false);
   let activeTab = $state('overview');
   let activeEventId = $state(null);
@@ -51,11 +54,12 @@
     return Array.from(map.values());
   }
 
-  // Fetch Schedules & Winners for the selected Level/Year
+  // Fetch Schedules, Winners & Workshops for the selected Level/Year
   async function loadNlcData(level, year) {
     loading = true;
     allData = [];
     winnersData = null;
+    workshopsData = [];
     activeEventId = null;
     activeTab = 'overview';
     selectedLevel = level;
@@ -77,6 +81,16 @@
       } catch (err) {
         console.warn("Winners data not available for this NLC:", err);
       }
+
+      // 3. Fetch workshops data (fail-safe)
+      try {
+        const workshopsRes = await fetch(`/data/${level}/${year}/workshops.json`);
+        if (workshopsRes.ok) {
+          workshopsData = await workshopsRes.json();
+        }
+      } catch (err) {
+        console.warn("Workshops data not available for this NLC:", err);
+      }
       
       processAnalytics(allData);
       posthog.capture('nlc level year loaded', { level, year, total_entries: allData.length });
@@ -92,6 +106,7 @@
     selectedYear = null;
     allData = [];
     winnersData = null;
+    workshopsData = [];
     posthog.capture('returned to start screen');
   }
 
@@ -191,12 +206,14 @@
   theme={currentTheme}
   {selectedLevel}
   {selectedYear}
+  {hasWorkshops}
   onTabChange={switchTab} 
   onThemeToggle={toggleTheme} 
   onBackToStart={handleBackToStart}
 />
 
-<main class="container">
+<div class="scroll-container">
+  <main class="container">
   {#if loading}
     <div id="loading-overlay" class="glass-panel" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:60px 20px; margin-bottom: 24px;">
       <Icon icon="lucide:loader-2" width="40" height="40" class="spinner" style="animation: spin 1s linear infinite; color: var(--fbla-gold);" />
@@ -346,6 +363,14 @@
           onSelectEvent={handleEventSelect}
         />
       </div>
+
+      {#if hasWorkshops}
+        <div class={activeTab === 'workshops' ? 'tab-content active' : 'tab-content'}>
+          <Workshops 
+            workshops={workshopsData}
+          />
+        </div>
+      {/if}
     {/if}
   {/if}
 </main>
@@ -359,3 +384,4 @@
     </p>
   </div>
 </footer>
+</div>

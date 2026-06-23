@@ -499,6 +499,14 @@ main.container {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
+  flex: 1;
+  margin-right: 12px;
+}
+
+.rank-name-area > div {
+  min-width: 0;
+  flex: 1;
 }
 
 .rank-badge {
@@ -532,6 +540,9 @@ main.container {
 .rank-label {
   font-weight: 600;
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .rank-sub {
@@ -548,6 +559,8 @@ main.container {
   padding: 4px 10px;
   border-radius: 20px;
   border: 1px solid rgba(255, 199, 44, 0.25);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* Filters & Inputs */
@@ -749,6 +762,7 @@ tr:hover td {
 
 .pagination-buttons {
   display: flex;
+  align-items: center;
   gap: 8px;
 }
 
@@ -772,6 +786,46 @@ tr:hover td {
 .page-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.pagination-btn {
+  background: var(--input-bg);
+  border: 1px solid var(--panel-border);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  border-color: var(--fbla-gold);
+  color: var(--fbla-gold);
+  background: var(--card-hover-bg);
+  box-shadow: 0 0 10px var(--fbla-gold-glow);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: var(--table-row-odd);
+  border-color: var(--panel-border);
+  color: var(--text-secondary);
+}
+
+.page-indicator {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
 }
 
 /* Event Detail Explorer Split View */
@@ -2101,6 +2155,194 @@ footer p {
   color: var(--text-primary);
   border-color: var(--card-hover-border);
   background: rgba(255,255,255,0.1);
+}
+
+.scroll-container {
+  display: block;
+}
+
+/* Desktop defaults: hide mobile-only elements */
+.mobile-bottom-nav,
+.mobile-nav-placeholder {
+  display: none;
+}
+
+/* Mobile Bottom Navigation Bar overrides */
+@media (max-width: 768px) {
+  /* Native-like App shell settings for mobile layout to prevent layout shifts */
+  html, body {
+    height: 100% !important;
+    height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  #app {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .scroll-container {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  main.container {
+    flex: 1 0 auto !important;
+    padding-bottom: 24px !important;
+  }
+
+  footer {
+    flex-shrink: 0 !important;
+    padding-bottom: 80px !important; /* space for mobile-bottom-nav */
+  }
+
+  /* Hide the top tabs list in the header on mobile */
+  header .tabs-container {
+    display: none !important;
+  }
+  
+  /* Reset header container back to 1 row flex layout instead of 2 row grid */
+  .header-container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    gap: 0 !important;
+  }
+
+  /* Make sure change level btn fits in header as an iconified button on the left */
+  .change-level-text {
+    display: none !important;
+  }
+
+  .change-level-btn {
+    order: 1 !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--panel-border) !important;
+  }
+
+  /* Placeholder on left when back button is not visible to keep logo centered */
+  .mobile-nav-placeholder {
+    display: block !important;
+    order: 1 !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  /* Center the logo text in the middle of the header */
+  .logo-area {
+    order: 2 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex: 1 !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  .logo-text {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Position theme toggle on the right */
+  .theme-toggle {
+    order: 3 !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    border: 1px solid var(--panel-border) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+  }
+
+  /* Bottom Navigation Panel */
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--panel-bg);
+    border-top: 1px solid var(--panel-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .mobile-nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 600;
+    gap: 4px;
+    cursor: pointer;
+    flex: 1;
+    height: 100%;
+    transition: all 0.2s ease;
+    padding: 6px 0;
+  }
+
+  .mobile-nav-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .mobile-nav-btn.active {
+    color: var(--primary-blue);
+  }
+
+  .mobile-nav-btn :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Responsive fixes for pagination and inputs */
+  .search-input-wrapper {
+    min-width: 0 !important;
+  }
+
+  .pagination-container {
+    flex-direction: column !important;
+    gap: 16px !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
 }
 
 

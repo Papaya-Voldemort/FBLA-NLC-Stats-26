@@ -1,0 +1,1 @@
+I will update the extraction script to specifically look for the text of one of the workshops (e.g., "Advice from People") in `transcript_full.jsonl` to ensure we find the actual PDF data.
