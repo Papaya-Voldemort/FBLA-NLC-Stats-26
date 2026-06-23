@@ -2,12 +2,14 @@
   import { onMount } from 'svelte';
   import Icon from '@iconify/svelte';
   import Header from './components/Header.svelte';
-  import Overview from './components/Overview.svelte';
-  import EventExplorer from './components/EventExplorer.svelte';
-  import StateSchoolExplorer from './components/StateSchoolExplorer.svelte';
-  import CompetitorFinder from './components/CompetitorFinder.svelte';
-  import Workshops from './components/Workshops.svelte';
   import posthog from './posthog.js';
+
+  // Lazy loaded dashboard sub-components
+  let Overview = $state(null);
+  let EventExplorer = $state(null);
+  let StateSchoolExplorer = $state(null);
+  let CompetitorFinder = $state(null);
+  let Workshops = $state(null);
 
   // Level & Year Selection States
   let selectedLevel = $state(null);
@@ -125,33 +127,40 @@
   }
 
   const levelLabel = $derived(selectedLevel === 'collegiate' ? 'Collegiate' : 'High School & Middle School');
+  const levelShort = $derived(selectedLevel === 'collegiate' ? 'Collegiate' : 'HS/MS');
 
   const pageTitle = $derived.by(() => {
     if (!selectedLevel || !selectedYear) {
-      return "FBLA NLC Stats 2026 - Registration & Schedule Tracker";
+      return "FBLA NLC 2026 Stats: Registration & Schedules";
     }
     if (activeTab === 'overview') {
-      return `FBLA ${levelLabel} NLC ${selectedYear} Stats, Registration & Schedule Analyzer`;
+      return `FBLA ${levelShort} NLC ${selectedYear} Stats & Schedules`;
     }
     if (activeTab === 'events') {
       if (activeEventId) {
-        return `${activeEventId} - FBLA ${levelLabel} NLC ${selectedYear} Schedule & Standings`;
+        return `${activeEventId} Roster & Winners | FBLA ${levelShort} ${selectedYear}`;
       }
-      return `FBLA ${levelLabel} NLC ${selectedYear} Competitive Events Schedules & Results`;
+      return `FBLA ${levelShort} NLC ${selectedYear} Competitive Events`;
     }
     if (activeTab === 'states-schools') {
-      if (activeState) {
-        return `${activeState} FBLA - NLC ${selectedYear} Competitor List & Schedules`;
+      if (activeStateEvent) {
+        return `${activeStateEvent} - ${activeSchool || activeState} | FBLA ${selectedYear}`;
       }
-      return `FBLA ${levelLabel} NLC ${selectedYear} State Standings & Chapter Rankings`;
+      if (activeSchool) {
+        return `${activeSchool} (${activeState}) Roster | FBLA NLC ${selectedYear}`;
+      }
+      if (activeState) {
+        return `${activeState} FBLA Roster & Schedules | NLC ${selectedYear}`;
+      }
+      return `FBLA ${levelShort} NLC ${selectedYear} State & Chapter Standings`;
     }
     if (activeTab === 'search') {
-      return `FBLA ${levelLabel} NLC ${selectedYear} Competitor Schedule Search`;
+      return `FBLA ${levelShort} NLC ${selectedYear} Competitor Search`;
     }
     if (activeTab === 'workshops') {
-      return `FBLA NLC ${selectedYear} Professional Development Workshops Schedule`;
+      return `FBLA NLC ${selectedYear} Workshops & Speakers`;
     }
-    return "FBLA NLC Stats 2026 - Registration & Schedule Tracker";
+    return "FBLA NLC 2026 Stats: Registration & Schedules";
   });
 
   const pageDescription = $derived.by(() => {
@@ -163,11 +172,20 @@
     }
     if (activeTab === 'events') {
       if (activeEventId) {
-        return `Scheduled competitors, presentation test times, and locations for the FBLA ${levelLabel} ${activeEventId} event at the NLC ${selectedYear}.`;
+        return `Scheduled competitors, presentation test times, section lists, and top 10 national award winners for the FBLA ${levelLabel} ${activeEventId} event at the NLC ${selectedYear}.`;
       }
       return `Browse schedules, test times, presentation arrival configurations, and national results for all FBLA ${levelLabel} competitive events.`;
     }
     if (activeTab === 'states-schools') {
+      if (activeStateEvent) {
+        if (activeSchool) {
+          return `Schedules, presentation times, sections, and competitor rosters for ${activeSchool} (${activeState}) entries in the ${activeStateEvent} event at the FBLA NLC ${selectedYear}.`;
+        }
+        return `Roster, section assignments, and schedule for all ${activeState} FBLA competitors competing in the ${activeStateEvent} event at the NLC ${selectedYear}.`;
+      }
+      if (activeSchool) {
+        return `Competitor roster, registered events, location details, and presentation times for students representing ${activeSchool} (${activeState}) at the FBLA NLC ${selectedYear}.`;
+      }
       if (activeState) {
         return `Complete team roster, scheduled events, and presentation times for all FBLA competitors representing ${activeState} at the ${selectedYear} National Leadership Conference.`;
       }
@@ -293,6 +311,26 @@
     const savedTheme = localStorage.getItem('fbla-analytics-theme') || 'dark';
     currentTheme = savedTheme;
     document.documentElement.setAttribute('data-theme', savedTheme);
+
+    // Load components dynamically after initial mount to avoid blocking initial paint
+    setTimeout(async () => {
+      try {
+        const [overviewMod, eventMod, stateMod, finderMod, workshopsMod] = await Promise.all([
+          import('./components/Overview.svelte'),
+          import('./components/EventExplorer.svelte'),
+          import('./components/StateSchoolExplorer.svelte'),
+          import('./components/CompetitorFinder.svelte'),
+          import('./components/Workshops.svelte')
+        ]);
+        Overview = overviewMod.default;
+        EventExplorer = eventMod.default;
+        StateSchoolExplorer = stateMod.default;
+        CompetitorFinder = finderMod.default;
+        Workshops = workshopsMod.default;
+      } catch (err) {
+        console.error('Failed to lazy load components:', err);
+      }
+    }, 100);
 
     // Initial routing
     const route = parseLocation();
@@ -594,51 +632,86 @@
   {:else}
     <!-- ACTIVE DASHBOARD VIEW -->
     {#if activeTab === 'overview'}
-      <Overview 
-        {allData} 
-        {stateCounts} 
-        {schoolCounts} 
-        {eventCounts} 
-        {eventDetails}
-        theme={currentTheme}
-        onSelectEvent={handleEventSelect}
-      />
+      {#if Overview}
+        <Overview 
+          {allData} 
+          {stateCounts} 
+          {schoolCounts} 
+          {eventCounts} 
+          {eventDetails}
+          theme={currentTheme}
+          onSelectEvent={handleEventSelect}
+        />
+      {:else}
+        <div class="glass-panel" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:60px 20px;">
+          <Icon icon="lucide:loader-2" width="30" height="30" class="spinner" style="animation: spin 1s linear infinite; color: var(--fbla-gold);" />
+          <div style="font-family:'Outfit'; font-weight:700;">Loading Overview Panel...</div>
+        </div>
+      {/if}
     {:else}
       <!-- Wrap tabs in hidden/active state to maintain browser scroll states & DOM instances -->
       <div class={activeTab === 'events' ? 'tab-content active' : 'tab-content'}>
-        <EventExplorer 
-          {eventCounts} 
-          {eventDetails} 
-          {winnersData}
-          bind:activeEventId
-        />
+        {#if EventExplorer}
+          <EventExplorer 
+            {eventCounts} 
+            {eventDetails} 
+            {winnersData}
+            bind:activeEventId
+          />
+        {:else}
+          <div class="glass-panel" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:60px 20px;">
+            <Icon icon="lucide:loader-2" width="30" height="30" class="spinner" style="animation: spin 1s linear infinite; color: var(--fbla-gold);" />
+            <div style="font-family:'Outfit'; font-weight:700;">Loading Event Explorer...</div>
+          </div>
+        {/if}
       </div>
 
       <div class={activeTab === 'states-schools' ? 'tab-content active' : 'tab-content'}>
-        <StateSchoolExplorer 
-          {allData}
-          {stateCounts} 
-          {schoolCounts} 
-          onSelectEvent={handleEventSelect}
-          bind:explorerSelectedState={activeState}
-          bind:explorerSelectedSchool={activeSchool}
-          bind:explorerSelectedEvent={activeStateEvent}
-        />
+        {#if StateSchoolExplorer}
+          <StateSchoolExplorer 
+            {allData}
+            {stateCounts} 
+            {schoolCounts} 
+            onSelectEvent={handleEventSelect}
+            bind:explorerSelectedState={activeState}
+            bind:explorerSelectedSchool={activeSchool}
+            bind:explorerSelectedEvent={activeStateEvent}
+          />
+        {:else}
+          <div class="glass-panel" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:60px 20px;">
+            <Icon icon="lucide:loader-2" width="30" height="30" class="spinner" style="animation: spin 1s linear infinite; color: var(--fbla-gold);" />
+            <div style="font-family:'Outfit'; font-weight:700;">Loading States & Chapters...</div>
+          </div>
+        {/if}
       </div>
 
       <div class={activeTab === 'search' ? 'tab-content active' : 'tab-content'}>
-        <CompetitorFinder 
-          {allData} 
-          {stateCounts}
-          onSelectEvent={handleEventSelect}
-        />
+        {#if CompetitorFinder}
+          <CompetitorFinder 
+            {allData} 
+            {stateCounts}
+            onSelectEvent={handleEventSelect}
+          />
+        {:else}
+          <div class="glass-panel" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:60px 20px;">
+            <Icon icon="lucide:loader-2" width="30" height="30" class="spinner" style="animation: spin 1s linear infinite; color: var(--fbla-gold);" />
+            <div style="font-family:'Outfit'; font-weight:700;">Loading Competitor Finder...</div>
+          </div>
+        {/if}
       </div>
 
       {#if hasWorkshops}
         <div class={activeTab === 'workshops' ? 'tab-content active' : 'tab-content'}>
-          <Workshops 
-            workshops={workshopsData}
-          />
+          {#if Workshops}
+            <Workshops 
+              workshops={workshopsData}
+            />
+          {:else}
+            <div class="glass-panel" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:60px 20px;">
+              <Icon icon="lucide:loader-2" width="30" height="30" class="spinner" style="animation: spin 1s linear infinite; color: var(--fbla-gold);" />
+              <div style="font-family:'Outfit'; font-weight:700;">Loading Workshops...</div>
+            </div>
+          {/if}
         </div>
       {/if}
     {/if}

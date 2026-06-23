@@ -93,6 +93,7 @@ async function run() {
 
   for (const config of configs) {
     const { level, levelLabel, schedules, workshops, winners } = config;
+    const levelShort = level === 'collegiate' ? 'Collegiate' : 'HS/MS';
     const year = 2026;
     
     // Group states
@@ -137,7 +138,7 @@ async function run() {
 
     // 1. Division Overview Page
     const overviewPath = `/${level}/${year}`;
-    const overviewTitle = `FBLA ${levelLabel} NLC ${year} Stats, Registration & Schedule Analyzer`;
+    const overviewTitle = `FBLA ${levelShort} NLC ${year} Stats & Schedules`;
     const overviewDesc = `Explore registration statistics, school chapters leaderboard, state association rankings, and competitive event schedules for FBLA ${levelLabel} at the ${year} National Leadership Conference.`;
     
     let overviewNoScript = `
@@ -174,7 +175,7 @@ async function run() {
     const tabs = [
       {
         id: 'events',
-        title: `FBLA ${levelLabel} NLC ${year} Competitive Events Schedules & Results`,
+        title: `FBLA ${levelShort} NLC ${year} Competitive Events`,
         desc: `Browse schedules, test times, presentation arrival configurations, and national results for all ${Object.keys(eventDetails).length} FBLA ${levelLabel} competitive events.`,
         noscript: `
           <div style="font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e2e8f0; background: #0f172a;">
@@ -192,7 +193,7 @@ async function run() {
       },
       {
         id: 'states-schools',
-        title: `FBLA ${levelLabel} NLC ${year} State Standings & Chapter Rankings`,
+        title: `FBLA ${levelShort} NLC ${year} State & Chapter Standings`,
         desc: `State association rankings and local chapter competitor counts for FBLA ${levelLabel} Division at the ${year} NLC.`,
         noscript: `
           <div style="font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e2e8f0; background: #0f172a;">
@@ -216,7 +217,7 @@ async function run() {
       },
       {
         id: 'search',
-        title: `FBLA ${levelLabel} NLC ${year} Competitor Schedule Search`,
+        title: `FBLA ${levelShort} NLC ${year} Competitor Search`,
         desc: `Search tool to look up FBLA competitor testing hours, presentation locations, and schedules for the ${year} National Leadership Conference.`,
         noscript: `
           <div style="font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e2e8f0; background: #0f172a;">
@@ -236,7 +237,7 @@ async function run() {
     if (workshops.length > 0) {
       tabs.push({
         id: 'workshops',
-        title: `FBLA NLC ${year} Professional Development Workshops Schedule`,
+        title: `FBLA NLC ${year} Workshops & Speakers`,
         desc: `Complete schedule of training sessions, leadership seminars, and professional workshops available at the FBLA NLC ${year}.`,
         noscript: `
           <div style="font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e2e8f0; background: #0f172a;">
@@ -268,7 +269,7 @@ async function run() {
       const detail = eventDetails[evName];
       const slug = slugify(evName);
       const eventPath = `/${level}/${year}/events/${slug}`;
-      const eventTitle = `${evName} - FBLA ${levelLabel} NLC ${year} Schedule & Standings`;
+      const eventTitle = `${evName} Schedule & Winners | FBLA ${levelShort} ${year}`;
       
       const locList = Array.from(detail.locations).filter(Boolean);
       const whenList = Array.from(detail.whens).filter(Boolean);
@@ -359,7 +360,7 @@ async function run() {
     for (const stateName of statesList) {
       const stateSlug = slugify(stateName);
       const statePath = `/${level}/${year}/states/${stateSlug}`;
-      const stateTitle = `${stateName} FBLA - NLC ${year} Competitor List & Schedules`;
+      const stateTitle = `${stateName} FBLA Roster & Schedules | NLC ${year}`;
       const stateDesc = `Complete team roster, scheduled events, and presentation times for all FBLA competitors representing ${stateName} at the ${year} National Leadership Conference.`;
       
       const stateEntries = schedules.filter(e => e.state === stateName).sort((a, b) => a.school_name.localeCompare(b.school_name));
