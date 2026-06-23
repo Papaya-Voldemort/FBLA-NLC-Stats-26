@@ -11,7 +11,7 @@ if (isInitialized) {
 
   posthog.init(token, {
     api_host: host || 'https://us.i.posthog.com',
-    person_profiles: 'identified_only',
+    person_profiles: 'always',
     cookie_domain: isLocalhost ? undefined : hostname,
   })
 } else {
