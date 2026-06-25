@@ -4,10 +4,10 @@
   "description": "FBLA 2026 NLC Registration and Schedule Breakdown Dashboard",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && node prerender.js",
+    "dev": "vite dev",
+    "build": "vite build",
     "preview": "vite preview",
-    "start": "node server.js"
+    "start": "node build/index.js"
   },
   "dependencies": {
     "chart.js": "^4.4.0",
@@ -16,8 +16,11 @@
   },
   "devDependencies": {
     "@iconify/svelte": "^5.2.2",
-    "@sveltejs/vite-plugin-svelte": "^4.0.0",
-    "svelte": "^5.0.0",
-    "vite": "^5.0.0"
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-node": "^5.5.7",
+    "@sveltejs/kit": "^2.68.0",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "svelte": "^5.56.4",
+    "vite": "^8.1.0"
   }
 }

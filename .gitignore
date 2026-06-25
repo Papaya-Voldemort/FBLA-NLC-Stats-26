@@ -8,4 +8,5 @@ venv/
 *.log
 data.pdf
 extracted_text.txt
+build/
 

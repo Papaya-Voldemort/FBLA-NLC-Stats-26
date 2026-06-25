@@ -4,7 +4,23 @@
   import Icon from '@iconify/svelte';
   import posthog from '../posthog.js';
 
-  let { allData, stateCounts, schoolCounts, eventCounts, eventDetails, theme, onSelectEvent } = $props();
+  let { 
+    allData = [], 
+    stateCounts = {}, 
+    schoolCounts = {}, 
+    eventCounts = {}, 
+    eventDetails = {}, 
+    theme, 
+    onSelectEvent,
+    // Server precalculated overrides
+    totalCompetitors: serverTotalCompetitors = null,
+    totalEntries: serverTotalEntries = null,
+    uniqueStates: serverUniqueStates = null,
+    uniqueSchools: serverUniqueSchools = null,
+    divisionSummary: serverDivisionSummary = null,
+    teamConfigurations: serverTeamConfigurations = null,
+    scheduleDayData: serverScheduleDayData = null
+  } = $props();
 
   let chartDivisionsCanvas;
   let chartTeamsCanvas;
@@ -26,6 +42,7 @@
 
   // Compute stats reactively
   const totalCompetitors = $derived.by(() => {
+    if (serverTotalCompetitors !== null) return serverTotalCompetitors;
     const unique = new Set();
     allData.forEach(entry => {
       entry.competitors.forEach(comp => {
@@ -36,9 +53,9 @@
     });
     return unique.size;
   });
-  const totalEntries = $derived(allData.length);
-  const uniqueStates = $derived(Object.keys(stateCounts).length);
-  const uniqueSchools = $derived(Object.keys(schoolCounts).length);
+  const totalEntries = $derived(serverTotalEntries !== null ? serverTotalEntries : allData.length);
+  const uniqueStates = $derived(serverUniqueStates !== null ? serverUniqueStates : Object.keys(stateCounts).length);
+  const uniqueSchools = $derived(serverUniqueSchools !== null ? serverUniqueSchools : Object.keys(schoolCounts).length);
   const top10Events = $derived(
     Object.entries(eventCounts)
       .sort((a, b) => b[1] - a[1])
@@ -47,6 +64,7 @@
 
   // Group divisions and counts dynamically
   const divisionSummary = $derived.by(() => {
+    if (serverDivisionSummary !== null) return serverDivisionSummary;
     const summary = {};
     allData.forEach(entry => {
       if (!summary[entry.division]) {
@@ -65,6 +83,7 @@
 
   // Reactive Day and Hourly calculations
   const scheduleDayData = $derived.by(() => {
+    if (serverScheduleDayData !== null) return serverScheduleDayData;
     // Find the most common day in schedules
     const dayCounts = {};
     allData.forEach(entry => {
@@ -160,9 +179,9 @@
     }
 
     // 2. Team Size Configuration Pie Chart
-    const team1 = allData.filter(e => e.team_size === 1).length;
-    const team2 = allData.filter(e => e.team_size === 2).length;
-    const team3 = allData.filter(e => e.team_size >= 3).length;
+    const team1 = serverTeamConfigurations ? serverTeamConfigurations[0] : allData.filter(e => e.team_size === 1).length;
+    const team2 = serverTeamConfigurations ? serverTeamConfigurations[1] : allData.filter(e => e.team_size === 2).length;
+    const team3 = serverTeamConfigurations ? serverTeamConfigurations[2] : allData.filter(e => e.team_size >= 3).length;
 
     if (chartTeamsCanvas) {
       chartTeamsInstance = new Chart(chartTeamsCanvas, {
