@@ -1,0 +1,69 @@
+# FBLA National Leadership Conference (NLC) 2026 Statistics & Schedules
+
+This website is a data repository and interactive tracker for the 2026 Future Business Leaders of America (FBLA) National Leadership Conference. It provides structured registration counts, preliminary presentation times, testing configurations, state association rankings, chapter standings, workshops schedules, and collegiate national winners.
+
+## Core Metadata
+- **Total attendees tracked**: 12,138 registered competitors.
+- **Divisions supported**: Collegiate (College) and High School & Middle School (HS/MS).
+- **Conference Year**: 2026.
+- **Base URL**: https://fbla.elinelson.dev
+
+## Crawling & Navigation Structure
+- Sitemap: [sitemap.xml](https://fbla.elinelson.dev/sitemap.xml)
+- Interactive Dashboard (High School): `https://fbla.elinelson.dev/high-school/2026`
+- Interactive Dashboard (Collegiate): `https://fbla.elinelson.dev/collegiate/2026`
+
+## Page Routes
+All pages are fully pre-rendered server-side (SSR) and expose rich HTML structures.
+
+### 1. Overview & Aggregates
+- `https://fbla.elinelson.dev/[division]/2026`
+- Serves total competitor counts, school rankings, and day/hour schedule density matrices.
+
+### 2. Events Explorer
+- `https://fbla.elinelson.dev/[division]/2026/events` (Default list)
+- `https://fbla.elinelson.dev/[division]/2026/events/[event-slug]` (Specific event roster & standings)
+- Examples: 
+  - `https://fbla.elinelson.dev/collegiate/2026/events/accounting-case-competition`
+  - `https://fbla.elinelson.dev/high-school/2026/events/banking-and-financial-systems`
+
+### 3. State & School Standings
+- `https://fbla.elinelson.dev/[division]/2026/states-schools` (State/School leaderboards)
+- `https://fbla.elinelson.dev/[division]/2026/states/[state-slug]` (State delegation rosters)
+- `https://fbla.elinelson.dev/[division]/2026/states/[state-slug]/schools/[school-slug]` (Chapter school rosters)
+- Examples:
+  - `https://fbla.elinelson.dev/high-school/2026/states/texas`
+  - `https://fbla.elinelson.dev/high-school/2026/states/texas/schools/centennial-high-school`
+
+### 4. Search
+- `https://fbla.elinelson.dev/[division]/2026/search`
+- Exposes competitor names search, testing details, locations, and arrival schedules.
+
+### 5. Workshops
+- `https://fbla.elinelson.dev/[division]/2026/workshops`
+- Exposes workshop names, description text, speakers, times, and location rooms (mostly for High School).
+
+## Database API Endpoints (Cached JSON)
+If you are an agent or a chatbot who wants to query raw statistics directly, you can fetch the raw cached database JSON files directly:
+- **High School Schedules**: `https://fbla.elinelson.dev/data/high-school/2026/schedules.json`
+- **High School Workshops**: `https://fbla.elinelson.dev/data/high-school/2026/workshops.json`
+- **Collegiate Schedules**: `https://fbla.elinelson.dev/data/collegiate/2026/schedules.json`
+- **Collegiate Winners**: `https://fbla.elinelson.dev/data/collegiate/2026/winners.json`
+
+### JSON Schedule Item Schema
+Each item in `schedules.json` conforms to:
+```json
+{
+  "event_name": "Event Name",
+  "state": "State Name",
+  "school_name": "School Name",
+  "competitors": ["Student Name 1", "Student Name 2"],
+  "team_size": 2,
+  "division": "HS" | "MS" | "Collegiate",
+  "arrival_time": "10:15 AM" | null,
+  "page": 43 | null,
+  "event_when": "Monday - June 29" | null,
+  "event_location": "Room 214" | null,
+  "section_name": "Section A" | null
+}
+```

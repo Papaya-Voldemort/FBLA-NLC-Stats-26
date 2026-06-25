@@ -169,6 +169,72 @@
     }
     return "Explore FBLA NLC stats, registration details, competitive events schedules, and national standings/results.";
   });
+
+  const jsonLdSchema = $derived.by(() => {
+    const base = {
+      "@context": "https://schema.org",
+      "publisher": {
+        "@type": "Organization",
+        "name": "FBLA NLC Stats Tracker"
+      }
+    };
+
+    if (activeTab === 'overview') {
+      return {
+        ...base,
+        "@type": "Dataset",
+        "name": `FBLA ${selectedLevel === 'collegiate' ? 'Collegiate' : 'High School / MS'} NLC ${selectedYear} Registration & Schedules Dataset`,
+        "description": `Comprehensive analytics and schedule tracking dataset for the ${selectedLevel} division at the FBLA NLC ${selectedYear}. Contains ${data.allData.length} records.`,
+        "spatialCoverage": "San Antonio, Texas",
+        "temporalCoverage": selectedYear,
+        "variableMeasured": ["Competitors", "Chapters", "State Standings", "Event Schedules"]
+      };
+    }
+
+    if (activeTab === 'events' && activeEventId) {
+      return {
+        ...base,
+        "@type": "Event",
+        "name": `${activeEventId} Competition - FBLA NLC ${selectedYear}`,
+        "description": `Roster list, presentation schedules, objective test configurations, and standings/winners for the ${activeEventId} competitive event in the ${selectedLevel} division.`,
+        "startDate": "2026-06-25",
+        "location": {
+          "@type": "Place",
+          "name": "San Antonio, Texas"
+        },
+        "about": {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Competition"
+        }
+      };
+    }
+
+    if (activeTab === 'states-schools') {
+      if (activeSchool) {
+        return {
+          ...base,
+          "@type": "EducationalOrganization",
+          "name": `${activeSchool} FBLA Chapter`,
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": activeState,
+            "addressCountry": "US"
+          },
+          "description": `Standing and participant rosters representing ${activeSchool} from ${activeState} at the FBLA NLC ${selectedYear}.`
+        };
+      }
+      if (activeState) {
+        return {
+          ...base,
+          "@type": "AdministrativeArea",
+          "name": `${activeState} FBLA Association`,
+          "description": `Competitor lists, chapter counts, and schedule details representing ${activeState} state delegation at the FBLA NLC ${selectedYear}.`
+        };
+      }
+    }
+
+    return null;
+  });
 </script>
 
 <svelte:head>
@@ -179,6 +245,12 @@
   <meta property="og:description" content={pageDescription} />
   <meta property="twitter:title" content={pageTitle} />
   <meta property="twitter:description" content={pageDescription} />
+
+  {#if jsonLdSchema}
+    <script type="application/ld+json">
+      {@html JSON.stringify(jsonLdSchema)}
+    </script>
+  {/if}
 </svelte:head>
 
 {#if activeTab === 'overview'}
