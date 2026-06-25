@@ -413,6 +413,140 @@ async function run() {
   console.log(`SEO Prerendering completed. Generated ${sitemapUrls.length} pages.`);
 }
 
+function formatLevelName(level) {
+  return level === 'collegiate' ? 'Collegiate' : 'High School';
+}
+
+function generateJsonLd(urlPath, title, description) {
+  const baseUrl = 'https://fbla.elinelson.dev';
+  const canonicalUrl = `${baseUrl}${urlPath === '/' ? '' : urlPath}`;
+  
+  const baseSchema = {
+    "@context": "https://schema.org",
+  };
+
+  const parts = urlPath.split('/').filter(Boolean);
+
+  // 1. Homepage
+  if (parts.length === 0) {
+    return {
+      ...baseSchema,
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": `${baseUrl}/#webapplication`,
+          "name": "FBLA NLC 2026 Stats: Registration & Schedules",
+          "url": baseUrl,
+          "description": description,
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires HTML5 and JavaScript.",
+          "author": {
+            "@type": "Organization",
+            "name": "FBLA Community"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${baseUrl}/#website`,
+          "url": baseUrl,
+          "name": "FBLA NLC 2026 Stats & Schedules",
+          "description": description
+        }
+      ]
+    };
+  }
+
+  const level = parts[0];
+  const year = parts[1];
+  const levelLabel = formatLevelName(level);
+  
+  const breadcrumbs = [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": baseUrl
+    }
+  ];
+  
+  // Overview page: /level/year
+  if (parts.length === 2) {
+    breadcrumbs.push({
+      "@type": "ListItem",
+      "position": 2,
+      "name": `${levelLabel} ${year}`,
+      "item": canonicalUrl
+    });
+  } else if (parts.length === 3) {
+    const tabId = parts[2];
+    let tabName = tabId.replace('-', ' ').replace(/\b\w/g, c => c.toUpperCase());
+    if (tabId === 'states-schools') tabName = 'States & Chapters';
+    
+    breadcrumbs.push({
+      "@type": "ListItem",
+      "position": 2,
+      "name": `${levelLabel} ${year}`,
+      "item": `${baseUrl}/${level}/${year}`
+    });
+    breadcrumbs.push({
+      "@type": "ListItem",
+      "position": 3,
+      "name": tabName,
+      "item": canonicalUrl
+    });
+  } else if (parts.length === 4) {
+    const section = parts[2]; // 'events' or 'states'
+    const sectionUrl = section === 'events' ? 'events' : 'states-schools';
+    
+    breadcrumbs.push({
+      "@type": "ListItem",
+      "position": 2,
+      "name": `${levelLabel} ${year}`,
+      "item": `${baseUrl}/${level}/${year}`
+    });
+    breadcrumbs.push({
+      "@type": "ListItem",
+      "position": 3,
+      "name": section === 'events' ? 'Competitive Events' : 'State Associations',
+      "item": `${baseUrl}/${level}/${year}/${sectionUrl}`
+    });
+    
+    let detailName = title.split(' | ')[0].split(' - ')[0];
+    detailName = detailName.replace(' Schedule & Winners', '').replace(' Roster & Schedules', '');
+    
+    breadcrumbs.push({
+      "@type": "ListItem",
+      "position": 4,
+      "name": detailName,
+      "item": canonicalUrl
+    });
+  }
+
+  const graph = [
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": title,
+      "description": description,
+      "isPartOf": {
+        "@id": `${baseUrl}/#website`
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonicalUrl}#breadcrumb`,
+      "itemListElement": breadcrumbs
+    }
+  ];
+
+  return {
+    ...baseSchema,
+    "@graph": graph
+  };
+}
+
 function writePrerenderedPage(urlPath, title, description, noscriptHtml) {
   const fileDir = path.join(DIST_DIR, urlPath);
   ensureDir(fileDir);
@@ -441,15 +575,20 @@ function writePrerenderedPage(urlPath, title, description, noscriptHtml) {
   // Replace <noscript> block
   content = content.replace(/<noscript>[\s\S]*?<\/noscript>/g, `<noscript>${noscriptHtml}</noscript>`);
 
+  // Replace Structured Data JSON-LD
+  const jsonLd = generateJsonLd(urlPath, title, description);
+  content = content.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>`);
+
   fs.writeFileSync(filePath, content, 'utf8');
 }
 
 function generateSitemap(urls) {
+  const currentBuildDate = new Date().toISOString().split('T')[0];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url>
     <loc>https://fbla.elinelson.dev${u.url}</loc>
-    <lastmod>2026-06-23</lastmod>
+    <lastmod>${currentBuildDate}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`).join('\n')}
