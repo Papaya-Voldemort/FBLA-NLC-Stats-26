@@ -1860,7 +1860,7 @@ footer p {
     border-radius: 12px;
   }
   .level-icon-wrapper svg,
-  .level-icon-wrapper :global(svg) {
+  .level-icon-wrapper svg {
     width: 24px !important;
     height: 24px !important;
   }
@@ -1992,7 +1992,7 @@ footer p {
 }
 
 .year-icon-wrapper svg,
-.year-icon-wrapper :global(svg) {
+.year-icon-wrapper svg {
   width: 24px !important;
   height: 24px !important;
 }
@@ -2325,7 +2325,7 @@ footer p {
     color: var(--primary-blue);
   }
 
-  .mobile-nav-btn :global(svg) {
+  .mobile-nav-btn svg {
     width: 18px;
     height: 18px;
   }

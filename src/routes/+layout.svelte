@@ -40,6 +40,7 @@
   const hasWorkshops = $derived(selectedLevel === 'high-school');
 
   function handleTabChange(tab) {
+    posthog.capture('tab switched', { tab });
     if (!selectedLevel || !selectedYear) return;
     if (tab === 'overview') {
       goto(`/${selectedLevel}/${selectedYear}`);
