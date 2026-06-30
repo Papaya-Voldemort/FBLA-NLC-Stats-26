@@ -34,6 +34,23 @@
   let eventCounts = $state({});
   let eventDetails = $state({});
 
+  // Precomputed maps for O(1) slug-to-name lookup
+  let stateSlugMap = $derived.by(() => {
+    const map = {};
+    for (const name of Object.keys(stateCounts)) {
+      map[slugify(name)] = name;
+    }
+    return map;
+  });
+
+  let eventSlugMap = $derived.by(() => {
+    const map = {};
+    for (const name of Object.keys(eventCounts)) {
+      map[slugify(name)] = name;
+    }
+    return map;
+  });
+
   function deduplicateEntries(data) {
     const map = new Map();
     
@@ -264,7 +281,7 @@
           const rawPath = window.location.pathname;
           const stateMatch = rawPath.match(/\/states\/([a-z0-9\-]+)$/);
           if (stateMatch && stateMatch[1]) {
-            const foundState = Object.keys(stateCounts).find(name => slugify(name) === stateMatch[1]);
+            const foundState = stateSlugMap[stateMatch[1]];
             if (foundState) {
               activeState = foundState;
               activeSchool = '';
@@ -283,7 +300,7 @@
         }
       } else if (route.tab === 'events' && route.eventSlug) {
         const findAndSetEvent = () => {
-          const foundEvent = Object.keys(eventCounts).find(name => slugify(name) === route.eventSlug);
+          const foundEvent = eventSlugMap[route.eventSlug];
           if (foundEvent) {
             activeEventId = foundEvent;
           }
@@ -341,13 +358,13 @@
         const rawPath = window.location.pathname;
         const stateMatch = rawPath.match(/\/states\/([a-z0-9\-]+)$/);
         if (stateMatch && stateMatch[1]) {
-          const foundState = Object.keys(stateCounts).find(name => slugify(name) === stateMatch[1]);
+          const foundState = stateSlugMap[stateMatch[1]];
           if (foundState) {
             activeState = foundState;
           }
         }
       } else if (route.tab === 'events' && route.eventSlug) {
-        const foundEvent = Object.keys(eventCounts).find(name => slugify(name) === route.eventSlug);
+        const foundEvent = eventSlugMap[route.eventSlug];
         if (foundEvent) {
           activeEventId = foundEvent;
         }
