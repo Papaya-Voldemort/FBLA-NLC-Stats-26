@@ -248,7 +248,7 @@
 
   {#if jsonLdSchema}
     <script type="application/ld+json">
-      {@html JSON.stringify(jsonLdSchema)}
+      {@html JSON.stringify(jsonLdSchema).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026')}
     </script>
   {/if}
 </svelte:head>
