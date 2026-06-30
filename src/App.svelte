@@ -562,7 +562,7 @@
   {:else if !selectedYear}
     <!-- YEAR SELECTION SCREEN -->
     <div class="year-select-container">
-      <button class="back-to-levels-btn" onclick={() => selectedLevel = null}>
+      <button class="back-to-levels-btn" onclick={() => selectedLevel = null} aria-label="Back to Divisions">
         <Icon icon="lucide:arrow-left" width="16" height="16" />
         Back to Divisions
       </button>

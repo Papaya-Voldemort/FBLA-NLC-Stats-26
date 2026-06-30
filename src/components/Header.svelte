@@ -23,7 +23,7 @@
 
     <div class="nav-controls">
       {#if selectedLevel && selectedYear}
-        <button class="change-level-btn" onclick={onBackToStart}>
+        <button class="change-level-btn" onclick={onBackToStart} aria-label="Change Division">
           <Icon icon="lucide:arrow-left" width="16" height="16" />
           <span class="change-level-text">Change Division</span>
         </button>

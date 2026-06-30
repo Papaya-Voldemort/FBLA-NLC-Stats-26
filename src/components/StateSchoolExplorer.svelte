@@ -294,6 +294,7 @@
     <button 
       class="step-nav-btn {activeExplorerTab === 'state' ? 'active' : ''}" 
       onclick={() => activeExplorerTab = 'state'}
+      aria-label="Step 1: Select State"
     >
       <span class="step-num">1</span> State
     </button>
@@ -301,6 +302,7 @@
       class="step-nav-btn {activeExplorerTab === 'schools' ? 'active' : ''}" 
       disabled={!explorerSelectedState}
       onclick={() => activeExplorerTab = 'schools'}
+      aria-label="Step 2: Select Chapter"
     >
       <span class="step-num">2</span> Chapters
     </button>
@@ -308,6 +310,7 @@
       class="step-nav-btn {activeExplorerTab === 'roster' ? 'active' : ''}" 
       disabled={!explorerSelectedSchool && !explorerSelectedEvent}
       onclick={() => activeExplorerTab = 'roster'}
+      aria-label="Step 3: View Roster"
     >
       <span class="step-num">3</span> Roster
     </button>
