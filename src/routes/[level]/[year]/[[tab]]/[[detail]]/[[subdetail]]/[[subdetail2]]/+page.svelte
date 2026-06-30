@@ -42,10 +42,44 @@
   let activeSchool = $state('');
   let activeStateEvent = $state('');
 
+  // Cache slugified keys to original names for fast lookups
+  const eventSlugMap = $derived.by(() => {
+    const map = new Map();
+    if (data.eventCounts) {
+      for (const name of Object.keys(data.eventCounts)) {
+        const slug = slugify(name);
+        if (!map.has(slug)) map.set(slug, name);
+      }
+    }
+    return map;
+  });
+
+  const stateSlugMap = $derived.by(() => {
+    const map = new Map();
+    if (data.stateCounts) {
+      for (const name of Object.keys(data.stateCounts)) {
+        const slug = slugify(name);
+        if (!map.has(slug)) map.set(slug, name);
+      }
+    }
+    return map;
+  });
+
+  const schoolSlugMap = $derived.by(() => {
+    const map = new Map();
+    if (data.schoolCounts) {
+      for (const name of Object.keys(data.schoolCounts)) {
+        const slug = slugify(name);
+        if (!map.has(slug)) map.set(slug, name);
+      }
+    }
+    return map;
+  });
+
   // Sync route parameters to clientside states
   $effect(() => {
     if (activeTab === 'events' && data.detail) {
-      const foundEvent = Object.keys(data.eventCounts).find(name => slugify(name) === data.detail);
+      const foundEvent = eventSlugMap.get(data.detail);
       if (foundEvent) {
         activeEventId = foundEvent;
       }
@@ -55,7 +89,7 @@
 
     if (activeTab === 'states-schools') {
       if (data.tab === 'states' && data.detail) {
-        const foundState = Object.keys(data.stateCounts).find(name => slugify(name) === data.detail);
+        const foundState = stateSlugMap.get(data.detail);
         if (foundState) {
           activeState = foundState;
         } else {
@@ -66,7 +100,7 @@
       }
 
       if (data.subdetail === 'schools' && data.subdetail2) {
-        const foundSchool = Object.keys(data.schoolCounts).find(name => slugify(name) === data.subdetail2);
+        const foundSchool = schoolSlugMap.get(data.subdetail2);
         if (foundSchool) {
           activeSchool = foundSchool;
         } else {
