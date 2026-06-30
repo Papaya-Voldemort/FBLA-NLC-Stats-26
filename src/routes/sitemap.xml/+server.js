@@ -7,13 +7,13 @@ export async function GET() {
   const urls = [];
   urls.push('https://fbla.elinelson.dev/');
   
-  levels.forEach(level => {
+  for (const level of levels) {
     urls.push(`https://fbla.elinelson.dev/${level}`);
     urls.push(`https://fbla.elinelson.dev/${level}/${year}`);
     urls.push(`https://fbla.elinelson.dev/${level}/${year}/states-schools`);
     urls.push(`https://fbla.elinelson.dev/${level}/${year}/search`);
     
-    const dbData = getNlcData(level, year);
+    const dbData = await getNlcData(level, year);
     if (dbData) {
       if (dbData.workshopsData && dbData.workshopsData.length > 0) {
         urls.push(`https://fbla.elinelson.dev/${level}/${year}/workshops`);
@@ -29,7 +29,7 @@ export async function GET() {
         urls.push(`https://fbla.elinelson.dev/${level}/${year}/states/${slugify(stateName)}`);
       });
     }
-  });
+  }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

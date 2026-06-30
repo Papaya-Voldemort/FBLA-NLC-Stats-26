@@ -35,42 +35,50 @@ function deduplicateEntries(data) {
   return Array.from(map.values());
 }
 
-export function getNlcData(level, year = '2026') {
+export async function getNlcData(level, year = '2026') {
   const cacheKey = `${level}-${year}`;
   if (cache[cacheKey]) {
     return cache[cacheKey];
   }
 
-  // Load datasets
-  const publicDir = path.resolve('public');
-  const schedulesPath = path.join(publicDir, `data/${level}/${year}/schedules.json`);
+  // Use a promise for the cache to prevent concurrent identical reads
+  const dataPromise = (async () => {
+    // Load datasets
+    const publicDir = path.resolve('public');
+    const schedulesPath = path.join(publicDir, `data/${level}/${year}/schedules.json`);
 
-  if (!fs.existsSync(schedulesPath)) {
-    return null;
-  }
-
-  const schedulesRaw = JSON.parse(fs.readFileSync(schedulesPath, 'utf8'));
-  const allData = deduplicateEntries(schedulesRaw);
-
-  let winnersData = null;
-  try {
-    const winnersPath = path.join(publicDir, `data/${level}/${year}/winners.json`);
-    if (fs.existsSync(winnersPath)) {
-      winnersData = JSON.parse(fs.readFileSync(winnersPath, 'utf8'));
+    let schedulesRawStr;
+    try {
+      schedulesRawStr = await fs.promises.readFile(schedulesPath, 'utf8');
+    } catch (e) {
+      if (e.code === 'ENOENT') return null;
+      throw e;
     }
-  } catch (e) {
-    console.warn(`Winners not loaded for ${level}/${year}`);
-  }
 
-  let workshopsData = [];
-  try {
-    const workshopsPath = path.join(publicDir, `data/${level}/${year}/workshops.json`);
-    if (fs.existsSync(workshopsPath)) {
-      workshopsData = JSON.parse(fs.readFileSync(workshopsPath, 'utf8'));
+    const schedulesRaw = JSON.parse(schedulesRawStr);
+    const allData = deduplicateEntries(schedulesRaw);
+
+    let winnersData = null;
+    try {
+      const winnersPath = path.join(publicDir, `data/${level}/${year}/winners.json`);
+      const winnersRawStr = await fs.promises.readFile(winnersPath, 'utf8');
+      winnersData = JSON.parse(winnersRawStr);
+    } catch (e) {
+      if (e.code !== 'ENOENT') {
+        console.warn(`Winners error for ${level}/${year}: ${e.message}`);
+      }
     }
-  } catch (e) {
-    console.warn(`Workshops not loaded for ${level}/${year}`);
-  }
+
+    let workshopsData = [];
+    try {
+      const workshopsPath = path.join(publicDir, `data/${level}/${year}/workshops.json`);
+      const workshopsRawStr = await fs.promises.readFile(workshopsPath, 'utf8');
+      workshopsData = JSON.parse(workshopsRawStr);
+    } catch (e) {
+      if (e.code !== 'ENOENT') {
+        console.warn(`Workshops error for ${level}/${year}: ${e.message}`);
+      }
+    }
 
   // Group stats
   const stateUniqueCompetitors = {};
@@ -144,6 +152,16 @@ export function getNlcData(level, year = '2026') {
     eventDetails: serializedEventDetails
   };
 
-  cache[cacheKey] = result;
-  return result;
+    return result;
+  })();
+
+  cache[cacheKey] = dataPromise;
+
+  try {
+    return await dataPromise;
+  } catch (e) {
+    // Ensure failed promises are not cached
+    delete cache[cacheKey];
+    throw e;
+  }
 }
