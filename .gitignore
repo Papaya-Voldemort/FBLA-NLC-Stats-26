@@ -10,3 +10,4 @@ data.pdf
 extracted_text.txt
 build/
 
+__pycache__/
