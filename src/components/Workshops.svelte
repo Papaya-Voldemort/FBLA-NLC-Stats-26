@@ -191,6 +191,7 @@
         placeholder="Search workshops by title, description, presenter, or org..." 
         bind:value={query}
         class="search-input"
+        aria-label="Search workshops"
       />
       {#if query}
         <button class="clear-btn" onclick={() => query = ''} aria-label="Clear Search">

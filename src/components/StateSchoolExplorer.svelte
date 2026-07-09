@@ -193,6 +193,7 @@
           class="search-input" 
           placeholder="Search states..." 
           style="padding-top:8px; padding-bottom:8px;"
+          aria-label="Search states"
         />
       </div>
     </div>
@@ -240,6 +241,7 @@
           class="search-input" 
           placeholder="Search schools..." 
           style="padding-top:8px; padding-bottom:8px;"
+          aria-label="Search schools"
         />
       </div>
     </div>
@@ -326,6 +328,7 @@
         onchange={handleStateChange}
         class="select-filter" 
         style="width: 100%; margin-bottom: 12px; min-width: 100%;"
+        aria-label="Select state"
       >
         <option value="">-- Choose State --</option>
         {#each Object.keys(stateCounts).sort() as state}
@@ -369,6 +372,7 @@
           class="search-input" 
           placeholder={explorerSelectedState ? "Search state schools..." : "Select a state first..."}
           style="width: 100%; padding-top: 8px; padding-bottom: 8px;"
+          aria-label="Search state schools"
         />
       </div>
       
