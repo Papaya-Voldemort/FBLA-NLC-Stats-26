@@ -42,19 +42,28 @@ export function getNlcData(level, year = '2026') {
   }
 
   // Load datasets
-  const publicDir = path.resolve('public');
-  const schedulesPath = path.join(publicDir, `data/${level}/${year}/schedules.json`);
+  const relativePath = `data/${level}/${year}/schedules.json`;
+  const possiblePaths = [
+    path.join(process.cwd(), 'public', relativePath),
+    path.join(process.cwd(), relativePath),
+    path.resolve('public', relativePath),
+    path.resolve(relativePath)
+  ];
 
-  if (!fs.existsSync(schedulesPath)) {
+  let schedulesPath = possiblePaths.find(p => fs.existsSync(p));
+
+  if (!schedulesPath) {
     return null;
   }
+
+  const baseDir = path.dirname(schedulesPath);
 
   const schedulesRaw = JSON.parse(fs.readFileSync(schedulesPath, 'utf8'));
   const allData = deduplicateEntries(schedulesRaw);
 
   let winnersData = null;
   try {
-    const winnersPath = path.join(publicDir, `data/${level}/${year}/winners.json`);
+    const winnersPath = path.join(baseDir, 'winners.json');
     if (fs.existsSync(winnersPath)) {
       winnersData = JSON.parse(fs.readFileSync(winnersPath, 'utf8'));
     }
@@ -64,7 +73,7 @@ export function getNlcData(level, year = '2026') {
 
   let workshopsData = [];
   try {
-    const workshopsPath = path.join(publicDir, `data/${level}/${year}/workshops.json`);
+    const workshopsPath = path.join(baseDir, 'workshops.json');
     if (fs.existsSync(workshopsPath)) {
       workshopsData = JSON.parse(fs.readFileSync(workshopsPath, 'utf8'));
     }
