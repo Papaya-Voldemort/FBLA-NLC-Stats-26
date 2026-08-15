@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-
 // Memory cache for the datasets
 const cache = {};
 
@@ -35,37 +32,30 @@ function deduplicateEntries(data) {
   return Array.from(map.values());
 }
 
-export function getNlcData(level, year = '2026') {
+export async function getNlcData(fetch, level, year = '2026') {
   const cacheKey = `${level}-${year}`;
   if (cache[cacheKey]) {
     return cache[cacheKey];
   }
 
   // Load datasets
-  const relativePath = `data/${level}/${year}/schedules.json`;
-  const possiblePaths = [
-    path.join(process.cwd(), 'public', relativePath),
-    path.join(process.cwd(), relativePath),
-    path.resolve('public', relativePath),
-    path.resolve(relativePath)
-  ];
-
-  let schedulesPath = possiblePaths.find(p => fs.existsSync(p));
-
-  if (!schedulesPath) {
+  let schedulesRaw;
+  try {
+    const res = await fetch(`/data/${level}/${year}/schedules.json`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    schedulesRaw = await res.json();
+  } catch (e) {
+    console.error(`Failed to load schedules for ${level}/${year}:`, e);
     return null;
   }
 
-  const baseDir = path.dirname(schedulesPath);
-
-  const schedulesRaw = JSON.parse(fs.readFileSync(schedulesPath, 'utf8'));
   const allData = deduplicateEntries(schedulesRaw);
 
   let winnersData = null;
   try {
-    const winnersPath = path.join(baseDir, 'winners.json');
-    if (fs.existsSync(winnersPath)) {
-      winnersData = JSON.parse(fs.readFileSync(winnersPath, 'utf8'));
+    const res = await fetch(`/data/${level}/${year}/winners.json`);
+    if (res.ok) {
+      winnersData = await res.json();
     }
   } catch (e) {
     console.warn(`Winners not loaded for ${level}/${year}`);
@@ -73,9 +63,9 @@ export function getNlcData(level, year = '2026') {
 
   let workshopsData = [];
   try {
-    const workshopsPath = path.join(baseDir, 'workshops.json');
-    if (fs.existsSync(workshopsPath)) {
-      workshopsData = JSON.parse(fs.readFileSync(workshopsPath, 'utf8'));
+    const res = await fetch(`/data/${level}/${year}/workshops.json`);
+    if (res.ok) {
+      workshopsData = await res.json();
     }
   } catch (e) {
     console.warn(`Workshops not loaded for ${level}/${year}`);
