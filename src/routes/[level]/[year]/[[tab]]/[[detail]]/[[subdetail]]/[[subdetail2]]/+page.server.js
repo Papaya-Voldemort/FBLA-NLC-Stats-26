@@ -3,7 +3,7 @@ import { error } from '@sveltejs/kit';
 
 export function load({ params, setHeaders }) {
   setHeaders({
-    'cache-control': 'public, max-age=3600, s-maxage=3600'
+    'cache-control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800'
   });
   const { level, year, tab, detail, subdetail, subdetail2 } = params;
   

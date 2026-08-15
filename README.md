@@ -10,7 +10,7 @@ Key technologies used:
 * **Svelte 5**: Leverages the Svelte 5 Runes reactivity system for state management, filters, and rendering.
 * **Vite**: Provides fast bundling and development rebuilding.
 * **Chart.js**: Configured with reactive themes to visualize divisions share, team configurations, state registrations, and hourly active schedules.
-* **sirv-cli**: Serves the optimized production distribution build for Railway deployment.
+* **@sveltejs/adapter-vercel**: Adapts the SvelteKit application for serverless edge deployment on Vercel.
 
 ## Directory Structure
 
@@ -66,22 +66,18 @@ To package the application for production deployment:
 # Compile and bundle code
 bun run build
 
-# Start the local production server simulation
-bun run start
+# Preview the production build locally
+bun run preview
 ```
 
-The build output will be compiled into the `dist/` directory.
+## Vercel Deployment
 
-## Railway Deployment
+This project is configured for serverless edge deployment on Vercel using `@sveltejs/adapter-vercel`.
 
-This project is configured for direct deployment on Railway.
-
-When a deployment is triggered on Railway:
-1. The platform executes the install and build scripts.
-2. Svelte components and assets are compiled into the `dist` directory.
-3. The platform starts the application using the start script: `sirv dist --host 0.0.0.0 --port $PORT --single`.
-4. The `--single` flag ensures that sirv acts as a single page application router by redirecting fallback requests to index.html.
-5. The server listens on the interface 0.0.0.0 using the port assigned by Railway via the `$PORT` variable.
+When deployed on Vercel:
+1. Vercel automatically detects SvelteKit and runs `bun run build`.
+2. Static assets and serverless function endpoints are generated for maximum efficiency.
+3. Edge caching headers (`s-maxage`, `stale-while-revalidate`) allow CDN edge nodes to serve requests instantly with minimal function invocations, reducing hosting costs.
 
 ## License
 
