@@ -5,6 +5,7 @@ venv/
 .env
 .env.local
 .svelte-kit/
+.vercel/
 *.log
 data.pdf
 extracted_text.txt

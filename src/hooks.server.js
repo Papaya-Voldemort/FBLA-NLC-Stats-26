@@ -19,9 +19,9 @@ export async function handle({ event, resolve }) {
   if (pathname.startsWith('/_app/immutable/')) {
     response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
   } else if (pathname.startsWith('/data/')) {
-    response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
-  } else if (pathname === '/favicon.svg' || pathname === '/robots.txt' || pathname === '/sitemap.xml') {
-    response.headers.set('Cache-Control', 'public, max-age=86400');
+    response.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
+  } else if (pathname === '/favicon.svg' || pathname === '/robots.txt' || pathname === '/llms.txt' || pathname === '/sitemap.xml') {
+    response.headers.set('Cache-Control', 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800');
   }
 
   // Set standard security headers
