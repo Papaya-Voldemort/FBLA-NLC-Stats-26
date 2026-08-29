@@ -192,6 +192,7 @@
           bind:value={stateRankQuery} 
           class="search-input" 
           placeholder="Search states..." 
+          aria-label="Search states"
           style="padding-top:8px; padding-bottom:8px;"
         />
       </div>
@@ -239,6 +240,7 @@
           bind:value={schoolRankQuery} 
           class="search-input" 
           placeholder="Search schools..." 
+          aria-label="Search schools"
           style="padding-top:8px; padding-bottom:8px;"
         />
       </div>
@@ -325,6 +327,7 @@
         value={explorerSelectedState} 
         onchange={handleStateChange}
         class="select-filter" 
+        aria-label="Select state"
         style="width: 100%; margin-bottom: 12px; min-width: 100%;"
       >
         <option value="">-- Choose State --</option>
@@ -368,6 +371,7 @@
           disabled={!explorerSelectedState}
           class="search-input" 
           placeholder={explorerSelectedState ? "Search state schools..." : "Select a state first..."}
+          aria-label="Search state schools"
           style="width: 100%; padding-top: 8px; padding-bottom: 8px;"
         />
       </div>
