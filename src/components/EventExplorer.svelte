@@ -259,7 +259,7 @@
     {:else}
       {@const activeDivDetails = getDivisionDetails(activeEvent.division)}
       <div id="event-detail-active" style="display: flex; flex-direction: column; height: 100%; overflow: hidden;">
-        <button class="mobile-back-btn" onclick={() => showSidebarMobile = true}>
+        <button class="mobile-back-btn" onclick={() => showSidebarMobile = true} aria-label="Back to Events List">
           <Icon icon="lucide:arrow-left" width="14" height="14" />
           Back to Events List
         </button>

@@ -211,8 +211,8 @@
       {/if}
     </div>
     <div class="pagination-buttons">
-      <button class="page-btn" onclick={prevPage} disabled={currentPage === 1}>Previous</button>
-      <button class="page-btn" onclick={nextPage} disabled={currentPage === totalPages}>Next</button>
+      <button class="page-btn" onclick={prevPage} disabled={currentPage === 1} aria-label="Previous Page">Previous</button>
+      <button class="page-btn" onclick={nextPage} disabled={currentPage === totalPages} aria-label="Next Page">Next</button>
     </div>
   </div>
 </div>

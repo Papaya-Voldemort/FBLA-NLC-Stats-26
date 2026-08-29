@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class="year-select-container">
-  <button class="back-to-levels-btn" onclick={() => goto('/')}>
+  <button class="back-to-levels-btn" onclick={() => goto('/')} aria-label="Back to Divisions">
     <Icon icon="lucide:arrow-left" width="16" height="16" />
     Back to Divisions
   </button>

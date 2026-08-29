@@ -1,0 +1,3 @@
+## 2024-05-24 - Adding ARIA Labels to Navigation Buttons
+**Learning:** Found multiple icon-text buttons across the app (like 'Change Division', 'Previous', 'Next', and 'Back to Divisions') where the text label might be hidden on mobile or lacks full context. Adding clear, descriptive `aria-label`s like "Previous Page" instead of just "Previous" or "Step 1: Select State" instead of "1 State" provides a much better experience for screen reader users without cluttering the visual UI.
+**Action:** When creating custom navigation buttons or pagination controls with icons, always verify if the visible text alone is enough context for screen readers. Add descriptive `aria-label`s especially when the visual text might be truncated or hidden on smaller screens.
