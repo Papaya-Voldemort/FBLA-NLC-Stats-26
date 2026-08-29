@@ -116,10 +116,11 @@
         bind:value={query} 
         class="search-input" 
         placeholder="Search by name, school, state, or event..."
+        aria-label="Search competitors"
       />
     </div>
 
-    <select value={divFilter} onchange={handleDivFilterChange} class="select-filter">
+    <select value={divFilter} onchange={handleDivFilterChange} class="select-filter" aria-label="Filter by division">
       <option value="all">All Divisions</option>
       {#each availableDivisions as div}
         <option value={div}>
@@ -136,14 +137,14 @@
       {/each}
     </select>
 
-    <select value={stateFilter} onchange={handleStateFilterChange} class="select-filter">
+    <select value={stateFilter} onchange={handleStateFilterChange} class="select-filter" aria-label="Filter by state">
       <option value="all">All States</option>
       {#each sortedStates as state}
         <option value={state}>{state} ({stateCounts[state]})</option>
       {/each}
     </select>
 
-    <select value={teamFilter} onchange={handleTeamFilterChange} class="select-filter">
+    <select value={teamFilter} onchange={handleTeamFilterChange} class="select-filter" aria-label="Filter by team size">
       <option value="all">All Team Sizes</option>
       <option value="1">Individual (1)</option>
       <option value="2">2-Person Team</option>
