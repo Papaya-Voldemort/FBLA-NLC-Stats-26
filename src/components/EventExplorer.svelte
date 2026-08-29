@@ -200,6 +200,7 @@
           bind:value={sidebarQuery} 
           class="search-input" 
           placeholder="Search events..." 
+          aria-label="Search events"
           style="padding-top:8px; padding-bottom:8px;"
         />
       </div>
@@ -352,6 +353,7 @@
               bind:value={detailQuery} 
               class="search-input" 
               placeholder="Filter school, state, or name..." 
+              aria-label="Filter competitor schedules"
               style="max-width:240px; padding: 6px 12px; font-size:12px; height: 32px;"
             />
           </div>
