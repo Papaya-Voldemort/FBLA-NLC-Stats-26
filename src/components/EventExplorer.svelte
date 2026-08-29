@@ -201,6 +201,7 @@
           class="search-input" 
           placeholder="Search events..." 
           style="padding-top:8px; padding-bottom:8px;"
+          aria-label="Search events"
         />
       </div>
       <div class="select-wrapper">
@@ -353,6 +354,7 @@
               class="search-input" 
               placeholder="Filter school, state, or name..." 
               style="max-width:240px; padding: 6px 12px; font-size:12px; height: 32px;"
+              aria-label="Filter scheduled sessions"
             />
           </div>
 
